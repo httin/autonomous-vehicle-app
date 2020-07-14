@@ -36,6 +36,7 @@
             this.bunifuMetroTextbox8 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TurningState = new System.Windows.Forms.Label();
+            this.VehicleStatusImage = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.bunifuMetroTextbox1 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -43,6 +44,9 @@
             this.DetailInfoTb = new System.Windows.Forms.RichTextBox();
             this.bunifuMetroTextbox2 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.PlanMapBt = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.ClearPlannedMap = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.ClearActualMapBt = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuMetroTextbox3 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.PosTb = new System.Windows.Forms.RichTextBox();
@@ -58,17 +62,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.bunifuMetroTextbox5 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.StopVehicleBt = new Bunifu.Framework.UI.BunifuImageButton();
+            this.StartBt = new Bunifu.Framework.UI.BunifuImageButton();
+            this.SendRoutesBt = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuMetroTextbox6 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.ReceivedTb = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.bunifuMetroTextbox4 = new Bunifu.Framework.UI.BunifuMetroTextbox();
-            this.VehicleStatusImage = new System.Windows.Forms.PictureBox();
-            this.PlanMapBt = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.ClearPlannedMap = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.ClearActualMapBt = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.StopVehicleBt = new Bunifu.Framework.UI.BunifuImageButton();
-            this.StartBt = new Bunifu.Framework.UI.BunifuImageButton();
-            this.SendRoutesBt = new Bunifu.Framework.UI.BunifuImageButton();
             this.SidePanelAuto = new Bunifu.Framework.UI.BunifuGradientPanel();
             this.ImportProcessedMapBt = new Bunifu.Framework.UI.BunifuImageButton();
             this.CreatePreProcessingBt = new Bunifu.Framework.UI.BunifuImageButton();
@@ -85,6 +85,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VehicleStatusImage)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -94,7 +95,6 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VehicleStatusImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopVehicleBt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartBt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SendRoutesBt)).BeginInit();
@@ -148,7 +148,7 @@
             this.StanleyControlTb.BackColor = System.Drawing.Color.White;
             this.StanleyControlTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.StanleyControlTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.StanleyControlTb.Font = new System.Drawing.Font("Courier New", 13.8F);
+            this.StanleyControlTb.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StanleyControlTb.Location = new System.Drawing.Point(7, 24);
             this.StanleyControlTb.Name = "StanleyControlTb";
             this.StanleyControlTb.ReadOnly = true;
@@ -209,6 +209,19 @@
             this.TurningState.Size = new System.Drawing.Size(56, 13);
             this.TurningState.TabIndex = 18;
             this.TurningState.Text = "Turning 0°";
+            // 
+            // VehicleStatusImage
+            // 
+            this.VehicleStatusImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.VehicleStatusImage.BackColor = System.Drawing.Color.White;
+            this.VehicleStatusImage.Image = global::ThesisInterface.Properties.Resources.do_extend;
+            this.VehicleStatusImage.Location = new System.Drawing.Point(15, 33);
+            this.VehicleStatusImage.Name = "VehicleStatusImage";
+            this.VehicleStatusImage.Size = new System.Drawing.Size(164, 89);
+            this.VehicleStatusImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.VehicleStatusImage.TabIndex = 4;
+            this.VehicleStatusImage.TabStop = false;
             // 
             // label5
             // 
@@ -277,7 +290,7 @@
             this.DetailInfoTb.BackColor = System.Drawing.Color.White;
             this.DetailInfoTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DetailInfoTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.DetailInfoTb.Font = new System.Drawing.Font("Courier New", 13.8F);
+            this.DetailInfoTb.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DetailInfoTb.Location = new System.Drawing.Point(8, 17);
             this.DetailInfoTb.Name = "DetailInfoTb";
             this.DetailInfoTb.ReadOnly = true;
@@ -318,6 +331,111 @@
             this.panel5.Size = new System.Drawing.Size(195, 107);
             this.panel5.TabIndex = 18;
             // 
+            // PlanMapBt
+            // 
+            this.PlanMapBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
+            this.PlanMapBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.PlanMapBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PlanMapBt.BorderRadius = 0;
+            this.PlanMapBt.ButtonText = "Enable Plan Map";
+            this.PlanMapBt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PlanMapBt.DisabledColor = System.Drawing.Color.Gray;
+            this.PlanMapBt.Iconcolor = System.Drawing.Color.Transparent;
+            this.PlanMapBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("PlanMapBt.Iconimage")));
+            this.PlanMapBt.Iconimage_right = null;
+            this.PlanMapBt.Iconimage_right_Selected = null;
+            this.PlanMapBt.Iconimage_Selected = null;
+            this.PlanMapBt.IconMarginLeft = 0;
+            this.PlanMapBt.IconMarginRight = 0;
+            this.PlanMapBt.IconRightVisible = true;
+            this.PlanMapBt.IconRightZoom = 0D;
+            this.PlanMapBt.IconVisible = true;
+            this.PlanMapBt.IconZoom = 90D;
+            this.PlanMapBt.IsTab = false;
+            this.PlanMapBt.Location = new System.Drawing.Point(13, 11);
+            this.PlanMapBt.Margin = new System.Windows.Forms.Padding(4);
+            this.PlanMapBt.Name = "PlanMapBt";
+            this.PlanMapBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.PlanMapBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.PlanMapBt.OnHoverTextColor = System.Drawing.Color.White;
+            this.PlanMapBt.selected = false;
+            this.PlanMapBt.Size = new System.Drawing.Size(170, 24);
+            this.PlanMapBt.TabIndex = 0;
+            this.PlanMapBt.Text = "Enable Plan Map";
+            this.PlanMapBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PlanMapBt.Textcolor = System.Drawing.Color.White;
+            this.PlanMapBt.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // ClearPlannedMap
+            // 
+            this.ClearPlannedMap.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
+            this.ClearPlannedMap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.ClearPlannedMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClearPlannedMap.BorderRadius = 0;
+            this.ClearPlannedMap.ButtonText = "Clear Planned Map";
+            this.ClearPlannedMap.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClearPlannedMap.DisabledColor = System.Drawing.Color.Gray;
+            this.ClearPlannedMap.Iconcolor = System.Drawing.Color.Transparent;
+            this.ClearPlannedMap.Iconimage = ((System.Drawing.Image)(resources.GetObject("ClearPlannedMap.Iconimage")));
+            this.ClearPlannedMap.Iconimage_right = null;
+            this.ClearPlannedMap.Iconimage_right_Selected = null;
+            this.ClearPlannedMap.Iconimage_Selected = null;
+            this.ClearPlannedMap.IconMarginLeft = 0;
+            this.ClearPlannedMap.IconMarginRight = 0;
+            this.ClearPlannedMap.IconRightVisible = true;
+            this.ClearPlannedMap.IconRightZoom = 0D;
+            this.ClearPlannedMap.IconVisible = true;
+            this.ClearPlannedMap.IconZoom = 90D;
+            this.ClearPlannedMap.IsTab = false;
+            this.ClearPlannedMap.Location = new System.Drawing.Point(13, 42);
+            this.ClearPlannedMap.Margin = new System.Windows.Forms.Padding(4);
+            this.ClearPlannedMap.Name = "ClearPlannedMap";
+            this.ClearPlannedMap.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.ClearPlannedMap.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.ClearPlannedMap.OnHoverTextColor = System.Drawing.Color.White;
+            this.ClearPlannedMap.selected = false;
+            this.ClearPlannedMap.Size = new System.Drawing.Size(170, 24);
+            this.ClearPlannedMap.TabIndex = 0;
+            this.ClearPlannedMap.Text = "Clear Planned Map";
+            this.ClearPlannedMap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ClearPlannedMap.Textcolor = System.Drawing.Color.White;
+            this.ClearPlannedMap.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // ClearActualMapBt
+            // 
+            this.ClearActualMapBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
+            this.ClearActualMapBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.ClearActualMapBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClearActualMapBt.BorderRadius = 0;
+            this.ClearActualMapBt.ButtonText = "Clear Actual Map";
+            this.ClearActualMapBt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClearActualMapBt.DisabledColor = System.Drawing.Color.Gray;
+            this.ClearActualMapBt.Iconcolor = System.Drawing.Color.Transparent;
+            this.ClearActualMapBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("ClearActualMapBt.Iconimage")));
+            this.ClearActualMapBt.Iconimage_right = null;
+            this.ClearActualMapBt.Iconimage_right_Selected = null;
+            this.ClearActualMapBt.Iconimage_Selected = null;
+            this.ClearActualMapBt.IconMarginLeft = 0;
+            this.ClearActualMapBt.IconMarginRight = 0;
+            this.ClearActualMapBt.IconRightVisible = true;
+            this.ClearActualMapBt.IconRightZoom = 0D;
+            this.ClearActualMapBt.IconVisible = true;
+            this.ClearActualMapBt.IconZoom = 90D;
+            this.ClearActualMapBt.IsTab = false;
+            this.ClearActualMapBt.Location = new System.Drawing.Point(13, 72);
+            this.ClearActualMapBt.Margin = new System.Windows.Forms.Padding(4);
+            this.ClearActualMapBt.Name = "ClearActualMapBt";
+            this.ClearActualMapBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.ClearActualMapBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.ClearActualMapBt.OnHoverTextColor = System.Drawing.Color.White;
+            this.ClearActualMapBt.selected = false;
+            this.ClearActualMapBt.Size = new System.Drawing.Size(170, 24);
+            this.ClearActualMapBt.TabIndex = 0;
+            this.ClearActualMapBt.Text = "Clear Actual Map";
+            this.ClearActualMapBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ClearActualMapBt.Textcolor = System.Drawing.Color.White;
+            this.ClearActualMapBt.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
             // bunifuMetroTextbox3
             // 
             this.bunifuMetroTextbox3.BorderColorFocused = System.Drawing.Color.Purple;
@@ -355,7 +473,7 @@
             this.PosTb.BackColor = System.Drawing.Color.White;
             this.PosTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PosTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PosTb.Font = new System.Drawing.Font("Courier New", 13.8F);
+            this.PosTb.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PosTb.Location = new System.Drawing.Point(7, 22);
             this.PosTb.Name = "PosTb";
             this.PosTb.ReadOnly = true;
@@ -492,7 +610,7 @@
             this.SentTb.BackColor = System.Drawing.Color.White;
             this.SentTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SentTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.SentTb.Font = new System.Drawing.Font("Courier New", 13.8F);
+            this.SentTb.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SentTb.Location = new System.Drawing.Point(16, 21);
             this.SentTb.Name = "SentTb";
             this.SentTb.ReadOnly = true;
@@ -550,6 +668,45 @@
             this.panel6.Size = new System.Drawing.Size(314, 154);
             this.panel6.TabIndex = 0;
             // 
+            // StopVehicleBt
+            // 
+            this.StopVehicleBt.BackColor = System.Drawing.Color.Transparent;
+            this.StopVehicleBt.Image = global::ThesisInterface.Properties.Resources.Pause_Butto1n_100px;
+            this.StopVehicleBt.ImageActive = null;
+            this.StopVehicleBt.Location = new System.Drawing.Point(10, 108);
+            this.StopVehicleBt.Name = "StopVehicleBt";
+            this.StopVehicleBt.Size = new System.Drawing.Size(40, 40);
+            this.StopVehicleBt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.StopVehicleBt.TabIndex = 18;
+            this.StopVehicleBt.TabStop = false;
+            this.StopVehicleBt.Zoom = 10;
+            // 
+            // StartBt
+            // 
+            this.StartBt.BackColor = System.Drawing.Color.Transparent;
+            this.StartBt.Image = global::ThesisInterface.Properties.Resources.Circled_Play_100px;
+            this.StartBt.ImageActive = null;
+            this.StartBt.Location = new System.Drawing.Point(10, 60);
+            this.StartBt.Name = "StartBt";
+            this.StartBt.Size = new System.Drawing.Size(40, 40);
+            this.StartBt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.StartBt.TabIndex = 18;
+            this.StartBt.TabStop = false;
+            this.StartBt.Zoom = 10;
+            // 
+            // SendRoutesBt
+            // 
+            this.SendRoutesBt.BackColor = System.Drawing.Color.Transparent;
+            this.SendRoutesBt.Image = global::ThesisInterface.Properties.Resources.Email_Send_96px;
+            this.SendRoutesBt.ImageActive = null;
+            this.SendRoutesBt.Location = new System.Drawing.Point(10, 10);
+            this.SendRoutesBt.Name = "SendRoutesBt";
+            this.SendRoutesBt.Size = new System.Drawing.Size(40, 40);
+            this.SendRoutesBt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.SendRoutesBt.TabIndex = 18;
+            this.SendRoutesBt.TabStop = false;
+            this.SendRoutesBt.Zoom = 10;
+            // 
             // bunifuMetroTextbox6
             // 
             this.bunifuMetroTextbox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -577,7 +734,7 @@
             this.ReceivedTb.BackColor = System.Drawing.Color.White;
             this.ReceivedTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ReceivedTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ReceivedTb.Font = new System.Drawing.Font("Courier New", 13.8F);
+            this.ReceivedTb.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReceivedTb.Location = new System.Drawing.Point(80, 19);
             this.ReceivedTb.Name = "ReceivedTb";
             this.ReceivedTb.ReadOnly = true;
@@ -619,163 +776,6 @@
             this.bunifuMetroTextbox4.Size = new System.Drawing.Size(244, 151);
             this.bunifuMetroTextbox4.TabIndex = 20;
             this.bunifuMetroTextbox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // VehicleStatusImage
-            // 
-            this.VehicleStatusImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.VehicleStatusImage.BackColor = System.Drawing.Color.White;
-            this.VehicleStatusImage.Image = global::ThesisInterface.Properties.Resources.do_extend;
-            this.VehicleStatusImage.Location = new System.Drawing.Point(15, 33);
-            this.VehicleStatusImage.Name = "VehicleStatusImage";
-            this.VehicleStatusImage.Size = new System.Drawing.Size(164, 89);
-            this.VehicleStatusImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.VehicleStatusImage.TabIndex = 4;
-            this.VehicleStatusImage.TabStop = false;
-            // 
-            // PlanMapBt
-            // 
-            this.PlanMapBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
-            this.PlanMapBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.PlanMapBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlanMapBt.BorderRadius = 0;
-            this.PlanMapBt.ButtonText = "Enable Plan Map";
-            this.PlanMapBt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PlanMapBt.DisabledColor = System.Drawing.Color.Gray;
-            this.PlanMapBt.Iconcolor = System.Drawing.Color.Transparent;
-            this.PlanMapBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("PlanMapBt.Iconimage")));
-            this.PlanMapBt.Iconimage_right = null;
-            this.PlanMapBt.Iconimage_right_Selected = null;
-            this.PlanMapBt.Iconimage_Selected = null;
-            this.PlanMapBt.IconMarginLeft = 0;
-            this.PlanMapBt.IconMarginRight = 0;
-            this.PlanMapBt.IconRightVisible = true;
-            this.PlanMapBt.IconRightZoom = 0D;
-            this.PlanMapBt.IconVisible = true;
-            this.PlanMapBt.IconZoom = 90D;
-            this.PlanMapBt.IsTab = false;
-            this.PlanMapBt.Location = new System.Drawing.Point(13, 11);
-            this.PlanMapBt.Margin = new System.Windows.Forms.Padding(4);
-            this.PlanMapBt.Name = "PlanMapBt";
-            this.PlanMapBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.PlanMapBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.PlanMapBt.OnHoverTextColor = System.Drawing.Color.White;
-            this.PlanMapBt.selected = false;
-            this.PlanMapBt.Size = new System.Drawing.Size(170, 24);
-            this.PlanMapBt.TabIndex = 0;
-            this.PlanMapBt.Text = "Enable Plan Map";
-            this.PlanMapBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.PlanMapBt.Textcolor = System.Drawing.Color.White;
-            this.PlanMapBt.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 
-            // ClearPlannedMap
-            // 
-            this.ClearPlannedMap.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
-            this.ClearPlannedMap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.ClearPlannedMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClearPlannedMap.BorderRadius = 0;
-            this.ClearPlannedMap.ButtonText = "Clear Planned Map";
-            this.ClearPlannedMap.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ClearPlannedMap.DisabledColor = System.Drawing.Color.Gray;
-            this.ClearPlannedMap.Iconcolor = System.Drawing.Color.Transparent;
-            this.ClearPlannedMap.Iconimage = ((System.Drawing.Image)(resources.GetObject("ClearPlannedMap.Iconimage")));
-            this.ClearPlannedMap.Iconimage_right = null;
-            this.ClearPlannedMap.Iconimage_right_Selected = null;
-            this.ClearPlannedMap.Iconimage_Selected = null;
-            this.ClearPlannedMap.IconMarginLeft = 0;
-            this.ClearPlannedMap.IconMarginRight = 0;
-            this.ClearPlannedMap.IconRightVisible = true;
-            this.ClearPlannedMap.IconRightZoom = 0D;
-            this.ClearPlannedMap.IconVisible = true;
-            this.ClearPlannedMap.IconZoom = 90D;
-            this.ClearPlannedMap.IsTab = false;
-            this.ClearPlannedMap.Location = new System.Drawing.Point(13, 42);
-            this.ClearPlannedMap.Margin = new System.Windows.Forms.Padding(4);
-            this.ClearPlannedMap.Name = "ClearPlannedMap";
-            this.ClearPlannedMap.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.ClearPlannedMap.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.ClearPlannedMap.OnHoverTextColor = System.Drawing.Color.White;
-            this.ClearPlannedMap.selected = false;
-            this.ClearPlannedMap.Size = new System.Drawing.Size(170, 24);
-            this.ClearPlannedMap.TabIndex = 0;
-            this.ClearPlannedMap.Text = "Clear Planned Map";
-            this.ClearPlannedMap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ClearPlannedMap.Textcolor = System.Drawing.Color.White;
-            this.ClearPlannedMap.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 
-            // ClearActualMapBt
-            // 
-            this.ClearActualMapBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
-            this.ClearActualMapBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.ClearActualMapBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClearActualMapBt.BorderRadius = 0;
-            this.ClearActualMapBt.ButtonText = "Clear Actual Map";
-            this.ClearActualMapBt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ClearActualMapBt.DisabledColor = System.Drawing.Color.Gray;
-            this.ClearActualMapBt.Iconcolor = System.Drawing.Color.Transparent;
-            this.ClearActualMapBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("ClearActualMapBt.Iconimage")));
-            this.ClearActualMapBt.Iconimage_right = null;
-            this.ClearActualMapBt.Iconimage_right_Selected = null;
-            this.ClearActualMapBt.Iconimage_Selected = null;
-            this.ClearActualMapBt.IconMarginLeft = 0;
-            this.ClearActualMapBt.IconMarginRight = 0;
-            this.ClearActualMapBt.IconRightVisible = true;
-            this.ClearActualMapBt.IconRightZoom = 0D;
-            this.ClearActualMapBt.IconVisible = true;
-            this.ClearActualMapBt.IconZoom = 90D;
-            this.ClearActualMapBt.IsTab = false;
-            this.ClearActualMapBt.Location = new System.Drawing.Point(13, 72);
-            this.ClearActualMapBt.Margin = new System.Windows.Forms.Padding(4);
-            this.ClearActualMapBt.Name = "ClearActualMapBt";
-            this.ClearActualMapBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.ClearActualMapBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.ClearActualMapBt.OnHoverTextColor = System.Drawing.Color.White;
-            this.ClearActualMapBt.selected = false;
-            this.ClearActualMapBt.Size = new System.Drawing.Size(170, 24);
-            this.ClearActualMapBt.TabIndex = 0;
-            this.ClearActualMapBt.Text = "Clear Actual Map";
-            this.ClearActualMapBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ClearActualMapBt.Textcolor = System.Drawing.Color.White;
-            this.ClearActualMapBt.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 
-            // StopVehicleBt
-            // 
-            this.StopVehicleBt.BackColor = System.Drawing.Color.Transparent;
-            this.StopVehicleBt.Image = global::ThesisInterface.Properties.Resources.Pause_Butto1n_100px;
-            this.StopVehicleBt.ImageActive = null;
-            this.StopVehicleBt.Location = new System.Drawing.Point(10, 108);
-            this.StopVehicleBt.Name = "StopVehicleBt";
-            this.StopVehicleBt.Size = new System.Drawing.Size(40, 40);
-            this.StopVehicleBt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.StopVehicleBt.TabIndex = 18;
-            this.StopVehicleBt.TabStop = false;
-            this.StopVehicleBt.Zoom = 10;
-            // 
-            // StartBt
-            // 
-            this.StartBt.BackColor = System.Drawing.Color.Transparent;
-            this.StartBt.Image = global::ThesisInterface.Properties.Resources.Circled_Play_100px;
-            this.StartBt.ImageActive = null;
-            this.StartBt.Location = new System.Drawing.Point(10, 60);
-            this.StartBt.Name = "StartBt";
-            this.StartBt.Size = new System.Drawing.Size(40, 40);
-            this.StartBt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.StartBt.TabIndex = 18;
-            this.StartBt.TabStop = false;
-            this.StartBt.Zoom = 10;
-            // 
-            // SendRoutesBt
-            // 
-            this.SendRoutesBt.BackColor = System.Drawing.Color.Transparent;
-            this.SendRoutesBt.Image = global::ThesisInterface.Properties.Resources.Email_Send_96px;
-            this.SendRoutesBt.ImageActive = null;
-            this.SendRoutesBt.Location = new System.Drawing.Point(10, 10);
-            this.SendRoutesBt.Name = "SendRoutesBt";
-            this.SendRoutesBt.Size = new System.Drawing.Size(40, 40);
-            this.SendRoutesBt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.SendRoutesBt.TabIndex = 18;
-            this.SendRoutesBt.TabStop = false;
-            this.SendRoutesBt.Zoom = 10;
             // 
             // SidePanelAuto
             // 
@@ -977,6 +977,7 @@
             this.panel9.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VehicleStatusImage)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -990,7 +991,6 @@
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VehicleStatusImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopVehicleBt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartBt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SendRoutesBt)).EndInit();

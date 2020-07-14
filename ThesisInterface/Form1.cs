@@ -69,10 +69,10 @@ namespace ThesisInterface
                     switch (ArrayInfo[3])
                     {
                         case "0":
-                            GPS_Mode = "GPS Not Available";
+                            GPS_Mode = "Data unvalid";
                             break;
                         case "1":
-                            GPS_Mode = "GPS Available";
+                            GPS_Mode = "Data valid";
                             break;
                         case "2":
                             GPS_Mode = "DGNSS";
@@ -98,15 +98,15 @@ namespace ThesisInterface
             {
                 return (GPS_Available.Contains("Y")) ?
                     "GPS Mode: " + GPS_Mode + "\r\nPosition: " + GPS_Lat.ToString() + ", " + GPS_Lng.ToString() + "\r\n" :
-                    "GPS is not available\r\n"; 
+                    "GPS is not available\r\n";
             }
         }
 
         public class StanleyControl
         {
             public double thetaE, thetaD, Delta, ErrorDistance, Efa;
-            
-            public StanleyControl(string []ArrayInfo)
+
+            public StanleyControl(string[] ArrayInfo)
             {
                 try
                 {
@@ -145,7 +145,7 @@ namespace ThesisInterface
             public void ResetAllBits()
             {
                 KCTRL_START = KCTRL_STOP = VEHCF_DATA_ON = VEHCF_DATA_OFF = AUCON_START = AUCON_STOP =
-                    AUCON_RUN = AUCON_PAUSE = AUCON_DATA = SFRST = VPLAN_FLAG = false; 
+                    AUCON_RUN = AUCON_PAUSE = AUCON_DATA = SFRST = VPLAN_FLAG = false;
             }
         }
 
@@ -189,8 +189,10 @@ namespace ThesisInterface
         Image HighVelocity = Image.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + @"\HIGH.png");
 
         public string Vehicle_Information = "", GPS_Information = "", StanleyControl_Information = "";
-
         //---------------------------------------------------------------------------------------------------------------
+        enum TextBox { 
+            auto_received, auto_positionInfo, auto_turning, auto_vehicleInfo, auto_stanleyControl};
+
         private bool AutoSetting = false;
         private bool OnHelperPanel = false; //flag to on/off helper panel
 
@@ -359,7 +361,6 @@ namespace ThesisInterface
             TransferMapBackGroundWorker.ReportProgress(0, "START"); 
             string text = File.ReadAllText(workingDirectory + "\\map\\map_out.txt");
 
-            TransferMapBackGroundWorker.ReportProgress(0, "PARSE");
             ProcessedMap processedMap = JsonConvert.DeserializeObject<ProcessedMap>(text); 
 
             ClearPLannedData(); // clear the PlanCoordinates List and the corresponding Plan line
@@ -373,7 +374,7 @@ namespace ThesisInterface
                 "Planned");
 
             TransferMapBackGroundWorker.ReportProgress(0, "SEND");
-            if (AutoEnable)
+            if (serialPort1.IsOpen)
             {
                 int report_value = 0, repeat;
                 WRONG_CKSUM_FLAG = VEHICLE_RECEIVED_ERROR_FLAG = VEHICLE_RECEIVED_DATA_FLAG = false;
@@ -427,7 +428,6 @@ namespace ThesisInterface
             else
             {
                 TransferMapBackGroundWorker.ReportProgress(0, "FAIL");
-                MessageBox.Show(AutoEnable ? "AUTO ON":"AUTO OFF", "TransferMapBackGroundWorker_DoWork", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -439,16 +439,14 @@ namespace ThesisInterface
                     progressUC1.ProgressBar.Value = e.ProgressPercentage;
                     progressUC1.ProgressBar.Update();
                     progressUC1.ProgressBar.PerformLayout();
-                    autoUC1.SentTb.Text += e.ProgressPercentage.ToString() + "%... \r\n";
+                    autoUC1.SentTb.Text += ">> " + e.ProgressPercentage.ToString() + "%\r\n";
                 } else if ((string)e.UserState == "START") {
-                    autoUC1.SentTb.Text += "Reading map_out.txt...\n";
-                } else if ((string)e.UserState == "PARSE") {
-                    autoUC1.SentTb.Text += "Parsing text to map...\n";
+                    autoUC1.SentTb.Text += ">> reading map_out.txt\n";
                 } else if ((string)e.UserState == "SEND") {
                     progressUC1.BringToFront();
-                    autoUC1.SentTb.Text += "Ready for sending data... Total " + PlanCoordinatesList.Count.ToString() + "\r\n";
+                    autoUC1.SentTb.Text += ">> sending data... Total " + PlanCoordinatesList.Count.ToString() + " points\n";
                 } else if ((string)e.UserState == "FAIL") {
-                    autoUC1.SentTb.Text += "OOPS! Auto mode is off, stop sending!\n";
+                    autoUC1.SentTb.Text += ">> Serial Port is closed.\n";
                 }
             }
         }
@@ -692,22 +690,6 @@ namespace ThesisInterface
                 this.WindowState = FormWindowState.Maximized;
         }
 
-        private void ManualBtClickHandler(object sender, EventArgs e)
-        {
-            // TODO: Add disable for this mode later
-            try
-            {
-                serialPort1.Write(MessagesDocker("KCTRL,1"));
-                manualUC1.SentBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Started to control manually\r\n";
-                manualUC1.FormStatus.Text = "STARTED";
-                AutoEnable = true;
-                timer1.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         //-------------------------------------------------------------------------//
         //------------------- Init Functions & Linking to events ------------------//
         private void InitSettingUC()
@@ -1063,7 +1045,7 @@ namespace ThesisInterface
                 manualUC1.FormStatus.Text = "STARTED";
                 DisableAllTimers();
                 ManualEnabled = true;
-                timer1.Enabled = true;
+                timer1.Enabled = false; //true
             }
             catch (Exception ex)
             {
@@ -1469,7 +1451,7 @@ namespace ThesisInterface
             {
                 string mess = MessagesDocker("AUCON,SUPDT,0");
                 serialPort1.Write(mess);
-                autoUC1.SentTb.Text += DateTime.Now.ToString("h:mm:ss tt") + " SEND MESSAGE: " + mess;
+                autoUC1.SentTb.Text += DateTime.Now.ToString("h:mm:ss tt") + ">> " + mess;
             }
         }
 
@@ -1479,7 +1461,7 @@ namespace ThesisInterface
             {
                 string mess = MessagesDocker("AUCON,SUPDT,1");
                 serialPort1.Write(mess);
-                autoUC1.SentTb.Text += DateTime.Now.ToString("h:mm:ss tt") + " SEND MESSAGE: " + mess;
+                autoUC1.SentTb.Text += DateTime.Now.ToString("h:mm:ss tt") + ">> " + mess;
             }
         }
 
@@ -1500,7 +1482,7 @@ namespace ThesisInterface
         {
             if(PreprocessBackGroundWorker.IsBusy)
             {
-                Console.WriteLine("cancel a map pre-processing thread...");
+                Console.WriteLine("Cancel map pre-processing thread...");
                 PreprocessBackGroundWorker.CancelAsync(); // Cancel map pre-processing thread
             }
             else
@@ -1575,124 +1557,45 @@ namespace ThesisInterface
         {
             if (ManualEnabled)
             {
-                if (serialPort1.IsOpen && (serialPort1.BytesToRead != 0))
+                try
                 {
-                    try
+                    string temp;
+                    string mess = serialPort1.ReadLine();
+                    string[] value;
+                    value = mess.Split(',');
+                    temp = mess;
+                    if(mess.Length >= 5)
                     {
-                        string temp;
-                        string mess = serialPort1.ReadLine();
-                        string[] value;
-                        value = mess.Split(',');
-                        temp = mess;
-                        if(mess.Length >= 5)
-                        {
-                            temp = temp.Remove(temp.Length - 3, 3);
-                            temp = temp.Remove(0, 1);
-                        }
-                        string CC = checksum(temp);
-
-                        // Update Vehicle Information
-                        if (mess.Contains("$VINFO,0") && mess.Contains(CC))
-                        {
-                            MyVehicle = new Vehicle(value);
-                            Vehicle_Information = MyVehicle.GetVehicleStatus();
-                        }
-
-                        // Update GPS Information
-                        if (mess.Contains("$VINFO,1") && mess.Contains(CC))
-                        {
-                            MyGPS = new GPS(value);
-                            GPS_Information = MyGPS.GetGPSStatus();
-                        }
-
-                        // Update Stanley Information
-                        if (mess.Contains("$VINFO,2") && mess.Contains(CC))
-                        {
-                            MyStanleyControl = new StanleyControl(value);
-                            StanleyControl_Information = MyStanleyControl.GetStanleyControlStatus();
-                        }
+                        temp = temp.Remove(temp.Length - 3, 3);
+                        temp = temp.Remove(0, 1);
                     }
-                    catch (Exception ex)
+                    string CC = checksum(temp);
+
+                    // Update Vehicle Information
+                    if (mess.Contains("$VINFO,0") && mess.Contains(CC))
                     {
-                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }                
-                }
-            }
-            else if(AutoEnable) //Change mode a little bit here, *TODO: Change it back later
-            {
-                if (serialPort1.IsOpen && (serialPort1.BytesToRead != 0))
-                {
-                    try
-                    {
-                        string temp;
-                        string mess = serialPort1.ReadLine();
-                        string[] value;
-                        if(mess.Contains("$"))
-                        {
-                            value = mess.Split(',');
-                            temp = mess;
-                            if (mess.Length >= 5)
-                            {
-                                temp = temp.Remove(temp.Length - 3, 3);
-                                temp = temp.Remove(0, 1);
-                            }
-                            string CC = checksum(temp);
-
-                            // Update Vehicle Information
-                            if (mess.Contains("$VINFO,0") && mess.Contains(CC))
-                            {
-                                MyVehicle = new Vehicle(value);
-                                Vehicle_Information = MyVehicle.GetVehicleStatus();
-
-                                /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
-                                (It help users to understand whether the vehicle is turning left or right)      */
-                                DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, -MyVehicle.RefAngle + MyVehicle.Angle, LowVelocity);
-                                autoUC1.TurningState.Text = "Turning " + Math.Round(-MyVehicle.RefAngle + MyVehicle.Angle, 4).ToString() + "°";
-                                //autoUC1.ReceivedTb.Text += mess;
-                            }
-
-                            // Update GPS Information
-                            if (mess.Contains("$VINFO,1") && mess.Contains(CC))
-                            {
-                                MyGPS = new GPS(value);
-                                GPS_Information = MyGPS.GetGPSStatus();
-                                autoUC1.ReceivedTb.Text += mess;
-                                if (MyGPS.GPS_Available.Contains("Y"))
-                                {
-                                    // Save Position Data & Draw On Map
-                                    ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
-                                    GMapMarker marker = new GMarkerGoogle(
-                                        new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
-                                        GMarkerGoogleType.orange_dot);
-                                    DisplayRouteOnMap(
-                                        autoUC1.gmap, 
-                                        new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
-                                        "Actual",
-                                        marker);
-                                }
-                            }
-
-                            // Update Stanley Information
-                            if (mess.Contains("$VINFO,2") && mess.Contains(CC))
-                            {
-                                MyStanleyControl = new StanleyControl(value);
-                                StanleyControl_Information = MyStanleyControl.GetStanleyControlStatus();
-                                DistanceErrors.Add(MyStanleyControl.ErrorDistance);
-                                Efa.Add(MyStanleyControl.Efa);
-                            }
-                                
-                            /* If GPS Status is OK, then draw the positions of the vehicle on MAP. Otherwise, skip drawing positions. */
-
-                            autoUC1.DetailInfoTb.Text = Vehicle_Information;
-                            autoUC1.PosTb.Text = GPS_Information;
-                            autoUC1.StanleyControlTb.Text = StanleyControl_Information;
-                        }
+                        MyVehicle = new Vehicle(value);
+                        Vehicle_Information = MyVehicle.GetVehicleStatus();
                     }
-                    catch (Exception ex)
+
+                    // Update GPS Information
+                    if (mess.Contains("$VINFO,1") && mess.Contains(CC))
                     {
-                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MyGPS = new GPS(value);
+                        GPS_Information = MyGPS.GetGPSStatus();
+                    }
+
+                    // Update Stanley Information
+                    if (mess.Contains("$VINFO,2") && mess.Contains(CC))
+                    {
+                        MyStanleyControl = new StanleyControl(value);
+                        StanleyControl_Information = MyStanleyControl.GetStanleyControlStatus();
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }                
             }
         }
 
@@ -1807,14 +1710,12 @@ namespace ThesisInterface
                             autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << START auto successfully\r\n";
                             PrevMode = "auto";
                             AutoEnable = true;
-                            timer1.Enabled = true;
                         }
                         else if (MyStatus.AUCON_STOP)
                         {
                             MyStatus.AUCON_STOP = false;
                             autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << STOP auto successfully\r\n";
                             AutoEnable = false;
-                            timer1.Enabled = false;
                             SetPreviousMode();
                         }
                         else if (MyStatus.AUCON_RUN)
@@ -1875,102 +1776,189 @@ namespace ThesisInterface
                 //SetPreviousMode();
             }
         }
+        
+        delegate void SetTextCallback(TextBox textBox_id, string text);
+        private void SetText(TextBox textBox_id, string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            switch (textBox_id)
+            { 
+                case TextBox.auto_received:
+                    if (this.autoUC1.ReceivedTb.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.autoUC1.ReceivedTb.Text += text;
+                    break;
+                case TextBox.auto_positionInfo:
+                    if (this.autoUC1.PosTb.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.autoUC1.PosTb.Text = text;
+                    break;
+                case TextBox.auto_turning:
+                    if (this.autoUC1.TurningState.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.autoUC1.TurningState.Text = text;
+                    break; 
+                case TextBox.auto_vehicleInfo:
+                    if (this.autoUC1.DetailInfoTb.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.autoUC1.DetailInfoTb.Text = text;
+                    break; 
+                case TextBox.auto_stanleyControl:
+                    if (this.autoUC1.StanleyControlTb.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.autoUC1.StanleyControlTb.Text = text;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = sender as SerialPort;
             string indata = sp.ReadExisting();
             serial_command += indata;
-            
-            if(serial_command.Contains("\r\n"))
+#if DEBUG
+            Console.WriteLine("<<  (" + indata.Length + " bytes): " + indata);
+#endif
+            if (serial_command.Contains("\r\n"))
             {
-                string[] mess = serial_command.Split(',');
-#if DEBUG
-                Console.WriteLine("[RECV] " + indata.Length + "new bytes, splitted into " + mess.Length + ", command: " + serial_command);
-#endif
-                switch (mess[0])
+                int num_of_commands = 0;
+                for (int i = 0; i < serial_command.Length - 1; ++i)
                 {
-                    case "$SINFO":
-                        if (mess[1].Contains("0")) // use contains method because message is "0\r\n"
+                    if (serial_command[i] == '\r')
+                    {
+                        if (serial_command[i + 1] == '\n')
                         {
-                            VEHICLE_RECEIVED_ERROR_FLAG = true;
+                            ++num_of_commands;
+                            ++i;
                         }
-                        else if (mess[1].Contains("1"))
-                        {
-                            VEHICLE_RECEIVED_DATA_FLAG = true;
-                        }
-                        else if (mess[1] == "VPLAN")
-                        {
-                            if (mess[2].Contains("1"))
-                            {
-                                this.MyStatus.VPLAN_FLAG = true;
-                            }
-                            else if (mess[2].Contains("0"))
-                            {
-                                this.MyStatus.VPLAN_FLAG = false;
-                                autoUC1.ReceivedTb.Text +=
-                                    DateTime.Now.ToString("hh:mm:ss") + " << transfer map successfully, ready to go\r\n";
-                            }
-                            else if (mess[2].Contains("?"))
-                            {
-                                Console.WriteLine("[vehicle] Data received is correct checksum but wrong header");
-                            }
-                        }
-                        break;
-                    case "$KCTRL":
-                        {
-                            break;
-                        }
-                    case "$VINFO":
-                        if (AutoEnable || ManualEnabled)
-                        {
-                            /* TODO */
-                            if (mess[1] == "0")
-                            {
+                    }
+                }
 
-                            }
-                            else if (mess[1] == "1")
-                            {
-                                MyGPS = new GPS(mess);
-                                GPS_Information = MyGPS.GetGPSStatus();
-                                autoUC1.ReceivedTb.Text += mess;
-                                if (MyGPS.GPS_Available.Contains("Y"))
-                                {
-                                    // Save Position Data & Draw On Map
-                                    ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
-                                    GMapMarker marker = new GMarkerGoogle(
-                                        new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
-                                        GMarkerGoogleType.orange_dot);
-                                    DisplayRouteOnMap(
-                                        autoUC1.gmap,
-                                        new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
-                                        "Actual",
-                                        marker);
-                                }
-                                autoUC1.PosTb.Text = GPS_Information;
-                            }
-                            else if (mess[1] == "2")
-                            {
-
-                            }
-                        }
-                        else
-                            Console.WriteLine("Auto mode and Manual mode is disable, drop message");
-                        break;
-                    case "$WRONG_CKSUM":
-                        WRONG_CKSUM_FLAG = true;
+                while (num_of_commands > 0)
+                {
+                    --num_of_commands;
+                    int index = serial_command.IndexOf("\r\n"); // index of first occurrence of '\r'
+                    string cmd = serial_command.Substring(0, index + 2);
+                    string[] mess = cmd.Split(',');
+                    serial_command = serial_command.Remove(0, index + 2);
 #if DEBUG
-                        Console.WriteLine("Wrong checksum");
+                    Console.WriteLine("num_of_commands: " + num_of_commands.ToString() + ", cmd: " + cmd);
 #endif
-                        break;
-                    default:
-                        Console.WriteLine("Unknown type: " + mess[0]);
-                        break;
-                } // end switch
-
-                serial_command = string.Empty;
-                //int index = serial_command.IndexOf("\r\n");
-                //serial_command = serial_command.Remove(0, index + 1);
+                    switch (mess[0])
+                    {
+                        case "$SINFO":
+                            if (mess[1].Contains("0")) // use contains method because message is "0\r\n"
+                            {
+                                VEHICLE_RECEIVED_ERROR_FLAG = true;
+                            }
+                            else if (mess[1].Contains("1"))
+                            {
+                                VEHICLE_RECEIVED_DATA_FLAG = true;
+                            }
+                            else if (mess[1] == "VPLAN")
+                            {
+                                if (mess[2].Contains("1"))
+                                {
+                                    this.MyStatus.VPLAN_FLAG = true;
+                                }
+                                else if (mess[2].Contains("0"))
+                                {
+                                    this.MyStatus.VPLAN_FLAG = false;
+                                    SetText(TextBox.auto_received, 
+                                        DateTime.Now.ToString("hh:mm:ss") + " << transfer map successfully, ready to go\r\n");
+                                }
+                                else if (mess[2].Contains("?"))
+                                {
+                                    Console.WriteLine("[map transfer] Data received is correct checksum but wrong header");
+                                }
+                            }
+                            break;
+                        case "$KCTRL":
+                            {
+                                break;
+                            }
+                        case "$VINFO":
+                            if (AutoEnable)
+                            {
+                                /* TODO: Handle received information from vehicle */
+                                if (mess[1] == "0")
+                                {
+                                    MyVehicle = new Vehicle(mess);
+                                    Vehicle_Information = MyVehicle.GetVehicleStatus();
+                                    /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
+                                    (It help users to understand whether the vehicle is turning left or right)      */
+                                    DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, -MyVehicle.RefAngle + MyVehicle.Angle, LowVelocity);
+                                    SetText(TextBox.auto_turning, 
+                                        "Turning " + Math.Round(-MyVehicle.RefAngle + MyVehicle.Angle, 4).ToString() + "°");
+                                    SetText(TextBox.auto_vehicleInfo, Vehicle_Information); 
+                                }
+                                else if (mess[1] == "1")
+                                {
+                                    MyGPS = new GPS(mess);
+                                    GPS_Information = MyGPS.GetGPSStatus();
+                                    SetText(TextBox.auto_received, "<< " + cmd); // consider to remove
+                                    if (MyGPS.GPS_Available.Contains("Y"))
+                                    {
+                                        // Save Position Data & Draw On Map
+                                        ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
+                                        GMapMarker marker = new GMarkerGoogle(
+                                            new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
+                                            GMarkerGoogleType.orange_dot);
+                                        DisplayRouteOnMap(
+                                            autoUC1.gmap,
+                                            new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
+                                            "Actual",
+                                            marker);
+                                    }
+                                    SetText(TextBox.auto_positionInfo, cmd + GPS_Information);
+                                }
+                                else if (mess[1] == "2")
+                                {
+                                    MyStanleyControl = new StanleyControl(mess);
+                                    StanleyControl_Information = MyStanleyControl.GetStanleyControlStatus();
+                                    DistanceErrors.Add(MyStanleyControl.ErrorDistance);
+                                    Efa.Add(MyStanleyControl.Efa);
+                                    SetText(TextBox.auto_stanleyControl, StanleyControl_Information);
+                                }
+                            }
+                            else
+                                Console.WriteLine("Auto mode and Manual mode is disable, drop message");
+                            break;
+                        case "$WRONG_CKSUM":
+                            WRONG_CKSUM_FLAG = true;
+#if DEBUG
+                            MessageBox.Show("Received wrong checksum", "$WRONG_CKSUM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+#endif
+                            break;
+                        default:
+                            Console.WriteLine("Unknown type: " + mess[0]);
+                            break;
+                    } // end switch
+                }
             }
         }
         //---------------------------------------------------------------------------//
@@ -2178,7 +2166,7 @@ namespace ThesisInterface
             switch(PrevMode)
             {
                 case "auto":
-                    timer1.Enabled = true;
+                    timer1.Enabled = false;
                     break;
                 case "":
                     break;
