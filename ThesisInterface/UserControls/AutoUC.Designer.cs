@@ -836,7 +836,7 @@
             // 
             this.SettingBt.BackColor = System.Drawing.Color.Transparent;
             this.SettingBt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SettingBt.Image = global::ThesisInterface.Properties.Resources.Settings_64px1;
+            this.SettingBt.Image = global::ThesisInterface.Properties.Resources.Settings_64px;
             this.SettingBt.ImageActive = null;
             this.SettingBt.Location = new System.Drawing.Point(1, 351);
             this.SettingBt.Name = "SettingBt";

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManualUC));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.SidePanelManual = new Bunifu.Framework.UI.BunifuGradientPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ExportBt = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -44,7 +44,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.ReceiveBox = new System.Windows.Forms.RichTextBox();
+            this.ReceivedBox = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -301,23 +301,23 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.ReceiveBox);
+            this.panel5.Controls.Add(this.ReceivedBox);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 28);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(330, 100);
             this.panel5.TabIndex = 16;
             // 
-            // ReceiveBox
+            // ReceivedBox
             // 
-            this.ReceiveBox.BackColor = System.Drawing.Color.White;
-            this.ReceiveBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ReceiveBox.Location = new System.Drawing.Point(0, 0);
-            this.ReceiveBox.Name = "ReceiveBox";
-            this.ReceiveBox.Size = new System.Drawing.Size(330, 100);
-            this.ReceiveBox.TabIndex = 2;
-            this.ReceiveBox.Text = "";
-            this.ReceiveBox.TextChanged += new System.EventHandler(this.ReceiveBox_TextChanged);
+            this.ReceivedBox.BackColor = System.Drawing.Color.White;
+            this.ReceivedBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ReceivedBox.Location = new System.Drawing.Point(0, 0);
+            this.ReceivedBox.Name = "ReceivedBox";
+            this.ReceivedBox.Size = new System.Drawing.Size(330, 100);
+            this.ReceivedBox.TabIndex = 2;
+            this.ReceivedBox.Text = "";
+            this.ReceivedBox.TextChanged += new System.EventHandler(this.ReceiveBox_TextChanged);
             // 
             // label2
             // 
@@ -415,23 +415,23 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Position";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Legend = "Legend1";
-            series6.Name = "Map";
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Position";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Map";
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(481, 326);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -481,11 +481,11 @@
             this.FormStatus.BackColor = System.Drawing.Color.Transparent;
             this.FormStatus.Font = new System.Drawing.Font("Courier New", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
-            this.FormStatus.Location = new System.Drawing.Point(310, 294);
+            this.FormStatus.Location = new System.Drawing.Point(415, 263);
             this.FormStatus.Name = "FormStatus";
-            this.FormStatus.Size = new System.Drawing.Size(87, 21);
+            this.FormStatus.Size = new System.Drawing.Size(43, 21);
             this.FormStatus.TabIndex = 14;
-            this.FormStatus.Text = "STOPPED";
+            this.FormStatus.Text = "OFF";
             // 
             // gmap
             // 
@@ -560,7 +560,7 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
-        public System.Windows.Forms.RichTextBox ReceiveBox;
+        public System.Windows.Forms.RichTextBox ReceivedBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;

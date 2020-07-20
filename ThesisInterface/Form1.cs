@@ -21,14 +21,17 @@ namespace ThesisInterface
 {
     public partial class Form1 : Form
     {
+        public const double WHEEL_RADIUS = 0.085;
+        public const double DISTANCE_BETWEEN_TWO_WHEELS = 0.388;
         public class Vehicle
         {
             public double M1RefVelocity, M2RefVelocity, M1Velocity, M2Velocity, RefAngle, Angle, Test;
-
+            public double v_linear, v_angular;
             public Vehicle(string[] ArrayInfo)
             {
                 try
                 {
+                    double v1_mps, v2_mps;
                     M1RefVelocity = double.Parse(ArrayInfo[2], System.Globalization.CultureInfo.InvariantCulture);
                     M2RefVelocity = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
                     M1Velocity = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
@@ -36,56 +39,71 @@ namespace ThesisInterface
                     RefAngle = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
                     Angle = double.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
                     Test = double.Parse(ArrayInfo[8], System.Globalization.CultureInfo.InvariantCulture);
+                    /* linear velocity = (R/2) * (rpm_left + rpm_right) * 2pi/60 [m/s] */
+                    v1_mps = WHEEL_RADIUS * M1Velocity * 0.10471975512; // V right
+                    v2_mps = WHEEL_RADIUS * M2Velocity * 0.10471975512; // V left
+                    v_linear = (v1_mps + v2_mps ) / 2;
+                    v_angular = (v1_mps - v2_mps) / DISTANCE_BETWEEN_TWO_WHEELS; // [rad/s]
+                    v_angular *= (180 / Math.PI); // [°/s]
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Vehicle::Vehicle(string[] )", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Vehicle::Vehicle()", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             public string GetVehicleStatus()
             {
-                return "M1 Velocity Ref: " + M1RefVelocity.ToString() + "\r\n"
-                        + "M1 Velocity: " + M1Velocity.ToString() + "\r\n"
-                        + "M2 Velocity Ref: " + M2RefVelocity.ToString() + "\r\n"
-                        + "M2 Velocity: " + M2Velocity.ToString() + "\r\n"
-                        + "Set Angle: " + RefAngle.ToString() + "\r\n"
-                        + "Current Angle: " + Angle.ToString() + "\r\n"
-                        + "Obstacle angle: " + Test.ToString() + "\r\n";
+                string res = String.Format(
+                    "V1 ref: {0} [rpm]\nV1 current: {1} [rpm]\n" +
+                    "V2 ref: {2} [rpm]\nV2 current: {3} [rpm]\n" +
+                    "Ref Angle: {4} °\nCurrent Angle: {5} °\n" +
+                    "Sensor Angle: {6} °\n" +
+                    "V linear: {7} [m/s]\nV angular: {8} [°/s]\n", 
+                M1RefVelocity, M1Velocity, M2RefVelocity, M2Velocity, RefAngle, Angle, Test, v_linear, v_angular);
+
+                return res;
             }
         }
 
         public class GPS
         {
-            public string GPS_Available, GPS_Mode;
-            public double GPS_Lat, GPS_Lng;
+            private string GPS_Mode;
+
+            public int point_index;
+            public double GPS_Lat, GPS_Lng, goal_radius;
             public GPS(string[] ArrayInfo)
             {
                 try
                 {
-                    GPS_Available = ArrayInfo[2];
-                    GPS_Lat = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
-                    GPS_Lng = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
-                    switch (ArrayInfo[3])
+                    if (ArrayInfo[2] == "0")
                     {
-                        case "0":
-                            GPS_Mode = "Data unvalid";
-                            break;
-                        case "1":
-                            GPS_Mode = "Data valid";
-                            break;
-                        case "2":
-                            GPS_Mode = "DGNSS";
-                            break;
-                        case "4":
-                            GPS_Mode = "Fixed";
-                            break;
-                        case "5":
-                            GPS_Mode = "Float";
-                            break;
-                        default:
-                            GPS_Mode = "Parsed Error";
-                            break;
+                        GPS_Mode = "Data unvalid";
+                    } 
+                    else
+                    {
+                        switch (ArrayInfo[2])
+                        {
+                            case "1":
+                                GPS_Mode = "Data valid";
+                                break;
+                            case "2":
+                                GPS_Mode = "DGNSS";
+                                break;
+                            case "4":
+                                GPS_Mode = "Fixed";
+                                break;
+                            case "5":
+                                GPS_Mode = "Float";
+                                break;
+                            default:
+                                GPS_Mode = "Unknown: " + ArrayInfo[3];
+                                break;
+                        }
+                        GPS_Lat = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
+                        GPS_Lng = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
+                        goal_radius = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
+                        point_index = int.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
                     }
                 }
                 catch (Exception ex)
@@ -96,9 +114,10 @@ namespace ThesisInterface
 
             public string GetGPSStatus()
             {
-                return (GPS_Available.Contains("Y")) ?
-                    "GPS Mode: " + GPS_Mode + "\r\nPosition: " + GPS_Lat.ToString() + ", " + GPS_Lng.ToString() + "\r\n" :
-                    "GPS is not available\r\n";
+                string res = String.Format(
+                    "GPS Quality: {0}\n" + "Position: ({1}, {2})\nGoal radius: {3}\nPoint's index: {4}\n",
+                    GPS_Mode, GPS_Lat, GPS_Lng, goal_radius, point_index);
+                return res;
             }
         }
 
@@ -118,16 +137,17 @@ namespace ThesisInterface
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "StanleyControl::StanleyControl(string[] )", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "StanleyControl::StanleyControl()", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             public string GetStanleyControlStatus()
             {
-                return "Theta E: " + thetaE.ToString() + "\r\nTheta D: "
-                                + thetaD.ToString() + "\r\nDelta Angle: "
-                                + Delta.ToString() + "\r\nDistance Error: "
-                                + ErrorDistance.ToString() + "\r\n"; ;
+                string res = String.Format(
+                    "Theta E: {0}\nTheta D: {1}\nDelta Angle: {2}\n" + 
+                    "Distance Error: {3}\nEfa: {4}\n",
+                    thetaE, thetaD, Delta, ErrorDistance, Efa);
+                return res;
             }
         }
 
@@ -135,17 +155,22 @@ namespace ThesisInterface
         {
             public bool KCTRL_START, KCTRL_STOP;
             public bool VEHCF_DATA_ON, VEHCF_DATA_OFF;
+            public bool IMUCF_MAG2D, IMUCF_TSAMP;
+            public bool MACON_START, MACON_STOP;
             public bool AUCON_START, AUCON_STOP;
-            public bool AUCON_RUN, AUCON_PAUSE;
-            public bool AUCON_DATA;
+            public bool AUCON_RUN, AUCON_PAUSE, AUCON_DATA;
             public bool SFRST;
             public bool VPLAN_FLAG; // true if START sending map, otherwise false
             public UserControlStatus() { }
 
             public void ResetAllBits()
             {
-                KCTRL_START = KCTRL_STOP = VEHCF_DATA_ON = VEHCF_DATA_OFF = AUCON_START = AUCON_STOP =
-                    AUCON_RUN = AUCON_PAUSE = AUCON_DATA = SFRST = VPLAN_FLAG = false;
+                KCTRL_START = KCTRL_STOP = false;
+                VEHCF_DATA_ON = VEHCF_DATA_OFF = false;
+                IMUCF_MAG2D = IMUCF_TSAMP = false;
+                MACON_START = MACON_STOP = false;
+                AUCON_START = AUCON_STOP = AUCON_RUN = AUCON_PAUSE = AUCON_DATA = false;
+                SFRST = VPLAN_FLAG = false;
             }
         }
 
@@ -188,21 +213,25 @@ namespace ThesisInterface
         Image MediumVelocity = Image.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + @"\MEDIUM.png");
         Image HighVelocity = Image.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + @"\HIGH.png");
 
-        public string Vehicle_Information = "", GPS_Information = "", StanleyControl_Information = "";
+        public string GPS_Information = "";
         //---------------------------------------------------------------------------------------------------------------
         enum TextBox { 
-            auto_received, auto_positionInfo, auto_turning, auto_vehicleInfo, auto_stanleyControl};
+            auto_received, auto_positionInfo, auto_turning, auto_vehicleInfo, auto_stanleyControl,
+            imuSetting_calib, imuSetting_received,
+            manual_received, manual_vehicleStatus
+        };
+        enum Mode {
+            None, Keyboard, Manual, Auto
+        };
 
         private bool AutoSetting = false;
         private bool OnHelperPanel = false; //flag to on/off helper panel
 
         public int setting_config_timeout = 40; // for setting config timer
-        public int IMU_config_timeout = 40; // for imu config timer
 
         public string WaitKey = "|";  // This is used for creating waiting messages
         public string OldMess = "";
 
-        private string PrevMode;
         private string serial_command;
 
         private List<PointLatLng> DistanceCalculate = new List<PointLatLng>();
@@ -210,10 +239,11 @@ namespace ThesisInterface
         private int numOfCalculatePoints = 0;
 
         GMapOverlay DistanceOverlay = new GMapOverlay("Distance");
-
         GMapOverlay DistanceMarkers = new GMapOverlay("DSM");
+        public GMapOverlay PlanLines = new GMapOverlay("PlanLines");
+        public GMapOverlay ActualLines = new GMapOverlay("ActualLines");
 
-        public bool PlanMapEnable = false, online = false;
+        public bool PlanMapEnable = false;
 
         public List<PointLatLng> PlanCoordinatesList = new List<PointLatLng>(); 
         public List<PointLatLng> ActualCoordinatesList = new List<PointLatLng>();
@@ -221,12 +251,8 @@ namespace ThesisInterface
         public List<double> DistanceErrors = new List<double>();
         public List<double> Efa = new List<double>();
 
-        public GMapOverlay PlanLines = new GMapOverlay("PlanLines");
-        public GMapOverlay ActualLines = new GMapOverlay("ActualLines");
-        
+        private Mode vehicle_mode = Mode.None;
         private int kctrl_timeout = 20;
-        private bool KctrlEnabled = false;
-        private bool ManualEnabled = false;
         private bool AutoEnable = true;
         private bool SerialPortEnable = false;
 
@@ -538,7 +564,6 @@ namespace ThesisInterface
                     serialPort1.Write(MessagesDocker("SFRST"));
                     MyStatus.SFRST = true;
                     KctrlTimer.Enabled = true;
-                    SetPreviousMode();
                     break;
                 case 123: // Key = F12, Get all help controls
                     if(OnHelperPanel)
@@ -556,7 +581,7 @@ namespace ThesisInterface
                     helperControls1.SendToBack(); 
                     break;
             }
-            if(KctrlEnabled)
+            if(vehicle_mode == Mode.Keyboard)
             {
                 if (e.KeyCode == Keys.W)
                 {
@@ -607,7 +632,7 @@ namespace ThesisInterface
 
         void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if(KctrlEnabled)
+            if(vehicle_mode == Mode.Keyboard)
             {
                 if (e.KeyCode == Keys.W)
                 {
@@ -857,7 +882,7 @@ namespace ThesisInterface
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ON-OFF SerialPort Button", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "ON/OFF SerialPort Button", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -878,7 +903,7 @@ namespace ThesisInterface
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Send Button Vehicle-Setting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Send Vehicle-Setting Button", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -913,17 +938,14 @@ namespace ThesisInterface
                 string Mess = "";
                 for (int i = 0; i < imuSetting1.MessConfigCheckBox.Items.Count; i++ )
                 {
-                    if (indexes.Contains(i))
-                        Mess += "1";
-                    else
-                        Mess += "0";
+                    Mess += (indexes.Contains(i)) ? "1" : "0";
                 }
                 Mess = "IMUCF,DATOP," + Mess;
                 Mess = MessagesDocker(Mess);
                 serialPort1.Write(Mess);
-                imuSetting1.SentTextBox.Text += "Sending Messages Configuration \r\nMessages: "+ Mess;
-                OldMess = imuSetting1.ReceivedTextBox.Text;
-                IMUConfigWaitForRespond.Enabled = true;
+                imuSetting1.SentTextBox.Text += DateTime.Now.ToString("h:mm:ss tt") + "Data Operations Config >> " + Mess;
+
+                KctrlTimer.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -941,9 +963,9 @@ namespace ThesisInterface
                     string Mess = "IMUCF,DATOP," + (indexes[0] + 1).ToString();
                     Mess = MessagesDocker(Mess);
                     serialPort1.Write(Mess);
-                    imuSetting1.SentTextBox.Text += "Sending Baudrate Configuration... \r\nMessages: " + Mess;
-                    OldMess = imuSetting1.ReceivedTextBox.Text;
-                    IMUConfigWaitForRespond.Enabled = true;
+                    imuSetting1.SentTextBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Baudrate Config >> " + Mess;
+
+                    KctrlTimer.Enabled = true;
                 }
                 else
                 {
@@ -963,9 +985,10 @@ namespace ThesisInterface
                 string Mess = "IMUCF,TSAMP," + imuSetting1.FreqTextBox.Text;
                 Mess = MessagesDocker(Mess);
                 serialPort1.Write(Mess);
-                imuSetting1.SentTextBox.Text += "Sending Update Frequency Configuration... \r\nMessages: " + Mess;
-                OldMess = imuSetting1.ReceivedTextBox.Text;
-                IMUConfigWaitForRespond.Enabled = true;
+                imuSetting1.SentTextBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Frequency Config >> " + Mess;
+
+                MyStatus.IMUCF_TSAMP = true;
+                KctrlTimer.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -979,19 +1002,15 @@ namespace ThesisInterface
             {
                 if (imuSetting1.CalibBt.Text == "Start")
                 {
-                    string Mess = "IMUCF,MAG2D";
-                    Mess = MessagesDocker(Mess);
-                    serialPort1.Write(Mess);
-                    imuSetting1.SentTextBox.Text += "Sending Calibration Command... \r\nMessages: " + Mess;
-                    OldMess = imuSetting1.ReceivedTextBox.Text;
-                    imuSetting1.CalibBt.Text = "Stop";
-                    IMUConfigWaitForRespond.Enabled = true;
-                }
-                else
-                {
-                    serialPort1.Write("$VSTOP");
-                    imuSetting1.CalibBt.Text = "Start";
-                    IMUConfigWaitForRespond.Enabled = true;
+                    string mess = "IMUCF,MAG2D";
+                    mess = MessagesDocker(mess);
+                    serialPort1.Write(mess);
+                    imuSetting1.SentTextBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Magnetic 2D Calib >> " + mess;
+                    imuSetting1.CalibBt.Text = "Calibrating";
+                    //imuSetting1.CalibBt.BackColor = Color.AliceBlue;
+
+                    MyStatus.IMUCF_MAG2D = true;
+                    KctrlTimer.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -1007,9 +1026,9 @@ namespace ThesisInterface
                 string Mess = "IMUCF,GPARA";
                 Mess = MessagesDocker(Mess);
                 serialPort1.Write(Mess);
-                imuSetting1.SentTextBox.Text += "Sending Read Config Command... \r\nMessages: " + Mess;
-                OldMess = imuSetting1.ReceivedTextBox.Text;
-                IMUConfigWaitForRespond.Enabled = true;
+                imuSetting1.SentTextBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Read Config >> " + Mess;
+
+                KctrlTimer.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -1024,9 +1043,9 @@ namespace ThesisInterface
                 string Mess = "IMUCF,START";
                 Mess = MessagesDocker(Mess);
                 serialPort1.Write(Mess);
-                imuSetting1.SentTextBox.Text += "Sending Start Command... \r\nMessages: " + Mess;
-                OldMess = imuSetting1.ReceivedTextBox.Text;
-                IMUConfigWaitForRespond.Enabled = true;
+                imuSetting1.SentTextBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Start IMU >> " + Mess;
+
+                KctrlTimer.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -1041,15 +1060,14 @@ namespace ThesisInterface
             try // Send 'start command' to MCU
             {
                 serialPort1.Write(MessagesDocker("MACON,START"));
-                manualUC1.SentBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Started to control manually\r\n";
-                manualUC1.FormStatus.Text = "STARTED";
-                DisableAllTimers();
-                ManualEnabled = true;
-                timer1.Enabled = false; //true
+                manualUC1.SentBox.Text += DateTime.Now.ToString("h:mm:ss tt") + " >> Start Manual Mode...\r\n";
+                
+                KctrlTimer.Enabled = true;
+                MyStatus.MACON_START = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Start", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Manual Mode Start Button", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1057,15 +1075,15 @@ namespace ThesisInterface
         {
             try
             {
-                ManualEnabled = false;
                 serialPort1.Write(MessagesDocker("MACON,STOP"));
-                DisableAllTimers();
-                manualUC1.FormStatus.Text = "STOPPED";
-                manualUC1.SentBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Stop controlling manually\r\n";
+                manualUC1.SentBox.Text += DateTime.Now.ToString("h:mm:ss tt") + " >> Stop Manual Mode...\r\n";
+
+                KctrlTimer.Enabled = true;
+                MyStatus.MACON_STOP = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Stop", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Manual Mode Stop Button", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1085,7 +1103,7 @@ namespace ThesisInterface
                 if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     string path = sfd.FileName;
-                    File.WriteAllText(path, manualUC1.ReceiveBox.Text);
+                    File.WriteAllText(path, manualUC1.ReceivedBox.Text);
                     MessageBox.Show("Map Saved");
                 }
             }
@@ -1097,41 +1115,29 @@ namespace ThesisInterface
 
         private void manualUC1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W)
+            if (vehicle_mode == Mode.Manual)
             {
-                serialPort1.Write(MessagesDocker("MACON,W"));
-            }
-            else if (e.KeyCode == Keys.S)
-            {
-                serialPort1.Write(MessagesDocker("MACON,S"));
-            }
-            else if (e.KeyCode == Keys.A)
-            {
-                serialPort1.Write(MessagesDocker("MACON,A"));
-            }
-            else if (e.KeyCode == Keys.D)
-            {
-                serialPort1.Write(MessagesDocker("MACON,D"));
-            }
-            else if (e.KeyCode == Keys.F)
-            {
-                serialPort1.Write(MessagesDocker("MACON,F"));
+                if (e.KeyCode == Keys.W || e.KeyCode == Keys.S || e.KeyCode == Keys.A || e.KeyCode == Keys.D)
+                {
+                    string mess;
+                    mess = MessagesDocker("MACON,CMD," + e.KeyCode.ToString());
+                    serialPort1.Write(mess);
+                    manualUC1.SentBox.Text += DateTime.Now.ToString("h:mm:ss tt") + " >> " + mess;
+                }
             }
         }
 
         private void ChangeModeBtManualUCClickHandler(object sender, EventArgs e)
         {
-            if(online)
+            if(manualUC1.modeBt.ButtonText == "Online")
             {
                 manualUC1.modeBt.ButtonText = "Offline";
                 manualUC1.gmap.SendToBack();
-                online = false;
             }
             else
             {
                 manualUC1.modeBt.ButtonText = "Online";
                 manualUC1.chart1.SendToBack();
-                online = true;
             }
         }
 
@@ -1550,55 +1556,8 @@ namespace ThesisInterface
         {
             ControlSendDataFromVehicle(1);
         }
-        
-        //--------------------------------------------------------------------------//
-        // TIMERS ------------------------------------------------------------------//
-        private void timer1_Tick(object sender, EventArgs e) // Main timer for displaying data of vehicle
-        {
-            if (ManualEnabled)
-            {
-                try
-                {
-                    string temp;
-                    string mess = serialPort1.ReadLine();
-                    string[] value;
-                    value = mess.Split(',');
-                    temp = mess;
-                    if(mess.Length >= 5)
-                    {
-                        temp = temp.Remove(temp.Length - 3, 3);
-                        temp = temp.Remove(0, 1);
-                    }
-                    string CC = checksum(temp);
 
-                    // Update Vehicle Information
-                    if (mess.Contains("$VINFO,0") && mess.Contains(CC))
-                    {
-                        MyVehicle = new Vehicle(value);
-                        Vehicle_Information = MyVehicle.GetVehicleStatus();
-                    }
-
-                    // Update GPS Information
-                    if (mess.Contains("$VINFO,1") && mess.Contains(CC))
-                    {
-                        MyGPS = new GPS(value);
-                        GPS_Information = MyGPS.GetGPSStatus();
-                    }
-
-                    // Update Stanley Information
-                    if (mess.Contains("$VINFO,2") && mess.Contains(CC))
-                    {
-                        MyStanleyControl = new StanleyControl(value);
-                        StanleyControl_Information = MyStanleyControl.GetStanleyControlStatus();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }                
-            }
-        }
-
+        //------------------------------------ TIMERS --------------------------------------//
         private void ConfigWaitForRespond_Tick(object sender, EventArgs e)
         {
             if(setting_config_timeout > 0)
@@ -1609,14 +1568,14 @@ namespace ThesisInterface
 
                 if (serialPort1.IsOpen)
                 {
-                    if (VEHICLE_RECEIVED_DATA_FLAG == true)
+                    if (VEHICLE_RECEIVED_DATA_FLAG)
                     {
                         VEHICLE_RECEIVED_DATA_FLAG = false;
                         ConfigWaitForRespond.Enabled = false;
                         setting_config_timeout = 40;
 
                         vehicleSetting1.ReceiveMessTextBox.Text =
-                            OldMess + DateTime.Now.ToString("h:mm:ss tt") + ": Setting successfully\r\n";
+                            OldMess + DateTime.Now.ToString("h:mm:ss tt") + " << Setting successfully\r\n";
                     }
                     else if (WRONG_CKSUM_FLAG)
                     {
@@ -1625,7 +1584,7 @@ namespace ThesisInterface
                         setting_config_timeout = 40;
 
                         vehicleSetting1.ReceiveMessTextBox.Text =
-                            OldMess + DateTime.Now.ToString("h:mm:ss tt") + " Fail config: Wrong checksum\r\n";
+                            OldMess + DateTime.Now.ToString("h:mm:ss tt") + " << Wrong checksum\r\n";
                     }
                 }
                 else
@@ -1638,35 +1597,7 @@ namespace ThesisInterface
             {
                 ConfigWaitForRespond.Enabled = false;
                 setting_config_timeout = 40;
-                vehicleSetting1.ReceiveMessTextBox.Text = OldMess + DateTime.Now.ToString("h:mm:ss tt") + ": Fail config... Time out\r\n";
-            }
-        }
-
-        private void IMUConfigWaitForRespond_Tick(object sender, EventArgs e)
-        {          
-            if(IMU_config_timeout > 0)
-            {
-                IMU_config_timeout--;
-                imuSetting1.ReceivedTextBox.Text = OldMess + "Waiting for respond" + WaitKey;
-                WaitKey = (WaitKey == "|") ? "-" : "|";
-
-                if(serialPort1.BytesToRead != 0)
-                {
-                    string mess = serialPort1.ReadLine();
-                    string [] messParsed = mess.Split(',');
-                    if(messParsed[0].Contains("$SINFO") && messParsed[1].Contains("1"))
-                    {
-                        imuSetting1.ReceivedTextBox.Text = OldMess + DateTime.Now.ToString("h:mm:ss tt") + ": IMU config successfully\r\n";
-                        IMU_config_timeout = 40;
-                        IMUConfigWaitForRespond.Enabled = false;
-                    }
-                }
-            }
-            else
-            {
-                IMU_config_timeout = 40;
-                imuSetting1.ReceivedTextBox.Text = OldMess + DateTime.Now.ToString("h:mm:ss tt") + ": Fail config IMU... Time out\r\n";
-                IMUConfigWaitForRespond.Enabled = false;
+                vehicleSetting1.ReceiveMessTextBox.Text = OldMess + DateTime.Now.ToString("h:mm:ss tt") + " << Fail config: time out\r\n";
             }
         }
 
@@ -1675,96 +1606,119 @@ namespace ThesisInterface
             if (kctrl_timeout > 0)
             {
                 kctrl_timeout--;
-                if (serialPort1.IsOpen)
+                if (VEHICLE_RECEIVED_DATA_FLAG)
                 {
-                    if (VEHICLE_RECEIVED_DATA_FLAG)
+                    VEHICLE_RECEIVED_DATA_FLAG = false;
+                    KctrlTimer.Enabled = false;
+                    kctrl_timeout = 20;
+                    /* check what message is sent */
+                    if (MyStatus.KCTRL_START)
                     {
-                        VEHICLE_RECEIVED_DATA_FLAG = false;
-                        KctrlTimer.Enabled = false;
-                        kctrl_timeout = 20;
-                        if (MyStatus.KCTRL_START)
-                        {
-                            MyStatus.KCTRL_START = false;
-                            KctrlEnabled = true;
-                            MessageBox.Show("Started KCTRL successfully", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else if (MyStatus.KCTRL_STOP)
-                        {
-                            MyStatus.KCTRL_STOP = false;
-                            KctrlEnabled = false;
-                            MessageBox.Show("Stopped KCTRL successfully", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else if (MyStatus.VEHCF_DATA_ON)
-                        {
-                            MyStatus.VEHCF_DATA_ON = false;
-                            MessageBox.Show("Sending data is ON", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else if (MyStatus.VEHCF_DATA_OFF)
-                        {
-                            MyStatus.VEHCF_DATA_OFF = false;
-                            MessageBox.Show("Sending data is OFF", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else if (MyStatus.AUCON_START)
-                        {
-                            MyStatus.AUCON_START = false;
-                            autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << START auto successfully\r\n";
-                            PrevMode = "auto";
-                            AutoEnable = true;
-                        }
-                        else if (MyStatus.AUCON_STOP)
-                        {
-                            MyStatus.AUCON_STOP = false;
-                            autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << STOP auto successfully\r\n";
-                            AutoEnable = false;
-                            SetPreviousMode();
-                        }
-                        else if (MyStatus.AUCON_RUN)
-                        {
-                            MyStatus.AUCON_RUN = false;
-                            //SetPreviousMode();
-                            autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << RUN succesfully\r\n";
-                        }
-                        else if (MyStatus.AUCON_PAUSE)
-                        {
-                            MyStatus.AUCON_PAUSE = false;
-                            //SetPreviousMode();
-                            autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << PAUSE successfully\r\n";
-                        }
-                        else if (MyStatus.AUCON_DATA)
-                        {
-                            MyStatus.AUCON_DATA = false;
-                            autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << config successfully\r\n";
-                        }
-                        else if (MyStatus.SFRST)
-                        {
-                            MyStatus.SFRST = false;
-                            MessageBox.Show("Command SFRST sent successfully", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                            return;
+                        MyStatus.KCTRL_START = false;
+                        vehicle_mode = Mode.Keyboard;
+                        MessageBox.Show("Started KCTRL successfully", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else if (WRONG_CKSUM_FLAG) /* $WRONG_CKSUM */
+                    else if (MyStatus.KCTRL_STOP)
                     {
-                        WRONG_CKSUM_FLAG = false;
-                        KctrlTimer.Enabled = false;
-                        kctrl_timeout = 20;
-                        MyStatus.ResetAllBits();
-                        MessageBox.Show("[vehicle] Wrong checksum", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MyStatus.KCTRL_STOP = false;
+                        vehicle_mode = Mode.None;
+                        MessageBox.Show("Stopped KCTRL successfully", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else if (VEHICLE_RECEIVED_ERROR_FLAG) /* $SINFO,0 */
+                    else if (MyStatus.IMUCF_MAG2D)
                     {
-                        VEHICLE_RECEIVED_ERROR_FLAG = false;
-                        KctrlTimer.Enabled = false;
-                        kctrl_timeout = 20;
-                        if (MyStatus.AUCON_RUN)
-                        {
-                            MyStatus.AUCON_RUN = false;
-                            autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + 
-                                ": [WARNING] start auto mode when there is no map\r\n";
-                            return;
-                        }
-                        MessageBox.Show("[vehicle] Checksum is correct but wrong message", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MyStatus.IMUCF_MAG2D = false;
+                        imuSetting1.ReceivedTextBox.Text +=
+                            DateTime.Now.ToString("h:mm:ss tt") + " << Calib command sent successfully\r\n";
                     }
+                    else if (MyStatus.IMUCF_TSAMP)
+                    {
+                        /* TODO: IMU frequency config command */
+                        MyStatus.IMUCF_TSAMP = false;
+                    }
+                    else if (MyStatus.MACON_START)
+                    {
+                        MyStatus.MACON_START = false;
+                        vehicle_mode = Mode.Manual;
+                        manualUC1.FormStatus.Text = "ON";
+                        manualUC1.ReceivedBox.Text += DateTime.Now.ToString("h:mm:ss tt") + " << Start successfully\r\n";
+                    } 
+                    else if (MyStatus.MACON_STOP)
+                    {
+                        MyStatus.MACON_STOP = false;
+                        vehicle_mode = Mode.None;
+                        manualUC1.FormStatus.Text = "OFF";
+                        manualUC1.ReceivedBox.Text += DateTime.Now.ToString("h:mm:ss tt") + " << Stop successfully\r\n";
+                    }
+                    else if (MyStatus.VEHCF_DATA_ON)
+                    {
+                        MyStatus.VEHCF_DATA_ON = false;
+                        MessageBox.Show("Sending data is ON", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (MyStatus.VEHCF_DATA_OFF)
+                    {
+                        MyStatus.VEHCF_DATA_OFF = false;
+                        MessageBox.Show("Sending data is OFF", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (MyStatus.AUCON_START)
+                    {
+                        MyStatus.AUCON_START = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << START auto successfully\r\n";
+                        AutoEnable = true;
+                    }
+                    else if (MyStatus.AUCON_STOP)
+                    {
+                        MyStatus.AUCON_STOP = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << STOP auto successfully\r\n";
+                        AutoEnable = false;
+                    }
+                    else if (MyStatus.AUCON_RUN)
+                    {
+                        MyStatus.AUCON_RUN = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << RUN succesfully\r\n";
+                    }
+                    else if (MyStatus.AUCON_PAUSE)
+                    {
+                        MyStatus.AUCON_PAUSE = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << PAUSE successfully\r\n";
+                    }
+                    else if (MyStatus.AUCON_DATA) // send Max velocity, K & Step 
+                    {
+                        MyStatus.AUCON_DATA = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << Config successfully\r\n";
+                    }
+                    else if (MyStatus.SFRST)
+                    {
+                        MyStatus.SFRST = false;
+                        MessageBox.Show("Command SFRST sent successfully", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Receive ACK but nothing to handle", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                else if (WRONG_CKSUM_FLAG) /* $WRONG_CKSUM */
+                {
+                    WRONG_CKSUM_FLAG = false;
+                    KctrlTimer.Enabled = false;
+                    kctrl_timeout = 20;
+                    MyStatus.ResetAllBits();
+                    MessageBox.Show("[vehicle] Wrong checksum", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (VEHICLE_RECEIVED_ERROR_FLAG) /* $SINFO,0 */
+                {
+                    VEHICLE_RECEIVED_ERROR_FLAG = false;
+                    KctrlTimer.Enabled = false;
+                    kctrl_timeout = 20;
+                    if (MyStatus.AUCON_RUN)
+                    {
+                        MyStatus.AUCON_RUN = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + 
+                            ": [WARNING] start auto mode when there is no map\r\n";
+                        return;
+                    }
+                    MyStatus.ResetAllBits();
+                    MessageBox.Show("[vehicle] Checksum is correct but wrong message", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else /* case timeout: the packet sent from PC or vehicle was dropped */
@@ -1773,7 +1727,6 @@ namespace ThesisInterface
                 kctrl_timeout = 20;
                 MyStatus.ResetAllBits();
                 MessageBox.Show("timeout: no respone from vehicle", "KctrlTimer_Tick", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //SetPreviousMode();
             }
         }
         
@@ -1830,6 +1783,42 @@ namespace ThesisInterface
                     else
                         this.autoUC1.StanleyControlTb.Text = text;
                     break;
+                case TextBox.imuSetting_calib:
+                    if (this.imuSetting1.CalibBt.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.imuSetting1.CalibBt.Text = text;
+                    break;
+                case TextBox.imuSetting_received:
+                    if (this.imuSetting1.ReceivedTextBox.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.imuSetting1.ReceivedTextBox.Text += text;
+                    break;
+                case TextBox.manual_received:
+                    if (this.manualUC1.ReceivedBox.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.manualUC1.ReceivedBox.Text += text;
+                    break;
+                case TextBox.manual_vehicleStatus:
+                    if (this.manualUC1.VehicleStatusBox.InvokeRequired)
+                    {
+                        SetTextCallback d = new SetTextCallback(SetText);
+                        this.Invoke(d, new object[] { textBox_id, text });
+                    }
+                    else
+                        this.manualUC1.VehicleStatusBox.Text = text;
+                    break;
                 default:
                     break;
             }
@@ -1864,98 +1853,129 @@ namespace ThesisInterface
                     int index = serial_command.IndexOf("\r\n"); // index of first occurrence of '\r'
                     string cmd = serial_command.Substring(0, index + 2);
                     string[] mess = cmd.Split(',');
-                    serial_command = serial_command.Remove(0, index + 2);
+                    serial_command = serial_command.Remove(0, index + 2); 
 #if DEBUG
-                    Console.WriteLine("num_of_commands: " + num_of_commands.ToString() + ", cmd: " + cmd);
+                    Console.WriteLine("index of '\\r': {0}, cmd: '{1}'", index.ToString(), cmd);
 #endif
                     switch (mess[0])
                     {
                         case "$SINFO":
-                            if (mess[1].Contains("0")) // use contains method because message is "0\r\n"
+                            if (mess[1].Contains('0')) // use contains method because message is "0\r\n"
                             {
                                 VEHICLE_RECEIVED_ERROR_FLAG = true;
                             }
-                            else if (mess[1].Contains("1"))
+                            else if (mess[1].Contains('1'))
                             {
                                 VEHICLE_RECEIVED_DATA_FLAG = true;
                             }
                             else if (mess[1] == "VPLAN")
                             {
-                                if (mess[2].Contains("1"))
+                                if (mess[2].Contains('1'))
                                 {
                                     this.MyStatus.VPLAN_FLAG = true;
                                 }
-                                else if (mess[2].Contains("0"))
+                                else if (mess[2].Contains('0'))
                                 {
                                     this.MyStatus.VPLAN_FLAG = false;
                                     SetText(TextBox.auto_received, 
-                                        DateTime.Now.ToString("hh:mm:ss") + " << transfer map successfully, ready to go\r\n");
+                                        DateTime.Now.ToString("hh:mm:ss tt") + " << transfer map successfully, ready to go\r\n");
                                 }
-                                else if (mess[2].Contains("?"))
+                                else if (mess[2].Contains('?'))
                                 {
                                     Console.WriteLine("[map transfer] Data received is correct checksum but wrong header");
                                 }
                             }
                             break;
-                        case "$KCTRL":
+
+                        case "$MACON":
+                            if (mess[1].Contains('1'))
                             {
-                                break;
+                                SetText(TextBox.manual_received, DateTime.Now.ToString("hh:mm:ss tt") + " << success\n");
+                            } 
+                            else
+                            {
+                                SetText(TextBox.manual_received, DateTime.Now.ToString("hh:mm:ss tt") + " << fail\n");
                             }
+                            break;
+
+                        case "$CALIB":
+                            SetText(TextBox.imuSetting_calib, "Start");
+                            SetText(TextBox.imuSetting_received, DateTime.Now.ToString("hh:mm:ss tt") + " << " + cmd);
+                            MessageBox.Show("Calibration is done, please start the IMU.", "Serial DataReceived",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            break;
+
                         case "$VINFO":
-                            if (AutoEnable)
+                            string content = cmd.Remove(cmd.Length - 4, 4);
+                            content = content.Remove(0, 1);
+                            string CC = checksum(content);
+                            if (cmd[index - 2] == CC[0] && cmd[index - 1] == CC[1])
                             {
-                                /* TODO: Handle received information from vehicle */
-                                if (mess[1] == "0")
+                                if (AutoEnable)
                                 {
-                                    MyVehicle = new Vehicle(mess);
-                                    Vehicle_Information = MyVehicle.GetVehicleStatus();
-                                    /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
-                                    (It help users to understand whether the vehicle is turning left or right)      */
-                                    DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, -MyVehicle.RefAngle + MyVehicle.Angle, LowVelocity);
-                                    SetText(TextBox.auto_turning, 
-                                        "Turning " + Math.Round(-MyVehicle.RefAngle + MyVehicle.Angle, 4).ToString() + "°");
-                                    SetText(TextBox.auto_vehicleInfo, Vehicle_Information); 
-                                }
-                                else if (mess[1] == "1")
-                                {
-                                    MyGPS = new GPS(mess);
-                                    GPS_Information = MyGPS.GetGPSStatus();
-                                    SetText(TextBox.auto_received, "<< " + cmd); // consider to remove
-                                    if (MyGPS.GPS_Available.Contains("Y"))
+                                    if (mess[1] == "0")
                                     {
-                                        // Save Position Data & Draw On Map
-                                        ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
-                                        GMapMarker marker = new GMarkerGoogle(
-                                            new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
-                                            GMarkerGoogleType.orange_dot);
-                                        DisplayRouteOnMap(
-                                            autoUC1.gmap,
-                                            new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
-                                            "Actual",
-                                            marker);
+                                        MyVehicle = new Vehicle(mess);
+
+                                        /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
+                                        (It help users to understand whether the vehicle is turning left or right)      */
+                                        DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, -MyVehicle.RefAngle + MyVehicle.Angle, MyVehicle.v_linear);
+                                        SetText(TextBox.auto_turning,
+                                            "Turning " + Math.Round(-MyVehicle.RefAngle + MyVehicle.Angle, 4).ToString() + "°");
+                                        SetText(TextBox.auto_vehicleInfo, MyVehicle.GetVehicleStatus());
                                     }
-                                    SetText(TextBox.auto_positionInfo, cmd + GPS_Information);
+                                    else if (mess[1] == "1")
+                                    {
+                                        MyGPS = new GPS(mess);
+
+                                        if (mess[2] != "0") // gps quality is valid
+                                        {
+                                            // Save Position Data & Draw On Map
+                                            ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
+                                            GMapMarker marker = new GMarkerGoogle(
+                                                new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
+                                                GMarkerGoogleType.orange_dot);
+                                            DisplayRouteOnMap(
+                                                autoUC1.gmap,
+                                                new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
+                                                "Actual",
+                                                marker);
+                                        }
+                                        SetText(TextBox.auto_positionInfo, MyGPS.GetGPSStatus());
+                                    }
+                                    else if (mess[1] == "2")
+                                    {
+                                        MyStanleyControl = new StanleyControl(mess);
+                                        DistanceErrors.Add(MyStanleyControl.ErrorDistance);
+                                        Efa.Add(MyStanleyControl.Efa);
+                                        SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
+                                    }
                                 }
-                                else if (mess[1] == "2")
+                                if (vehicle_mode == Mode.Manual)
                                 {
-                                    MyStanleyControl = new StanleyControl(mess);
-                                    StanleyControl_Information = MyStanleyControl.GetStanleyControlStatus();
-                                    DistanceErrors.Add(MyStanleyControl.ErrorDistance);
-                                    Efa.Add(MyStanleyControl.Efa);
-                                    SetText(TextBox.auto_stanleyControl, StanleyControl_Information);
+                                    if (mess[1] == "3")
+                                    {
+                                        string vehicleStatus = String.Format(
+                                            "Mode: {0}\nV max: {1} [rpm]\nV manual: {2} [rpm]\n" +
+                                            "Manual angle: {3} [°]\nFuzzy output: {4}\n",
+                                            mess[2], mess[3], mess[4], mess[5], mess[6]);
+                                        SetText(TextBox.manual_vehicleStatus, vehicleStatus);
+                                    }
                                 }
                             }
                             else
-                                Console.WriteLine("Auto mode and Manual mode is disable, drop message");
+                                Console.Write("CC: '{0}', content: '{1}', cmd: '{2}'", CC, content, cmd);
                             break;
+
                         case "$WRONG_CKSUM":
                             WRONG_CKSUM_FLAG = true;
 #if DEBUG
-                            MessageBox.Show("Received wrong checksum", "$WRONG_CKSUM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("[vehicle] $WRONG_CKSUM", "Serial DataReceived", MessageBoxButtons.OK, MessageBoxIcon.Error);
 #endif
                             break;
+
                         default:
-                            Console.WriteLine("Unknown type: " + mess[0]);
+                            Console.WriteLine("Unknown: " + mess[0]);
                             break;
                     } // end switch
                 }
@@ -1964,29 +1984,36 @@ namespace ThesisInterface
         //---------------------------------------------------------------------------//
         // Other functions ----------------------------------------------------------//
 
-        public void DrawVehicleTurningStatusOnImage(PictureBox ImgBox, double angle, Image image)
+        private void DrawVehicleTurningStatusOnImage(PictureBox ImgBox, double angle, double v_linear)
         {
+            Image image;
+
+            v_linear = Math.Abs(v_linear);
+            if (v_linear == 0)
+                image = ZeroVelocity;
+            else if (v_linear < 0.4)
+                image = LowVelocity;
+            else if (v_linear < 0.8)
+                image = MediumVelocity;
+            else
+                image = HighVelocity;
+
             if (image == null)
                 throw new ArgumentNullException("image");
 
             PointF offset = new PointF((float)image.Width / 2, (float)image.Height / 2);
-
             //create a new empty bitmap to hold rotated image
             Bitmap rotatedBmp = new Bitmap(image.Width, image.Height);
             rotatedBmp.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
             //make a graphics object from the empty bitmap
             Graphics g = Graphics.FromImage(rotatedBmp);
-
             //Put the rotation point in the center of the image
             g.TranslateTransform(offset.X, offset.Y);
-
             //rotate the image
             g.RotateTransform((float)angle);
-
             //move the image back
             g.TranslateTransform(-offset.X, -offset.Y);
-
             //draw passed in image onto graphics object
             g.DrawImage(image, new PointF(0, 0));
 
@@ -2109,10 +2136,8 @@ namespace ThesisInterface
 
         private void DisableAllTimers()
         {
-            timer1.Enabled = false;
             KctrlTimer.Enabled = false;
             ConfigWaitForRespond.Enabled = false;
-            IMUConfigWaitForRespond.Enabled = false;
         }
 
         private void KctrlChangeMode(int mode)
@@ -2159,19 +2184,6 @@ namespace ThesisInterface
             {
                 MessageBox.Show(ex.Message, "ControlSendDataFromVehicle", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void SetPreviousMode()
-        {
-            switch(PrevMode)
-            {
-                case "auto":
-                    timer1.Enabled = false;
-                    break;
-                case "":
-                    break;
-            }
-            AutoEnable = true;
         }
 
         private double[] LatLonToUTM(double Lat, double Lon)

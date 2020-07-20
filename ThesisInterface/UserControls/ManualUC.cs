@@ -17,7 +17,7 @@ namespace ThesisInterface.UserControls
             InitializeComponent();
             VehicleStatusBox.ReadOnly = true;
             SentBox.ReadOnly = true;
-            ReceiveBox.ReadOnly = true;
+            ReceivedBox.ReadOnly = true;
         }
 
         private void VehicleStatusBox_KeyDown(object sender, KeyEventArgs e)
@@ -39,8 +39,8 @@ namespace ThesisInterface.UserControls
 
         private void ReceiveBox_TextChanged(object sender, EventArgs e)
         {
-            ReceiveBox.SelectionStart = ReceiveBox.Text.Length;
-            ReceiveBox.ScrollToCaret();
+            ReceivedBox.SelectionStart = ReceivedBox.Text.Length;
+            ReceivedBox.ScrollToCaret();
         }
 
         public void StartBtClickHandler(EventHandler handler)

@@ -233,6 +233,16 @@ namespace ThesisInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap connection_status_on_96 {
+            get {
+                object obj = ResourceManager.GetObject("connection_status_on_96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
@@ -383,29 +393,9 @@ namespace ThesisInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_toggle_off_64 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-toggle-off-64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_toggle_off_80 {
             get {
                 object obj = ResourceManager.GetObject("icons8_toggle_off_80", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_toggle_on_64 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-toggle-on-64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -496,6 +486,16 @@ namespace ThesisInterface.Properties {
         internal static System.Drawing.Bitmap Map_Pinpoint_50px {
             get {
                 object obj = ResourceManager.GetObject("Map Pinpoint_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mem {
+            get {
+                object obj = ResourceManager.GetObject("mem", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1026,16 +1026,6 @@ namespace ThesisInterface.Properties {
         internal static System.Drawing.Bitmap Settings_64px {
             get {
                 object obj = ResourceManager.GetObject("Settings_64px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Settings_64px1 {
-            get {
-                object obj = ResourceManager.GetObject("Settings_64px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -159,15 +159,15 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Ailerons", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
-            this.label2.Location = new System.Drawing.Point(95, 12);
+            this.label2.Location = new System.Drawing.Point(15, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 25);
+            this.label2.Size = new System.Drawing.Size(275, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "BAUDRATE";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BaudrateCheckBox
             // 
@@ -263,15 +263,15 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Ailerons", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
-            this.label1.Location = new System.Drawing.Point(10, 0);
+            this.label1.Location = new System.Drawing.Point(15, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(291, 25);
+            this.label1.Size = new System.Drawing.Size(275, 25);
             this.label1.TabIndex = 2;
-            this.label1.Text = "MESSAGES CONFIGURATION";
+            this.label1.Text = "DATA CONFIGURATION";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MessConfigCheckBox
             // 
@@ -346,7 +346,7 @@
             this.SendFreqBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.SendFreqBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.SendFreqBt.BorderRadius = 0;
-            this.SendFreqBt.ButtonText = "Send Configuration";
+            this.SendFreqBt.ButtonText = "Frequency Configuration";
             this.SendFreqBt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SendFreqBt.DisabledColor = System.Drawing.Color.Gray;
             this.SendFreqBt.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -371,7 +371,7 @@
             this.SendFreqBt.selected = false;
             this.SendFreqBt.Size = new System.Drawing.Size(221, 40);
             this.SendFreqBt.TabIndex = 5;
-            this.SendFreqBt.Text = "Send Configuration";
+            this.SendFreqBt.Text = "Frequency Configuration";
             this.SendFreqBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SendFreqBt.Textcolor = System.Drawing.Color.White;
             this.SendFreqBt.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -418,11 +418,11 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Ailerons", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label3.Location = new System.Drawing.Point(131, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(279, 25);
+            this.label3.Size = new System.Drawing.Size(297, 25);
             this.label3.TabIndex = 3;
             this.label3.Text = "UPDATE DATA FREQUENCY";
             // 
@@ -519,11 +519,11 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Ailerons", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label7.Location = new System.Drawing.Point(425, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 25);
+            this.label7.Size = new System.Drawing.Size(81, 25);
             this.label7.TabIndex = 7;
             this.label7.Text = "START";
             // 
@@ -532,11 +532,11 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Ailerons", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label6.Location = new System.Drawing.Point(196, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(152, 25);
+            this.label6.Size = new System.Drawing.Size(156, 25);
             this.label6.TabIndex = 7;
             this.label6.Text = "READ CONFIG";
             // 
@@ -582,11 +582,11 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Ailerons", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label4.Location = new System.Drawing.Point(10, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(147, 25);
+            this.label4.Size = new System.Drawing.Size(150, 25);
             this.label4.TabIndex = 3;
             this.label4.Text = "CALIBRATION";
             // 
@@ -625,11 +625,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SentTextBox.Location = new System.Drawing.Point(30, 70);
+            this.SentTextBox.Location = new System.Drawing.Point(30, 53);
             this.SentTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.SentTextBox.Name = "SentTextBox";
             this.SentTextBox.ReadOnly = true;
-            this.SentTextBox.Size = new System.Drawing.Size(205, 158);
+            this.SentTextBox.Size = new System.Drawing.Size(205, 175);
             this.SentTextBox.TabIndex = 6;
             this.SentTextBox.Text = "";
             this.SentTextBox.TextChanged += new System.EventHandler(this.SentTextBox_TextChanged);
@@ -639,11 +639,11 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Ailerons", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label8.Location = new System.Drawing.Point(99, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 25);
+            this.label8.Size = new System.Drawing.Size(68, 25);
             this.label8.TabIndex = 4;
             this.label8.Text = "SENT";
             // 
@@ -660,10 +660,10 @@
             this.bunifuMetroTextbox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.bunifuMetroTextbox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox5.isPassword = false;
-            this.bunifuMetroTextbox5.Location = new System.Drawing.Point(12, 53);
+            this.bunifuMetroTextbox5.Location = new System.Drawing.Point(12, 38);
             this.bunifuMetroTextbox5.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox5.Name = "bunifuMetroTextbox5";
-            this.bunifuMetroTextbox5.Size = new System.Drawing.Size(239, 192);
+            this.bunifuMetroTextbox5.Size = new System.Drawing.Size(239, 207);
             this.bunifuMetroTextbox5.TabIndex = 7;
             this.bunifuMetroTextbox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -685,11 +685,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ReceivedTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ReceivedTextBox.Location = new System.Drawing.Point(28, 70);
+            this.ReceivedTextBox.Location = new System.Drawing.Point(28, 53);
             this.ReceivedTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.ReceivedTextBox.Name = "ReceivedTextBox";
             this.ReceivedTextBox.ReadOnly = true;
-            this.ReceivedTextBox.Size = new System.Drawing.Size(203, 158);
+            this.ReceivedTextBox.Size = new System.Drawing.Size(203, 175);
             this.ReceivedTextBox.TabIndex = 6;
             this.ReceivedTextBox.Text = "";
             this.ReceivedTextBox.TextChanged += new System.EventHandler(this.ReceivedTextBox_TextChanged);
@@ -707,10 +707,10 @@
             this.bunifuMetroTextbox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.bunifuMetroTextbox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox6.isPassword = false;
-            this.bunifuMetroTextbox6.Location = new System.Drawing.Point(12, 53);
+            this.bunifuMetroTextbox6.Location = new System.Drawing.Point(12, 38);
             this.bunifuMetroTextbox6.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox6.Name = "bunifuMetroTextbox6";
-            this.bunifuMetroTextbox6.Size = new System.Drawing.Size(239, 192);
+            this.bunifuMetroTextbox6.Size = new System.Drawing.Size(239, 207);
             this.bunifuMetroTextbox6.TabIndex = 8;
             this.bunifuMetroTextbox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -719,11 +719,11 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Ailerons", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label9.Location = new System.Drawing.Point(82, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(113, 25);
+            this.label9.Size = new System.Drawing.Size(118, 25);
             this.label9.TabIndex = 5;
             this.label9.Text = "RECEIVED";
             // 
@@ -742,9 +742,7 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);

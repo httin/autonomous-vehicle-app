@@ -124,9 +124,6 @@
   <data name="Navigate_100px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Navigate_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Settings_64px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Settings_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Save as_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save as_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -361,9 +358,6 @@
   <data name="Manual_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Manual_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-toggle-on-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-toggle-on-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Pause Butto1n_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pause Butto1n_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -378,9 +372,6 @@
   </data>
   <data name="Save_100px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save_100px2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-toggle-off-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-toggle-off-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Available Updates_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Available Updates_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -432,5 +423,11 @@
   </data>
   <data name="icons8_toggle_on_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-toggle-on-80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="connection_status_on_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\connection-status-on-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
