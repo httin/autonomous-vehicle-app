@@ -25,7 +25,7 @@ namespace ThesisInterface
         public const double DISTANCE_BETWEEN_TWO_WHEELS = 0.388;
         public class Vehicle
         {
-            public double M1RefVelocity, M2RefVelocity, M1Velocity, M2Velocity, RefAngle, Angle, Test;
+            public double M1RefVelocity, M2RefVelocity, M1Velocity, M2Velocity, RefAngle, Angle;
             public double v_linear, v_angular;
             public Vehicle(string[] ArrayInfo)
             {
@@ -38,7 +38,6 @@ namespace ThesisInterface
                     M2Velocity = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
                     RefAngle = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
                     Angle = double.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
-                    Test = double.Parse(ArrayInfo[8], System.Globalization.CultureInfo.InvariantCulture);
                     /* linear velocity = (R/2) * (rpm_left + rpm_right) * 2pi/60 [m/s] */
                     v1_mps = WHEEL_RADIUS * M1Velocity * 0.10471975512; // V right
                     v2_mps = WHEEL_RADIUS * M2Velocity * 0.10471975512; // V left
@@ -58,9 +57,8 @@ namespace ThesisInterface
                     "V1 ref: {0} [rpm]\nV1 current: {1} [rpm]\n" +
                     "V2 ref: {2} [rpm]\nV2 current: {3} [rpm]\n" +
                     "Ref Angle: {4} °\nCurrent Angle: {5} °\n" +
-                    "Sensor Angle: {6} °\n" +
-                    "V linear: {7} [m/s]\nV angular: {8} [°/s]\n", 
-                M1RefVelocity, M1Velocity, M2RefVelocity, M2Velocity, RefAngle, Angle, Test, v_linear, v_angular);
+                    "V linear: {6} [m/s]\nV angular: {7} [°/s]\n", 
+                M1RefVelocity, M1Velocity, M2RefVelocity, M2Velocity, RefAngle, Angle, v_linear, v_angular);
 
                 return res;
             }

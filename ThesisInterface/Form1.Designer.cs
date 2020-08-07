@@ -32,12 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ConfigWaitForRespond = new System.Windows.Forms.Timer(this.components);
-            this.KctrlTimer = new System.Windows.Forms.Timer(this.components);
-            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.ControlPanelDrag = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.TopDrag = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.bunifuFormFadeTransition1 = new Bunifu.Framework.UI.BunifuFormFadeTransition(this.components);
             this.vehicleSetting1 = new ThesisInterface.UserControls.VehicleSetting();
             this.autoUC1 = new ThesisInterface.UserControls.AutoUC();
             this.imuSetting1 = new ThesisInterface.UserControls.IMUSetting();
@@ -45,26 +39,32 @@
             this.manualUC1 = new ThesisInterface.UserControls.ManualUC();
             this.progressUC1 = new ThesisInterface.UserControls.ProgressUC();
             this.autoSetting1 = new ThesisInterface.UserControls.AutoSetting();
-            this.autoSettingDrag = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.TopPanel = new Bunifu.Framework.UI.BunifuGradientPanel();
-            this.closebt = new Bunifu.Framework.UI.BunifuImageButton();
-            this.maxbt = new Bunifu.Framework.UI.BunifuImageButton();
-            this.minbt = new Bunifu.Framework.UI.BunifuImageButton();
-            this.menubt = new Bunifu.Framework.UI.BunifuImageButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ConfigWaitForRespond = new System.Windows.Forms.Timer(this.components);
+            this.KctrlTimer = new System.Windows.Forms.Timer(this.components);
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.ControlPanelDrag = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.SidePanel = new Bunifu.Framework.UI.BunifuGradientPanel();
             this.bunifuFlatButton4 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuFlatButton3 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuFlatButton2 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.label2 = new System.Windows.Forms.Label();
+            this.TopDrag = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.TopPanel = new Bunifu.Framework.UI.BunifuGradientPanel();
+            this.closebt = new Bunifu.Framework.UI.BunifuImageButton();
+            this.maxbt = new Bunifu.Framework.UI.BunifuImageButton();
+            this.minbt = new Bunifu.Framework.UI.BunifuImageButton();
+            this.menubt = new Bunifu.Framework.UI.BunifuImageButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bunifuFormFadeTransition1 = new Bunifu.Framework.UI.BunifuFormFadeTransition(this.components);
+            this.autoSettingDrag = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1.SuspendLayout();
+            this.SidePanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closebt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxbt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minbt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menubt)).BeginInit();
-            this.SidePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -88,39 +88,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(931, 603);
             this.panel1.TabIndex = 11;
-            // 
-            // ConfigWaitForRespond
-            // 
-            this.ConfigWaitForRespond.Interval = 25;
-            this.ConfigWaitForRespond.Tick += new System.EventHandler(this.ConfigWaitForRespond_Tick);
-            // 
-            // KctrlTimer
-            // 
-            this.KctrlTimer.Interval = 50;
-            this.KctrlTimer.Tick += new System.EventHandler(this.KctrlTimer_Tick);
-            // 
-            // bunifuElipse1
-            // 
-            this.bunifuElipse1.ElipseRadius = 25;
-            this.bunifuElipse1.TargetControl = this;
-            // 
-            // ControlPanelDrag
-            // 
-            this.ControlPanelDrag.Fixed = true;
-            this.ControlPanelDrag.Horizontal = true;
-            this.ControlPanelDrag.TargetControl = this.SidePanel;
-            this.ControlPanelDrag.Vertical = true;
-            // 
-            // TopDrag
-            // 
-            this.TopDrag.Fixed = true;
-            this.TopDrag.Horizontal = true;
-            this.TopDrag.TargetControl = this.TopPanel;
-            this.TopDrag.Vertical = true;
-            // 
-            // bunifuFormFadeTransition1
-            // 
-            this.bunifuFormFadeTransition1.Delay = 1;
             // 
             // vehicleSetting1
             // 
@@ -195,108 +162,27 @@
             this.autoSetting1.Size = new System.Drawing.Size(344, 250);
             this.autoSetting1.TabIndex = 0;
             // 
-            // autoSettingDrag
+            // ConfigWaitForRespond
             // 
-            this.autoSettingDrag.Fixed = true;
-            this.autoSettingDrag.Horizontal = true;
-            this.autoSettingDrag.TargetControl = this.autoSetting1;
-            this.autoSettingDrag.Vertical = true;
+            this.ConfigWaitForRespond.Interval = 25;
+            this.ConfigWaitForRespond.Tick += new System.EventHandler(this.ConfigWaitForRespond_Tick);
             // 
-            // TopPanel
+            // KctrlTimer
             // 
-            this.TopPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TopPanel.BackgroundImage")));
-            this.TopPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.TopPanel.Controls.Add(this.closebt);
-            this.TopPanel.Controls.Add(this.maxbt);
-            this.TopPanel.Controls.Add(this.minbt);
-            this.TopPanel.Controls.Add(this.menubt);
-            this.TopPanel.Controls.Add(this.label1);
-            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopPanel.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.TopPanel.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.TopPanel.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(24)))), ((int)(((byte)(91)))));
-            this.TopPanel.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(49)))), ((int)(((byte)(85)))));
-            this.TopPanel.Location = new System.Drawing.Point(156, 0);
-            this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Quality = 10;
-            this.TopPanel.Size = new System.Drawing.Size(931, 47);
-            this.TopPanel.TabIndex = 9;
-            this.TopPanel.DoubleClick += new System.EventHandler(this.TopPanel_DoubleClick);
+            this.KctrlTimer.Interval = 50;
+            this.KctrlTimer.Tick += new System.EventHandler(this.KctrlTimer_Tick);
             // 
-            // closebt
+            // bunifuElipse1
             // 
-            this.closebt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closebt.BackColor = System.Drawing.Color.Transparent;
-            this.closebt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closebt.Image = global::ThesisInterface.Properties.Resources.Close_Window_64px;
-            this.closebt.ImageActive = null;
-            this.closebt.Location = new System.Drawing.Point(900, 7);
-            this.closebt.Name = "closebt";
-            this.closebt.Size = new System.Drawing.Size(25, 25);
-            this.closebt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.closebt.TabIndex = 9;
-            this.closebt.TabStop = false;
-            this.closebt.Zoom = 10;
-            this.closebt.Click += new System.EventHandler(this.closebt_Click);
+            this.bunifuElipse1.ElipseRadius = 25;
+            this.bunifuElipse1.TargetControl = this;
             // 
-            // maxbt
+            // ControlPanelDrag
             // 
-            this.maxbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maxbt.BackColor = System.Drawing.Color.Transparent;
-            this.maxbt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.maxbt.Image = global::ThesisInterface.Properties.Resources.Restore_Window_50px;
-            this.maxbt.ImageActive = null;
-            this.maxbt.Location = new System.Drawing.Point(869, 7);
-            this.maxbt.Name = "maxbt";
-            this.maxbt.Size = new System.Drawing.Size(25, 25);
-            this.maxbt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.maxbt.TabIndex = 8;
-            this.maxbt.TabStop = false;
-            this.maxbt.Zoom = 10;
-            this.maxbt.Click += new System.EventHandler(this.maxbt_Click);
-            // 
-            // minbt
-            // 
-            this.minbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minbt.BackColor = System.Drawing.Color.Transparent;
-            this.minbt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.minbt.Image = global::ThesisInterface.Properties.Resources.Minimize_Window_64px;
-            this.minbt.ImageActive = null;
-            this.minbt.Location = new System.Drawing.Point(838, 7);
-            this.minbt.Name = "minbt";
-            this.minbt.Size = new System.Drawing.Size(25, 25);
-            this.minbt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.minbt.TabIndex = 7;
-            this.minbt.TabStop = false;
-            this.minbt.Zoom = 10;
-            this.minbt.Click += new System.EventHandler(this.minbt_Click);
-            // 
-            // menubt
-            // 
-            this.menubt.BackColor = System.Drawing.Color.Transparent;
-            this.menubt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.menubt.Image = global::ThesisInterface.Properties.Resources.Menu_64px;
-            this.menubt.ImageActive = null;
-            this.menubt.Location = new System.Drawing.Point(12, 7);
-            this.menubt.Name = "menubt";
-            this.menubt.Size = new System.Drawing.Size(30, 30);
-            this.menubt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.menubt.TabIndex = 2;
-            this.menubt.TabStop = false;
-            this.menubt.Zoom = 10;
-            this.menubt.Click += new System.EventHandler(this.menubt_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
-            this.label1.Location = new System.Drawing.Point(58, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(284, 29);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "SELF-DRIVING VEHICLE";
+            this.ControlPanelDrag.Fixed = true;
+            this.ControlPanelDrag.Horizontal = true;
+            this.ControlPanelDrag.TargetControl = this.SidePanel;
+            this.ControlPanelDrag.Vertical = true;
             // 
             // SidePanel
             // 
@@ -483,6 +369,120 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "BKU";
             // 
+            // TopDrag
+            // 
+            this.TopDrag.Fixed = true;
+            this.TopDrag.Horizontal = true;
+            this.TopDrag.TargetControl = this.TopPanel;
+            this.TopDrag.Vertical = true;
+            // 
+            // TopPanel
+            // 
+            this.TopPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TopPanel.BackgroundImage")));
+            this.TopPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TopPanel.Controls.Add(this.closebt);
+            this.TopPanel.Controls.Add(this.maxbt);
+            this.TopPanel.Controls.Add(this.minbt);
+            this.TopPanel.Controls.Add(this.menubt);
+            this.TopPanel.Controls.Add(this.label1);
+            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopPanel.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.TopPanel.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.TopPanel.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(24)))), ((int)(((byte)(91)))));
+            this.TopPanel.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(49)))), ((int)(((byte)(85)))));
+            this.TopPanel.Location = new System.Drawing.Point(156, 0);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Quality = 10;
+            this.TopPanel.Size = new System.Drawing.Size(931, 47);
+            this.TopPanel.TabIndex = 9;
+            this.TopPanel.DoubleClick += new System.EventHandler(this.TopPanel_DoubleClick);
+            // 
+            // closebt
+            // 
+            this.closebt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closebt.BackColor = System.Drawing.Color.Transparent;
+            this.closebt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closebt.Image = global::ThesisInterface.Properties.Resources.Close_Window_64px;
+            this.closebt.ImageActive = null;
+            this.closebt.Location = new System.Drawing.Point(900, 7);
+            this.closebt.Name = "closebt";
+            this.closebt.Size = new System.Drawing.Size(25, 25);
+            this.closebt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.closebt.TabIndex = 9;
+            this.closebt.TabStop = false;
+            this.closebt.Zoom = 10;
+            this.closebt.Click += new System.EventHandler(this.closebt_Click);
+            // 
+            // maxbt
+            // 
+            this.maxbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maxbt.BackColor = System.Drawing.Color.Transparent;
+            this.maxbt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.maxbt.Image = global::ThesisInterface.Properties.Resources.Restore_Window_50px;
+            this.maxbt.ImageActive = null;
+            this.maxbt.Location = new System.Drawing.Point(869, 7);
+            this.maxbt.Name = "maxbt";
+            this.maxbt.Size = new System.Drawing.Size(25, 25);
+            this.maxbt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.maxbt.TabIndex = 8;
+            this.maxbt.TabStop = false;
+            this.maxbt.Zoom = 10;
+            this.maxbt.Click += new System.EventHandler(this.maxbt_Click);
+            // 
+            // minbt
+            // 
+            this.minbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minbt.BackColor = System.Drawing.Color.Transparent;
+            this.minbt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.minbt.Image = global::ThesisInterface.Properties.Resources.Minimize_Window_64px;
+            this.minbt.ImageActive = null;
+            this.minbt.Location = new System.Drawing.Point(838, 7);
+            this.minbt.Name = "minbt";
+            this.minbt.Size = new System.Drawing.Size(25, 25);
+            this.minbt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.minbt.TabIndex = 7;
+            this.minbt.TabStop = false;
+            this.minbt.Zoom = 10;
+            this.minbt.Click += new System.EventHandler(this.minbt_Click);
+            // 
+            // menubt
+            // 
+            this.menubt.BackColor = System.Drawing.Color.Transparent;
+            this.menubt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.menubt.Image = global::ThesisInterface.Properties.Resources.Menu_64px;
+            this.menubt.ImageActive = null;
+            this.menubt.Location = new System.Drawing.Point(12, 7);
+            this.menubt.Name = "menubt";
+            this.menubt.Size = new System.Drawing.Size(30, 30);
+            this.menubt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.menubt.TabIndex = 2;
+            this.menubt.TabStop = false;
+            this.menubt.Zoom = 10;
+            this.menubt.Click += new System.EventHandler(this.menubt_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
+            this.label1.Location = new System.Drawing.Point(58, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(284, 29);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "SELF-DRIVING VEHICLE";
+            // 
+            // bunifuFormFadeTransition1
+            // 
+            this.bunifuFormFadeTransition1.Delay = 1;
+            // 
+            // autoSettingDrag
+            // 
+            this.autoSettingDrag.Fixed = true;
+            this.autoSettingDrag.Horizontal = true;
+            this.autoSettingDrag.TargetControl = this.autoSetting1;
+            this.autoSettingDrag.Vertical = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -496,14 +496,14 @@
             this.Text = resources.GetString("$this.Text");
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.panel1.ResumeLayout(false);
+            this.SidePanel.ResumeLayout(false);
+            this.SidePanel.PerformLayout();
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closebt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxbt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minbt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menubt)).EndInit();
-            this.SidePanel.ResumeLayout(false);
-            this.SidePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
