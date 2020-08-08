@@ -25,7 +25,7 @@ namespace ThesisInterface
         public const double DISTANCE_BETWEEN_TWO_WHEELS = 0.388;
         public class Vehicle
         {
-            public double M1RefVelocity, M2RefVelocity, M1Velocity, M2Velocity, RefAngle, Angle, Test;
+            public double M1RefVelocity, M2RefVelocity, M1Velocity, M2Velocity, RefAngle, Angle;
             public double v_linear, v_angular;
             public Vehicle(string[] ArrayInfo)
             {
@@ -38,7 +38,6 @@ namespace ThesisInterface
                     M2Velocity = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
                     RefAngle = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
                     Angle = double.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
-                    Test = double.Parse(ArrayInfo[8], System.Globalization.CultureInfo.InvariantCulture);
                     /* linear velocity = (R/2) * (rpm_left + rpm_right) * 2pi/60 [m/s] */
                     v1_mps = WHEEL_RADIUS * M1Velocity * 0.10471975512; // V right
                     v2_mps = WHEEL_RADIUS * M2Velocity * 0.10471975512; // V left
@@ -58,9 +57,8 @@ namespace ThesisInterface
                     "V1 ref: {0} [rpm]\nV1 current: {1} [rpm]\n" +
                     "V2 ref: {2} [rpm]\nV2 current: {3} [rpm]\n" +
                     "Ref Angle: {4} °\nCurrent Angle: {5} °\n" +
-                    "Sensor Angle: {6} °\n" +
-                    "V linear: {7} [m/s]\nV angular: {8} [°/s]\n", 
-                M1RefVelocity, M1Velocity, M2RefVelocity, M2Velocity, RefAngle, Angle, Test, v_linear, v_angular);
+                    "V linear: {6} [m/s]\nV angular: {7} [°/s]\n", 
+                M1RefVelocity, M1Velocity, M2RefVelocity, M2Velocity, RefAngle, Angle, v_linear, v_angular);
 
                 return res;
             }
@@ -213,7 +211,6 @@ namespace ThesisInterface
         Image MediumVelocity = Image.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + @"\MEDIUM.png");
         Image HighVelocity = Image.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + @"\HIGH.png");
 
-        public string GPS_Information = "";
         //---------------------------------------------------------------------------------------------------------------
         enum TextBox { 
             auto_received, auto_positionInfo, auto_turning, auto_vehicleInfo, auto_stanleyControl,
@@ -228,7 +225,6 @@ namespace ThesisInterface
         private bool OnHelperPanel = false; //flag to on/off helper panel
 
         public int setting_config_timeout = 40; // for setting config timer
-
         public string WaitKey = "|";  // This is used for creating waiting messages
         public string OldMess = "";
 
@@ -335,10 +331,7 @@ namespace ThesisInterface
                 ProcessStartInfo _processInfo;
 
                 _processInfo = new ProcessStartInfo(workingDirectory + @"\map\process_map.bat");
-                    //@"C:\Users\ThanhHien\Desktop\Tin\ThesisInterface\ThesisInterface\bin\Debug\map\process_map.bat");
-
                 _processInfo.WorkingDirectory = string.Format(workingDirectory + @"\map\");
-                    //@"C:\Users\ThanhHien\Desktop\Tin\ThesisInterface\ThesisInterface\bin\Debug\map\");
 
                 _processInfo.CreateNoWindow = false; //Process started creating a new window
                 _processInfo.UseShellExecute = false; //Do not use shell execution
@@ -1891,7 +1884,7 @@ namespace ThesisInterface
                             if (mess[1].Contains('1'))
                             {
                                 SetText(TextBox.manual_received, DateTime.Now.ToString("hh:mm:ss tt") + " << success\n");
-                            } 
+                            }
                             else
                             {
                                 SetText(TextBox.manual_received, DateTime.Now.ToString("hh:mm:ss tt") + " << fail\n");
@@ -1950,16 +1943,16 @@ namespace ThesisInterface
                                         Efa.Add(MyStanleyControl.Efa);
                                         SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
                                     }
-                                }
-                                if (vehicle_mode == Mode.Manual)
-                                {
-                                    if (mess[1] == "3")
+                                    else if (mess[1] == "3")
                                     {
-                                        string vehicleStatus = String.Format(
+                                        if (vehicle_mode == Mode.Manual)
+                                        {
+                                            string vehicleStatus = String.Format(
                                             "Mode: {0}\nV max: {1} [rpm]\nV manual: {2} [rpm]\n" +
                                             "Manual angle: {3} [°]\nFuzzy output: {4}\n",
                                             mess[2], mess[3], mess[4], mess[5], mess[6]);
-                                        SetText(TextBox.manual_vehicleStatus, vehicleStatus);
+                                            SetText(TextBox.manual_vehicleStatus, vehicleStatus);
+                                        }
                                     }
                                 }
                             }
