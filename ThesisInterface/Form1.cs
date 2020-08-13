@@ -1948,9 +1948,8 @@ namespace ThesisInterface
                                         if (vehicle_mode == Mode.Manual)
                                         {
                                             string vehicleStatus = String.Format(
-                                            "Mode: {0}\nV max: {1} [rpm]\nV manual: {2} [rpm]\n" +
-                                            "Manual angle: {3} [°]\nFuzzy output: {4}\n",
-                                            mess[2], mess[3], mess[4], mess[5], mess[6]);
+                                            "V max: {0} [rpm]\nV manual: {1} [rpm]\nManual angle: {2} [°]\nFuzzy output: {3}\n",
+                                            mess[2], mess[3], mess[4], mess[5]);
                                             SetText(TextBox.manual_vehicleStatus, vehicleStatus);
                                         }
                                     }
