@@ -59,11 +59,11 @@
             this.Velocity_label.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Velocity_label.AutoSize = true;
             this.Velocity_label.BackColor = System.Drawing.Color.White;
-            this.Velocity_label.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.Velocity_label.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Velocity_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.Velocity_label.Location = new System.Drawing.Point(3, 76);
             this.Velocity_label.Name = "Velocity_label";
-            this.Velocity_label.Size = new System.Drawing.Size(93, 24);
+            this.Velocity_label.Size = new System.Drawing.Size(91, 25);
             this.Velocity_label.TabIndex = 26;
             this.Velocity_label.Text = "Velocity";
             // 
@@ -72,11 +72,11 @@
             this.Kgain_label.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Kgain_label.AutoSize = true;
             this.Kgain_label.BackColor = System.Drawing.Color.White;
-            this.Kgain_label.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.Kgain_label.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Kgain_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.Kgain_label.Location = new System.Drawing.Point(3, 108);
             this.Kgain_label.Name = "Kgain_label";
-            this.Kgain_label.Size = new System.Drawing.Size(76, 24);
+            this.Kgain_label.Size = new System.Drawing.Size(82, 25);
             this.Kgain_label.TabIndex = 26;
             this.Kgain_label.Text = "K Gain";
             // 
@@ -85,11 +85,11 @@
             this.SelfUpdate_label.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.SelfUpdate_label.AutoSize = true;
             this.SelfUpdate_label.BackColor = System.Drawing.Color.White;
-            this.SelfUpdate_label.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.SelfUpdate_label.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelfUpdate_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.SelfUpdate_label.Location = new System.Drawing.Point(3, 136);
             this.SelfUpdate_label.Name = "SelfUpdate_label";
-            this.SelfUpdate_label.Size = new System.Drawing.Size(195, 24);
+            this.SelfUpdate_label.Size = new System.Drawing.Size(188, 25);
             this.SelfUpdate_label.TabIndex = 26;
             this.SelfUpdate_label.Text = "Self Update Mode";
             // 
@@ -104,9 +104,9 @@
             this.VelocityTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.VelocityTb.isPassword = false;
             this.VelocityTb.Location = new System.Drawing.Point(103, 76);
-            this.VelocityTb.Margin = new System.Windows.Forms.Padding(4);
+            this.VelocityTb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.VelocityTb.Name = "VelocityTb";
-            this.VelocityTb.Size = new System.Drawing.Size(98, 24);
+            this.VelocityTb.Size = new System.Drawing.Size(98, 30);
             this.VelocityTb.TabIndex = 27;
             this.VelocityTb.Text = "0.3";
             this.VelocityTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -122,9 +122,9 @@
             this.KGainTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.KGainTb.isPassword = false;
             this.KGainTb.Location = new System.Drawing.Point(103, 108);
-            this.KGainTb.Margin = new System.Windows.Forms.Padding(4);
+            this.KGainTb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.KGainTb.Name = "KGainTb";
-            this.KGainTb.Size = new System.Drawing.Size(98, 24);
+            this.KGainTb.Size = new System.Drawing.Size(98, 30);
             this.KGainTb.TabIndex = 27;
             this.KGainTb.Text = "1";
             this.KGainTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -134,11 +134,11 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.label1.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label1.Location = new System.Drawing.Point(3, 208);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 24);
+            this.label1.Size = new System.Drawing.Size(119, 25);
             this.label1.TabIndex = 26;
             this.label1.Text = "Auto Mode";
             // 
@@ -211,6 +211,7 @@
             this.OnSelfUpdateBt.IconZoom = 90D;
             this.OnSelfUpdateBt.IsTab = false;
             this.OnSelfUpdateBt.Location = new System.Drawing.Point(20, 166);
+            this.OnSelfUpdateBt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OnSelfUpdateBt.Name = "OnSelfUpdateBt";
             this.OnSelfUpdateBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.OnSelfUpdateBt.OnHovercolor = System.Drawing.Color.Chocolate;
@@ -246,6 +247,7 @@
             this.SendBt.IconZoom = 90D;
             this.SendBt.IsTab = false;
             this.SendBt.Location = new System.Drawing.Point(208, 76);
+            this.SendBt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SendBt.Name = "SendBt";
             this.SendBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.SendBt.OnHovercolor = System.Drawing.Color.Chocolate;
@@ -281,6 +283,7 @@
             this.OffSelfUpdateBt.IconZoom = 90D;
             this.OffSelfUpdateBt.IsTab = false;
             this.OffSelfUpdateBt.Location = new System.Drawing.Point(208, 166);
+            this.OffSelfUpdateBt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OffSelfUpdateBt.Name = "OffSelfUpdateBt";
             this.OffSelfUpdateBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.OffSelfUpdateBt.OnHovercolor = System.Drawing.Color.Chocolate;

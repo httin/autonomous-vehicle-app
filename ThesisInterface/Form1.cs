@@ -1909,12 +1909,12 @@ namespace ThesisInterface
                                     if (mess[1] == "0")
                                     {
                                         MyVehicle = new Vehicle(mess);
-
+                                        double turning_angle = fixAngle(-MyVehicle.RefAngle + MyVehicle.Angle);
                                         /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
                                         (It help users to understand whether the vehicle is turning left or right)      */
-                                        DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, -MyVehicle.RefAngle + MyVehicle.Angle, MyVehicle.v_linear);
+                                        DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, turning_angle, MyVehicle.v_linear);
                                         SetText(TextBox.auto_turning,
-                                            "Turning " + Math.Round(-MyVehicle.RefAngle + MyVehicle.Angle, 4).ToString() + "°");
+                                            "Turning " + Math.Round(turning_angle, 4).ToString() + "°");
                                         SetText(TextBox.auto_vehicleInfo, MyVehicle.GetVehicleStatus());
                                     }
                                     else if (mess[1] == "1")
@@ -1975,6 +1975,14 @@ namespace ThesisInterface
         }
         //---------------------------------------------------------------------------//
         // Other functions ----------------------------------------------------------//
+        private double fixAngle(double angle)
+        {
+            if (angle > 180)
+                angle -= 360;
+            else if (angle < -180)
+                angle += 360;
+            return angle;
+        }
 
         private void DrawVehicleTurningStatusOnImage(PictureBox ImgBox, double angle, double v_linear)
         {
