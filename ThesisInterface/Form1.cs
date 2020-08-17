@@ -54,10 +54,10 @@ namespace ThesisInterface
             public string GetVehicleStatus()
             {
                 string res = String.Format(
-                    "V1 ref: {0} [rpm]\nV1 current: {1} [rpm]\n" +
-                    "V2 ref: {2} [rpm]\nV2 current: {3} [rpm]\n" +
                     "Ref Angle: {4} °\nCurrent Angle: {5} °\n" +
-                    "V linear: {6} [m/s]\nV angular: {7} [°/s]\n", 
+                    "V linear: {6} [m/s]\nV angular: {7} [°/s]\n" +
+                    "V1 ref: {0} [rpm]\nV1 current: {1} [rpm]\n" +
+                    "V2 ref: {2} [rpm]\nV2 current: {3} [rpm]\n",              
                 M1RefVelocity, M1Velocity, M2RefVelocity, M2Velocity, RefAngle, Angle, v_linear, v_angular);
 
                 return res;
@@ -68,8 +68,7 @@ namespace ThesisInterface
         {
             private string GPS_Mode;
 
-            public int point_index;
-            public double GPS_Lat, GPS_Lng, goal_radius;
+            public double GPS_Lat, GPS_Lng;
             public GPS(string[] ArrayInfo)
             {
                 try
@@ -83,7 +82,7 @@ namespace ThesisInterface
                         switch (ArrayInfo[2])
                         {
                             case "1":
-                                GPS_Mode = "Data valid";
+                                GPS_Mode = "Data Valid";
                                 break;
                             case "2":
                                 GPS_Mode = "DGNSS";
@@ -100,8 +99,6 @@ namespace ThesisInterface
                         }
                         GPS_Lat = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
                         GPS_Lng = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
-                        goal_radius = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
-                        point_index = int.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
                     }
                 }
                 catch (Exception ex)
@@ -113,15 +110,16 @@ namespace ThesisInterface
             public string GetGPSStatus()
             {
                 string res = String.Format(
-                    "GPS Quality: {0}\n" + "Position: ({1}, {2})\nGoal radius: {3}\nPoint's index: {4}\n",
-                    GPS_Mode, GPS_Lat, GPS_Lng, goal_radius, point_index);
+                    "Position: ({0}, {1})\nQuality: {2}\n",
+                    GPS_Lat, GPS_Lng, GPS_Mode);
                 return res;
             }
         }
 
         public class StanleyControl
         {
-            public double thetaE, thetaD, Delta, ErrorDistance, Efa;
+            public double thetaE, thetaD, Delta, dmin, Efa, goal_radius;
+            public int point_index;
 
             public StanleyControl(string[] ArrayInfo)
             {
@@ -130,8 +128,10 @@ namespace ThesisInterface
                     thetaE = double.Parse(ArrayInfo[2], System.Globalization.CultureInfo.InvariantCulture);
                     thetaD = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
                     Delta = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
-                    ErrorDistance = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
+                    dmin = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
                     Efa = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
+                    goal_radius = double.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
+                    point_index = int.Parse(ArrayInfo[8], System.Globalization.CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {
@@ -142,9 +142,9 @@ namespace ThesisInterface
             public string GetStanleyControlStatus()
             {
                 string res = String.Format(
-                    "Theta E: {0}\nTheta D: {1}\nDelta Angle: {2}\n" + 
-                    "Distance Error: {3}\nEfa: {4}\n",
-                    thetaE, thetaD, Delta, ErrorDistance, Efa);
+                    "Theta E: {0}\nTheta D: {1}\nDelta Angle: {2}\n" +
+                    "Efa: {3}\nDmin: {4}\nGoal: {5}\nPoint: {6}\n",
+                    thetaE, thetaD, Delta, dmin, Efa, goal_radius, point_index);
                 return res;
             }
         }
@@ -1917,7 +1917,7 @@ namespace ThesisInterface
                                             "Turning " + Math.Round(turning_angle, 4).ToString() + "°");
                                         SetText(TextBox.auto_vehicleInfo, MyVehicle.GetVehicleStatus());
                                     }
-                                    else if (mess[1] == "1")
+                                    else if (mess[1] == "2")
                                     {
                                         MyGPS = new GPS(mess);
 
@@ -1936,10 +1936,10 @@ namespace ThesisInterface
                                         }
                                         SetText(TextBox.auto_positionInfo, MyGPS.GetGPSStatus());
                                     }
-                                    else if (mess[1] == "2")
+                                    else if (mess[1] == "1")
                                     {
                                         MyStanleyControl = new StanleyControl(mess);
-                                        DistanceErrors.Add(MyStanleyControl.ErrorDistance);
+                                        DistanceErrors.Add(MyStanleyControl.dmin);
                                         Efa.Add(MyStanleyControl.Efa);
                                         SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
                                     }
