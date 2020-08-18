@@ -1904,54 +1904,51 @@ namespace ThesisInterface
                             string CC = checksum(content);
                             if (cmd[index - 2] == CC[0] && cmd[index - 1] == CC[1])
                             {
-                                if (AutoEnable)
+                                if (mess[1] == "0")
                                 {
-                                    if (mess[1] == "0")
-                                    {
-                                        MyVehicle = new Vehicle(mess);
-                                        double turning_angle = fixAngle(-MyVehicle.RefAngle + MyVehicle.Angle);
-                                        /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
-                                        (It help users to understand whether the vehicle is turning left or right)      */
-                                        DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, turning_angle, MyVehicle.v_linear);
-                                        SetText(TextBox.auto_turning,
-                                            "Turning " + Math.Round(turning_angle, 4).ToString() + "°");
-                                        SetText(TextBox.auto_vehicleInfo, MyVehicle.GetVehicleStatus());
-                                    }
-                                    else if (mess[1] == "2")
-                                    {
-                                        MyGPS = new GPS(mess);
+                                    MyVehicle = new Vehicle(mess);
+                                    double turning_angle = fixAngle(-MyVehicle.RefAngle + MyVehicle.Angle);
+                                    /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
+                                    (It help users to understand whether the vehicle is turning left or right)      */
+                                    DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, turning_angle, MyVehicle.v_linear);
+                                    SetText(TextBox.auto_turning,
+                                        "Turning " + Math.Round(turning_angle, 4).ToString() + "°");
+                                    SetText(TextBox.auto_vehicleInfo, MyVehicle.GetVehicleStatus());
+                                }
+                                else if (mess[1] == "1")
+                                {
+                                    MyGPS = new GPS(mess);
 
-                                        if (mess[2] != "0") // gps quality is valid
-                                        {
-                                            // Save Position Data & Draw On Map
-                                            ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
-                                            GMapMarker marker = new GMarkerGoogle(
-                                                new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
-                                                GMarkerGoogleType.orange_dot);
-                                            DisplayRouteOnMap(
-                                                autoUC1.gmap,
-                                                new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
-                                                "Actual",
-                                                marker);
-                                        }
-                                        SetText(TextBox.auto_positionInfo, MyGPS.GetGPSStatus());
-                                    }
-                                    else if (mess[1] == "1")
+                                    if (mess[2] != "0") // gps quality is valid
                                     {
-                                        MyStanleyControl = new StanleyControl(mess);
-                                        DistanceErrors.Add(MyStanleyControl.dmin);
-                                        Efa.Add(MyStanleyControl.Efa);
-                                        SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
+                                        // Save Position Data & Draw On Map
+                                        ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
+                                        GMapMarker marker = new GMarkerGoogle(
+                                            new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
+                                            GMarkerGoogleType.orange_dot);
+                                        DisplayRouteOnMap(
+                                            autoUC1.gmap,
+                                            new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
+                                            "Actual",
+                                            marker);
                                     }
-                                    else if (mess[1] == "3")
+                                    SetText(TextBox.auto_positionInfo, MyGPS.GetGPSStatus());
+                                }
+                                else if (mess[1] == "2")
+                                {
+                                    MyStanleyControl = new StanleyControl(mess);
+                                    DistanceErrors.Add(MyStanleyControl.dmin);
+                                    Efa.Add(MyStanleyControl.Efa);
+                                    SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
+                                }
+                                else if (mess[1] == "3")
+                                {
+                                    if (vehicle_mode == Mode.Manual)
                                     {
-                                        if (vehicle_mode == Mode.Manual)
-                                        {
-                                            string vehicleStatus = String.Format(
-                                            "V max: {0} [rpm]\nV manual: {1} [rpm]\nManual angle: {2} [°]\nFuzzy output: {3}\n",
-                                            mess[2], mess[3], mess[4], mess[5]);
-                                            SetText(TextBox.manual_vehicleStatus, vehicleStatus);
-                                        }
+                                        string vehicleStatus = String.Format(
+                                        "V max: {0} [rpm]\nV manual: {1} [rpm]\nManual angle: {2} [°]\nFuzzy output: {3}\n",
+                                        mess[2], mess[3], mess[4], mess[5]);
+                                        SetText(TextBox.manual_vehicleStatus, vehicleStatus);
                                     }
                                 }
                             }
