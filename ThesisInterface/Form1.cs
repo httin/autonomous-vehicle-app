@@ -75,14 +75,14 @@ namespace ThesisInterface
                 {
                     if (ArrayInfo[2] == "0")
                     {
-                        GPS_Mode = "Data unvalid";
+                        GPS_Mode = "Data Unvalid";
                     } 
                     else
                     {
                         switch (ArrayInfo[2])
                         {
                             case "1":
-                                GPS_Mode = "Data Valid";
+                                GPS_Mode = "Mode 2D/3D";
                                 break;
                             case "2":
                                 GPS_Mode = "DGNSS";
@@ -142,7 +142,7 @@ namespace ThesisInterface
             public string GetStanleyControlStatus()
             {
                 string res = String.Format(
-                    "ThetaE: {0} [rad]\nThetaD: {1} [rad]\nDelta Angle: {2}°\n" +
+                    "ThetaE: {0}°\nThetaD: {1}°\nDelta Angle: {2}°\n" +
                     "Dmin: {3}[m]\nEfa: {4}\nGoal: {5}[m]\nPoint: {6}\n",
                     thetaE, thetaD, Delta, dmin, Efa, goal_radius, point_index);
                 return res;
@@ -196,6 +196,9 @@ namespace ThesisInterface
             public List<ActualCoordinate> actualCoordinates { get; set; }
             public List<double> ErrorDistances { get; set; }
             public List<double> Efa { get; set; }
+            public List<double> ThetaE { get; set; }
+            public List<double> ThetaD { get; set; }
+            public List<double> Delta { get; set; }
         }
 
         public class ProcessedMap
@@ -242,11 +245,14 @@ namespace ThesisInterface
 
         public bool PlanMapEnable = false;
 
+        /* Acquistion Data */
         public List<PointLatLng> PlanCoordinatesList = new List<PointLatLng>(); 
         public List<PointLatLng> ActualCoordinatesList = new List<PointLatLng>();
-
         public List<double> DistanceErrors = new List<double>();
         public List<double> Efa = new List<double>();
+        public List<double> ThetaE = new List<double>();
+        public List<double> ThetaD = new List<double>();
+        public List<double> Delta = new List<double>();
 
         private Mode vehicle_mode = Mode.None;
         private int kctrl_timeout = 20;
@@ -1316,6 +1322,9 @@ namespace ThesisInterface
             CoordinatesInformation.actualCoordinates = listActual;
             CoordinatesInformation.ErrorDistances = DistanceErrors;
             CoordinatesInformation.Efa = Efa;
+            CoordinatesInformation.ThetaE = ThetaE;
+            CoordinatesInformation.ThetaD = ThetaD;
+            CoordinatesInformation.Delta = Delta;
 
             return CoordinatesInformation;
         }
@@ -1954,6 +1963,9 @@ namespace ThesisInterface
                                     MyStanleyControl = new StanleyControl(mess);
                                     DistanceErrors.Add(MyStanleyControl.dmin);
                                     Efa.Add(MyStanleyControl.Efa);
+                                    ThetaE.Add(MyStanleyControl.thetaE);
+                                    ThetaD.Add(MyStanleyControl.thetaD);
+                                    Delta.Add(MyStanleyControl.Delta);
                                     SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
                                 }
                                 else if (mess[1] == "3")
@@ -2085,6 +2097,9 @@ namespace ThesisInterface
             ActualLines.Clear();
             DistanceErrors.Clear();
             Efa.Clear();
+            ThetaD.Clear();
+            ThetaE.Clear();
+            Delta.Clear();
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
