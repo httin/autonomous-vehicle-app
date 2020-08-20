@@ -54,7 +54,7 @@ namespace ThesisInterface
             public string GetVehicleStatus()
             {
                 string res = String.Format(
-                    "Ref Angle: {4} °\nCurrent Angle: {5} °\n" +
+                    "Ref Angle: {4}°\nCurrent Angle: {5}°\n" +
                     "V linear: {6} [m/s]\nV angular: {7} [°/s]\n" +
                     "V1 ref: {0} [rpm]\nV1 current: {1} [rpm]\n" +
                     "V2 ref: {2} [rpm]\nV2 current: {3} [rpm]\n",              
@@ -142,8 +142,8 @@ namespace ThesisInterface
             public string GetStanleyControlStatus()
             {
                 string res = String.Format(
-                    "Theta E: {0}\nTheta D: {1}\nDelta Angle: {2}\n" +
-                    "Efa: {3}\nDmin: {4}\nGoal: {5}\nPoint: {6}\n",
+                    "ThetaE: {0} [rad]\nThetaD: {1} [rad]\nDelta Angle: {2}°\n" +
+                    "Dmin: {3}[m]\nEfa: {4}\nGoal: {5}[m]\nPoint: {6}\n",
                     thetaE, thetaD, Delta, dmin, Efa, goal_radius, point_index);
                 return res;
             }
@@ -156,7 +156,8 @@ namespace ThesisInterface
             public bool IMUCF_MAG2D, IMUCF_TSAMP;
             public bool MACON_START, MACON_STOP;
             public bool AUCON_START, AUCON_STOP;
-            public bool AUCON_RUN, AUCON_PAUSE, AUCON_DATA;
+            public bool AUCON_RUN, AUCON_PAUSE;
+            public bool AUCON_DATA, AUCON_SUPDT_ON, AUCON_SUPDT_OFF;
             public bool SFRST;
             public bool VPLAN_FLAG; // true if START sending map, otherwise false
             public UserControlStatus() { }
@@ -1139,7 +1140,7 @@ namespace ThesisInterface
         private void autoUC_send(string mess)
         {
             DisableAllTimers();
-            serialPort1.Write(mess);
+            serialPort1.Write(mess); 
             autoUC1.SentTb.Text += DateTime.Now.ToString("hh:mm:ss") + " >> " + mess;
             KctrlTimer.Enabled = true;
         }
@@ -1444,23 +1445,23 @@ namespace ThesisInterface
             }
         }
 
-        private void OffSelfUpdate_ClickHandler(object sender, EventArgs e)
-        {
-            if (serialPort1.IsOpen)
-            {
-                string mess = MessagesDocker("AUCON,SUPDT,0");
-                serialPort1.Write(mess);
-                autoUC1.SentTb.Text += DateTime.Now.ToString("h:mm:ss tt") + ">> " + mess;
-            }
-        }
-
         private void OnSelfUpdate_ClickHandler(object sender, EventArgs e)
         {
             if (serialPort1.IsOpen)
             {
+                MyStatus.AUCON_SUPDT_ON = true;
                 string mess = MessagesDocker("AUCON,SUPDT,1");
-                serialPort1.Write(mess);
-                autoUC1.SentTb.Text += DateTime.Now.ToString("h:mm:ss tt") + ">> " + mess;
+                autoUC_send(mess);
+            }
+        }
+
+        private void OffSelfUpdate_ClickHandler(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                MyStatus.AUCON_SUPDT_OFF = true;
+                string mess = MessagesDocker("AUCON,SUPDT,0");
+                autoUC_send(mess);
             }
         }
 
@@ -1679,6 +1680,16 @@ namespace ThesisInterface
                         MyStatus.AUCON_DATA = false;
                         autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << Config successfully\r\n";
                     }
+                    else if (MyStatus.AUCON_SUPDT_ON)
+                    {
+                        MyStatus.AUCON_SUPDT_ON = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << Self-Update On\r\n";
+                    }
+                    else if (MyStatus.AUCON_SUPDT_OFF)
+                    {
+                        MyStatus.AUCON_SUPDT_OFF = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << Self-Update Off\r\n";
+                    }
                     else if (MyStatus.SFRST)
                     {
                         MyStatus.SFRST = false;
@@ -1861,6 +1872,10 @@ namespace ThesisInterface
                             {
                                 VEHICLE_RECEIVED_DATA_FLAG = true;
                             }
+                            else if (mess[1].Contains('?'))
+                            {
+                                SetText(TextBox.auto_received, DateTime.Now.ToString("hh:mm:ss tt") + " << vehicle has no map, RUN failed!\n");
+                            }
                             else if (mess[1] == "VPLAN")
                             {
                                 if (mess[2].Contains('1'))
@@ -1873,7 +1888,7 @@ namespace ThesisInterface
                                     SetText(TextBox.auto_received, 
                                         DateTime.Now.ToString("hh:mm:ss tt") + " << transfer map successfully, ready to go\r\n");
                                 }
-                                else if (mess[2].Contains('?'))
+                                else if (mess[2].Contains('2'))
                                 {
                                     Console.WriteLine("[map transfer] Data received is correct checksum but wrong header");
                                 }
@@ -1907,7 +1922,7 @@ namespace ThesisInterface
                                 if (mess[1] == "0")
                                 {
                                     MyVehicle = new Vehicle(mess);
-                                    double turning_angle = fixAngle(-MyVehicle.RefAngle + MyVehicle.Angle);
+                                    double turning_angle = FixAngle(-MyVehicle.RefAngle + MyVehicle.Angle);
                                     /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
                                     (It help users to understand whether the vehicle is turning left or right)      */
                                     DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, turning_angle, MyVehicle.v_linear);
@@ -1972,7 +1987,7 @@ namespace ThesisInterface
         }
         //---------------------------------------------------------------------------//
         // Other functions ----------------------------------------------------------//
-        private double fixAngle(double angle)
+        private double FixAngle(double angle)
         {
             if (angle > 180)
                 angle -= 360;
