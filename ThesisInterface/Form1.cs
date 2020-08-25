@@ -67,7 +67,7 @@ namespace ThesisInterface
         public class GPS
         {
             private string GPS_Mode;
-
+            public int avoid_flag;
             public double GPS_Lat, GPS_Lng;
             public GPS(string[] ArrayInfo)
             {
@@ -97,8 +97,9 @@ namespace ThesisInterface
                                 GPS_Mode = "Unknown: " + ArrayInfo[3];
                                 break;
                         }
-                        GPS_Lat = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
-                        GPS_Lng = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
+                        avoid_flag = int.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
+                        GPS_Lat = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
+                        GPS_Lng = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
                     }
                 }
                 catch (Exception ex)
@@ -110,8 +111,8 @@ namespace ThesisInterface
             public string GetGPSStatus()
             {
                 string res = String.Format(
-                    "Position: ({0}, {1})\nQuality: {2}\n",
-                    GPS_Lat, GPS_Lng, GPS_Mode);
+                    "Position: ({0}, {1})\nQuality: {2}\nAvoid Flag: {3}",
+                    GPS_Lat, GPS_Lng, GPS_Mode, avoid_flag);
                 return res;
             }
         }
@@ -123,20 +124,13 @@ namespace ThesisInterface
 
             public StanleyControl(string[] ArrayInfo)
             {
-                try
-                {
-                    thetaE = double.Parse(ArrayInfo[2], System.Globalization.CultureInfo.InvariantCulture);
-                    thetaD = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
-                    Delta = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
-                    dmin = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
-                    Efa = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
-                    goal_radius = double.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
-                    point_index = int.Parse(ArrayInfo[8], System.Globalization.CultureInfo.InvariantCulture);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "StanleyControl::StanleyControl()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                thetaE = double.Parse(ArrayInfo[2], System.Globalization.CultureInfo.InvariantCulture);
+                thetaD = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
+                Delta = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
+                dmin = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
+                Efa = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
+                goal_radius = double.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
+                point_index = int.Parse(ArrayInfo[8], System.Globalization.CultureInfo.InvariantCulture);
             }
 
             public string GetStanleyControlStatus()
