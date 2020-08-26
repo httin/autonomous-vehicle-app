@@ -64,7 +64,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.StopVehicleBt = new Bunifu.Framework.UI.BunifuImageButton();
             this.StartBt = new Bunifu.Framework.UI.BunifuImageButton();
-            this.SendRoutesBt = new Bunifu.Framework.UI.BunifuImageButton();
+            this.ReversePathBt = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuMetroTextbox6 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.ReceivedTb = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -97,7 +97,7 @@
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StopVehicleBt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartBt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SendRoutesBt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReversePathBt)).BeginInit();
             this.SidePanelAuto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImportProcessedMapBt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CreatePreProcessingBt)).BeginInit();
@@ -148,7 +148,7 @@
             this.StanleyControlTb.BackColor = System.Drawing.Color.White;
             this.StanleyControlTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.StanleyControlTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.StanleyControlTb.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StanleyControlTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StanleyControlTb.Location = new System.Drawing.Point(7, 24);
             this.StanleyControlTb.Name = "StanleyControlTb";
             this.StanleyControlTb.ReadOnly = true;
@@ -290,7 +290,7 @@
             this.DetailInfoTb.BackColor = System.Drawing.Color.White;
             this.DetailInfoTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DetailInfoTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.DetailInfoTb.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DetailInfoTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DetailInfoTb.Location = new System.Drawing.Point(8, 17);
             this.DetailInfoTb.Name = "DetailInfoTb";
             this.DetailInfoTb.ReadOnly = true;
@@ -473,7 +473,7 @@
             this.PosTb.BackColor = System.Drawing.Color.White;
             this.PosTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PosTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PosTb.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PosTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PosTb.Location = new System.Drawing.Point(7, 22);
             this.PosTb.Name = "PosTb";
             this.PosTb.ReadOnly = true;
@@ -610,7 +610,7 @@
             this.SentTb.BackColor = System.Drawing.Color.White;
             this.SentTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SentTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.SentTb.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SentTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SentTb.Location = new System.Drawing.Point(16, 21);
             this.SentTb.Name = "SentTb";
             this.SentTb.ReadOnly = true;
@@ -657,7 +657,7 @@
             // 
             this.panel6.Controls.Add(this.StopVehicleBt);
             this.panel6.Controls.Add(this.StartBt);
-            this.panel6.Controls.Add(this.SendRoutesBt);
+            this.panel6.Controls.Add(this.ReversePathBt);
             this.panel6.Controls.Add(this.bunifuMetroTextbox6);
             this.panel6.Controls.Add(this.ReceivedTb);
             this.panel6.Controls.Add(this.label2);
@@ -694,18 +694,18 @@
             this.StartBt.TabStop = false;
             this.StartBt.Zoom = 10;
             // 
-            // SendRoutesBt
+            // ReversePathBt
             // 
-            this.SendRoutesBt.BackColor = System.Drawing.Color.Transparent;
-            this.SendRoutesBt.Image = global::ThesisInterface.Properties.Resources.Email_Send_96px;
-            this.SendRoutesBt.ImageActive = null;
-            this.SendRoutesBt.Location = new System.Drawing.Point(10, 10);
-            this.SendRoutesBt.Name = "SendRoutesBt";
-            this.SendRoutesBt.Size = new System.Drawing.Size(40, 40);
-            this.SendRoutesBt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.SendRoutesBt.TabIndex = 18;
-            this.SendRoutesBt.TabStop = false;
-            this.SendRoutesBt.Zoom = 10;
+            this.ReversePathBt.BackColor = System.Drawing.Color.Transparent;
+            this.ReversePathBt.Image = global::ThesisInterface.Properties.Resources.Available_Updates_50px;
+            this.ReversePathBt.ImageActive = null;
+            this.ReversePathBt.Location = new System.Drawing.Point(10, 10);
+            this.ReversePathBt.Name = "ReversePathBt";
+            this.ReversePathBt.Size = new System.Drawing.Size(40, 40);
+            this.ReversePathBt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ReversePathBt.TabIndex = 18;
+            this.ReversePathBt.TabStop = false;
+            this.ReversePathBt.Zoom = 10;
             // 
             // bunifuMetroTextbox6
             // 
@@ -734,7 +734,7 @@
             this.ReceivedTb.BackColor = System.Drawing.Color.White;
             this.ReceivedTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ReceivedTb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ReceivedTb.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReceivedTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReceivedTb.Location = new System.Drawing.Point(80, 19);
             this.ReceivedTb.Name = "ReceivedTb";
             this.ReceivedTb.ReadOnly = true;
@@ -993,7 +993,7 @@
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StopVehicleBt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartBt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SendRoutesBt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReversePathBt)).EndInit();
             this.SidePanelAuto.ResumeLayout(false);
             this.SidePanelAuto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImportProcessedMapBt)).EndInit();
@@ -1038,7 +1038,7 @@
         private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextbox6;
         public Bunifu.Framework.UI.BunifuImageButton StopVehicleBt;
         public Bunifu.Framework.UI.BunifuImageButton StartBt;
-        public Bunifu.Framework.UI.BunifuImageButton SendRoutesBt;
+        public Bunifu.Framework.UI.BunifuImageButton ReversePathBt;
         public System.Windows.Forms.Label TurningState;
         public Bunifu.Framework.UI.BunifuImageButton SettingBt;
         private System.Windows.Forms.Panel panel3;

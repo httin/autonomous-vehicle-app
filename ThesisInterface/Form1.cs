@@ -119,26 +119,27 @@ namespace ThesisInterface
 
         public class StanleyControl
         {
-            public double thetaE, thetaD, Delta, dmin, Efa, goal_radius;
+            public double thetaE, thetaD, Delta, Efa, goal_radius;
             public int point_index;
 
             public StanleyControl(string[] ArrayInfo)
             {
                 thetaE = double.Parse(ArrayInfo[2], System.Globalization.CultureInfo.InvariantCulture);
+                thetaE *= 180 / Math.PI;
                 thetaD = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
+                thetaD *= 180 / Math.PI;
                 Delta = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
-                dmin = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
-                Efa = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
-                goal_radius = double.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
-                point_index = int.Parse(ArrayInfo[8], System.Globalization.CultureInfo.InvariantCulture);
+                Efa = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
+                goal_radius = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
+                point_index = int.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
             }
 
             public string GetStanleyControlStatus()
             {
                 string res = String.Format(
                     "ThetaE: {0}°\nThetaD: {1}°\nDelta Angle: {2}°\n" +
-                    "Dmin: {3}[m]\nEfa: {4}\nGoal: {5}[m]\nPoint: {6}\n",
-                    thetaE, thetaD, Delta, dmin, Efa, goal_radius, point_index);
+                    "Efa: {3}\nGoal: {4}[m]\nPoint: {5}\n",
+                    thetaE, thetaD, Delta, Efa, goal_radius, point_index);
                 return res;
             }
         }
@@ -151,7 +152,8 @@ namespace ThesisInterface
             public bool MACON_START, MACON_STOP;
             public bool AUCON_START, AUCON_STOP;
             public bool AUCON_RUN, AUCON_PAUSE;
-            public bool AUCON_DATA, AUCON_SUPDT_ON, AUCON_SUPDT_OFF;
+            public bool AUCON_SUPDT_ON, AUCON_SUPDT_OFF;
+            public bool AUCON_BACK, AUCON_DATA;
             public bool SFRST;
             public bool VPLAN_FLAG; // true if START sending map, otherwise false
             public UserControlStatus() { }
@@ -162,7 +164,8 @@ namespace ThesisInterface
                 VEHCF_DATA_ON = VEHCF_DATA_OFF = false;
                 IMUCF_MAG2D = IMUCF_TSAMP = false;
                 MACON_START = MACON_STOP = false;
-                AUCON_START = AUCON_STOP = AUCON_RUN = AUCON_PAUSE = AUCON_DATA = false;
+                AUCON_START = AUCON_STOP = AUCON_RUN = AUCON_PAUSE = false;
+                AUCON_DATA = AUCON_BACK = AUCON_SUPDT_ON = AUCON_SUPDT_OFF = false;
                 SFRST = VPLAN_FLAG = false;
             }
         }
@@ -188,7 +191,6 @@ namespace ThesisInterface
         {
             public List<PlannedCoordinate> plannedCoordinates { get; set; }
             public List<ActualCoordinate> actualCoordinates { get; set; }
-            public List<double> ErrorDistances { get; set; }
             public List<double> Efa { get; set; }
             public List<double> ThetaE { get; set; }
             public List<double> ThetaD { get; set; }
@@ -242,7 +244,6 @@ namespace ThesisInterface
         /* Acquistion Data */
         public List<PointLatLng> PlanCoordinatesList = new List<PointLatLng>(); 
         public List<PointLatLng> ActualCoordinatesList = new List<PointLatLng>();
-        public List<double> DistanceErrors = new List<double>();
         public List<double> Efa = new List<double>();
         public List<double> ThetaE = new List<double>();
         public List<double> ThetaD = new List<double>();
@@ -793,7 +794,7 @@ namespace ThesisInterface
             this.autoUC1.OpenBtClickHandler(new EventHandler(OpenBtAutoUCClickHandler)); // OPEN button
             this.autoUC1.SaveBtClickHandler(new EventHandler(SaveBtAutoUCClickHandler)); // SAVE button
             this.autoUC1.PlanRoutesBtClickHandler(new EventHandler(PlanRoutesBtAutoUCClickHandler)); // PlanMap button
-            this.autoUC1.SendRoutesBtClickHandler(new EventHandler(SendRoutesBtAutoUCClickHandler)); // SENDROUTES button
+            this.autoUC1.ReversePathBtHandler(new EventHandler(ReversePathBtAutoUCHandler)); // SENDROUTES button
             this.autoUC1.ClearPlannedMapBtClickHandler(new EventHandler(ClearPlannedMapBtAutoUCClickHandler)); // 'Clear planned map' button
             this.autoUC1.ClearActualMapBtClickHandler(new EventHandler(ClearActualMapBtAutoUCClickHandler)); // 'Clear actual map' button
             this.autoUC1.SettingBtClickHandler(new EventHandler(SettingBtAutoUCClickHandler)); // SETTING button
@@ -1155,7 +1156,7 @@ namespace ThesisInterface
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ON", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "START AUTO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1169,7 +1170,7 @@ namespace ThesisInterface
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "OFF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "STOP AUTO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1183,7 +1184,7 @@ namespace ThesisInterface
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "START", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "RUN", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
          
@@ -1197,9 +1198,16 @@ namespace ThesisInterface
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "STOP", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "PAUSE", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        } 
+        }
+
+        private void ReversePathBtAutoUCHandler(object sender, EventArgs e)
+        {
+            MyStatus.AUCON_BACK = true;
+            string mess = MessagesDocker("AUCON,BACK");
+            autoUC_send(mess);
+        }
 
         private string ReadJsonFile()
         {
@@ -1280,8 +1288,6 @@ namespace ThesisInterface
                         "Actual");
                 }
 
-                DistanceErrors.Clear();
-                //DistanceErrors = coordinatesInformation.ErrorDistances;
             }
             catch (Exception ex)
             {
@@ -1314,7 +1320,6 @@ namespace ThesisInterface
 
             CoordinatesInformation.plannedCoordinates = listPlanned;
             CoordinatesInformation.actualCoordinates = listActual;
-            CoordinatesInformation.ErrorDistances = DistanceErrors;
             CoordinatesInformation.Efa = Efa;
             CoordinatesInformation.ThetaE = ThetaE;
             CoordinatesInformation.ThetaD = ThetaD;
@@ -1407,11 +1412,6 @@ namespace ThesisInterface
                 PlanMapEnable = true;
                 autoUC1.PlanMapBt.Text = "Disable Plan Map";
             }
-        }
-
-        private void SendRoutesBtAutoUCClickHandler(object sender, EventArgs e)
-        {
-            MessageBox.Show("This button is unused", "SendRoutes Button", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ClearPlannedMapBtAutoUCClickHandler(object sender, EventArgs e)
@@ -1677,6 +1677,11 @@ namespace ThesisInterface
                     {
                         MyStatus.AUCON_PAUSE = false;
                         autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << PAUSE successfully\r\n";
+                    }
+                    else if (MyStatus.AUCON_BACK)
+                    {
+                        MyStatus.AUCON_PAUSE = false;
+                        autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << Back Tracking Operation\r\n";
                     }
                     else if (MyStatus.AUCON_DATA) // send Max velocity, K & Step 
                     {
@@ -1955,7 +1960,6 @@ namespace ThesisInterface
                                 else if (mess[1] == "2")
                                 {
                                     MyStanleyControl = new StanleyControl(mess);
-                                    DistanceErrors.Add(MyStanleyControl.dmin);
                                     Efa.Add(MyStanleyControl.Efa);
                                     ThetaE.Add(MyStanleyControl.thetaE);
                                     ThetaD.Add(MyStanleyControl.thetaD);
@@ -2089,7 +2093,6 @@ namespace ThesisInterface
             //autoUC1.gmap.Overlays.Clear();
             ActualCoordinatesList.Clear();
             ActualLines.Clear();
-            DistanceErrors.Clear();
             Efa.Clear();
             ThetaD.Clear();
             ThetaE.Clear();

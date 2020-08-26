@@ -47,9 +47,9 @@ namespace ThesisInterface.UserControls
             this.PlanMapBt.Click += handler;
         }
 
-        public void SendRoutesBtClickHandler(EventHandler handler)
+        public void ReversePathBtHandler(EventHandler handler)
         {
-            this.SendRoutesBt.Click += handler;
+            this.ReversePathBt.Click += handler;
         }
 
         public void ClearPlannedMapBtClickHandler(EventHandler handler)
