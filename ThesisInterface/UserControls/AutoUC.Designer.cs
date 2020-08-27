@@ -44,7 +44,6 @@
             this.DetailInfoTb = new System.Windows.Forms.RichTextBox();
             this.bunifuMetroTextbox2 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.UnusedBt = new Bunifu.Framework.UI.BunifuFlatButton();
             this.ClearPlannedMap = new Bunifu.Framework.UI.BunifuFlatButton();
             this.ClearActualMapBt = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuMetroTextbox3 = new Bunifu.Framework.UI.BunifuMetroTextbox();
@@ -54,7 +53,6 @@
             this.bunifuMetroTextbox7 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.MapProvider = new Bunifu.Framework.UI.BunifuImageButton();
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -70,6 +68,7 @@
             this.ReceivedTb = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.bunifuMetroTextbox4 = new Bunifu.Framework.UI.BunifuMetroTextbox();
+            this.MapProvider = new Bunifu.Framework.UI.BunifuImageButton();
             this.SidePanelAuto = new Bunifu.Framework.UI.BunifuGradientPanel();
             this.ImportProcessedMapBt = new Bunifu.Framework.UI.BunifuImageButton();
             this.CreatePreProcessingBt = new Bunifu.Framework.UI.BunifuImageButton();
@@ -92,7 +91,6 @@
             this.panel8.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MapProvider)).BeginInit();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -100,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.StopVehicleBt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartBt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReversePathBt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MapProvider)).BeginInit();
             this.SidePanelAuto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImportProcessedMapBt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CreatePreProcessingBt)).BeginInit();
@@ -124,10 +123,10 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.74105F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.27273F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.98623F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 83F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(201, 594);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -137,9 +136,9 @@
             this.panel9.Controls.Add(this.label6);
             this.panel9.Controls.Add(this.bunifuMetroTextbox8);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(3, 384);
+            this.panel9.Location = new System.Drawing.Point(3, 386);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(195, 94);
+            this.panel9.Size = new System.Drawing.Size(195, 121);
             this.panel9.TabIndex = 20;
             // 
             // StanleyControlTb
@@ -154,7 +153,7 @@
             this.StanleyControlTb.Location = new System.Drawing.Point(7, 24);
             this.StanleyControlTb.Name = "StanleyControlTb";
             this.StanleyControlTb.ReadOnly = true;
-            this.StanleyControlTb.Size = new System.Drawing.Size(182, 62);
+            this.StanleyControlTb.Size = new System.Drawing.Size(182, 84);
             this.StanleyControlTb.TabIndex = 24;
             this.StanleyControlTb.Text = "";
             // 
@@ -186,7 +185,7 @@
             this.bunifuMetroTextbox8.Location = new System.Drawing.Point(0, 0);
             this.bunifuMetroTextbox8.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox8.Name = "bunifuMetroTextbox8";
-            this.bunifuMetroTextbox8.Size = new System.Drawing.Size(195, 94);
+            this.bunifuMetroTextbox8.Size = new System.Drawing.Size(195, 121);
             this.bunifuMetroTextbox8.TabIndex = 21;
             this.bunifuMetroTextbox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -268,7 +267,7 @@
             this.panel3.Location = new System.Drawing.Point(2, 149);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(197, 130);
+            this.panel3.Size = new System.Drawing.Size(197, 133);
             this.panel3.TabIndex = 6;
             // 
             // label1
@@ -296,7 +295,7 @@
             this.DetailInfoTb.Location = new System.Drawing.Point(8, 17);
             this.DetailInfoTb.Name = "DetailInfoTb";
             this.DetailInfoTb.ReadOnly = true;
-            this.DetailInfoTb.Size = new System.Drawing.Size(182, 105);
+            this.DetailInfoTb.Size = new System.Drawing.Size(182, 101);
             this.DetailInfoTb.TabIndex = 7;
             this.DetailInfoTb.Text = "";
             this.DetailInfoTb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DetailInfoTb_KeyDown);
@@ -317,56 +316,20 @@
             this.bunifuMetroTextbox2.Location = new System.Drawing.Point(0, 0);
             this.bunifuMetroTextbox2.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox2.Name = "bunifuMetroTextbox2";
-            this.bunifuMetroTextbox2.Size = new System.Drawing.Size(197, 130);
+            this.bunifuMetroTextbox2.Size = new System.Drawing.Size(197, 133);
             this.bunifuMetroTextbox2.TabIndex = 19;
             this.bunifuMetroTextbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.UnusedBt);
             this.panel5.Controls.Add(this.ClearPlannedMap);
             this.panel5.Controls.Add(this.ClearActualMapBt);
             this.panel5.Controls.Add(this.bunifuMetroTextbox3);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 484);
+            this.panel5.Location = new System.Drawing.Point(3, 513);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(195, 107);
+            this.panel5.Size = new System.Drawing.Size(195, 78);
             this.panel5.TabIndex = 18;
-            // 
-            // UnusedBt
-            // 
-            this.UnusedBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
-            this.UnusedBt.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.UnusedBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.UnusedBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.UnusedBt.BorderRadius = 0;
-            this.UnusedBt.ButtonText = "";
-            this.UnusedBt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UnusedBt.DisabledColor = System.Drawing.Color.Gray;
-            this.UnusedBt.Iconcolor = System.Drawing.Color.Transparent;
-            this.UnusedBt.Iconimage = null;
-            this.UnusedBt.Iconimage_right = null;
-            this.UnusedBt.Iconimage_right_Selected = null;
-            this.UnusedBt.Iconimage_Selected = null;
-            this.UnusedBt.IconMarginLeft = 0;
-            this.UnusedBt.IconMarginRight = 0;
-            this.UnusedBt.IconRightVisible = true;
-            this.UnusedBt.IconRightZoom = 0D;
-            this.UnusedBt.IconVisible = true;
-            this.UnusedBt.IconZoom = 90D;
-            this.UnusedBt.IsTab = false;
-            this.UnusedBt.Location = new System.Drawing.Point(13, 11);
-            this.UnusedBt.Margin = new System.Windows.Forms.Padding(4);
-            this.UnusedBt.Name = "UnusedBt";
-            this.UnusedBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.UnusedBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.UnusedBt.OnHoverTextColor = System.Drawing.Color.White;
-            this.UnusedBt.selected = false;
-            this.UnusedBt.Size = new System.Drawing.Size(170, 24);
-            this.UnusedBt.TabIndex = 0;
-            this.UnusedBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.UnusedBt.Textcolor = System.Drawing.Color.White;
-            this.UnusedBt.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // ClearPlannedMap
             // 
@@ -389,7 +352,7 @@
             this.ClearPlannedMap.IconVisible = true;
             this.ClearPlannedMap.IconZoom = 90D;
             this.ClearPlannedMap.IsTab = false;
-            this.ClearPlannedMap.Location = new System.Drawing.Point(13, 42);
+            this.ClearPlannedMap.Location = new System.Drawing.Point(13, 13);
             this.ClearPlannedMap.Margin = new System.Windows.Forms.Padding(4);
             this.ClearPlannedMap.Name = "ClearPlannedMap";
             this.ClearPlannedMap.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
@@ -424,7 +387,7 @@
             this.ClearActualMapBt.IconVisible = true;
             this.ClearActualMapBt.IconZoom = 90D;
             this.ClearActualMapBt.IsTab = false;
-            this.ClearActualMapBt.Location = new System.Drawing.Point(13, 72);
+            this.ClearActualMapBt.Location = new System.Drawing.Point(13, 45);
             this.ClearActualMapBt.Margin = new System.Windows.Forms.Padding(4);
             this.ClearActualMapBt.Name = "ClearActualMapBt";
             this.ClearActualMapBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
@@ -444,7 +407,7 @@
             this.bunifuMetroTextbox3.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox3.BorderColorMouseHover = System.Drawing.Color.BlueViolet;
             this.bunifuMetroTextbox3.BorderThickness = 3;
-            this.bunifuMetroTextbox3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.bunifuMetroTextbox3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuMetroTextbox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuMetroTextbox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.bunifuMetroTextbox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -452,7 +415,7 @@
             this.bunifuMetroTextbox3.Location = new System.Drawing.Point(0, 0);
             this.bunifuMetroTextbox3.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox3.Name = "bunifuMetroTextbox3";
-            this.bunifuMetroTextbox3.Size = new System.Drawing.Size(195, 107);
+            this.bunifuMetroTextbox3.Size = new System.Drawing.Size(195, 78);
             this.bunifuMetroTextbox3.TabIndex = 20;
             this.bunifuMetroTextbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -462,9 +425,9 @@
             this.panel8.Controls.Add(this.label4);
             this.panel8.Controls.Add(this.bunifuMetroTextbox7);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(3, 284);
+            this.panel8.Location = new System.Drawing.Point(3, 287);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(195, 94);
+            this.panel8.Size = new System.Drawing.Size(195, 93);
             this.panel8.TabIndex = 19;
             // 
             // PosTb
@@ -479,7 +442,7 @@
             this.PosTb.Location = new System.Drawing.Point(7, 22);
             this.PosTb.Name = "PosTb";
             this.PosTb.ReadOnly = true;
-            this.PosTb.Size = new System.Drawing.Size(182, 62);
+            this.PosTb.Size = new System.Drawing.Size(182, 46);
             this.PosTb.TabIndex = 24;
             this.PosTb.Text = "";
             // 
@@ -511,7 +474,7 @@
             this.bunifuMetroTextbox7.Location = new System.Drawing.Point(0, 0);
             this.bunifuMetroTextbox7.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox7.Name = "bunifuMetroTextbox7";
-            this.bunifuMetroTextbox7.Size = new System.Drawing.Size(195, 94);
+            this.bunifuMetroTextbox7.Size = new System.Drawing.Size(195, 93);
             this.bunifuMetroTextbox7.TabIndex = 22;
             this.bunifuMetroTextbox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -539,20 +502,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(595, 594);
             this.panel1.TabIndex = 1;
-            // 
-            // MapProvider
-            // 
-            this.MapProvider.BackColor = System.Drawing.Color.Transparent;
-            this.MapProvider.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MapProvider.Image = global::ThesisInterface.Properties.Resources.google_maps;
-            this.MapProvider.ImageActive = null;
-            this.MapProvider.Location = new System.Drawing.Point(1, 487);
-            this.MapProvider.Name = "MapProvider";
-            this.MapProvider.Size = new System.Drawing.Size(32, 32);
-            this.MapProvider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.MapProvider.TabIndex = 18;
-            this.MapProvider.TabStop = false;
-            this.MapProvider.Zoom = 10;
             // 
             // gmap
             // 
@@ -793,6 +742,20 @@
             this.bunifuMetroTextbox4.TabIndex = 20;
             this.bunifuMetroTextbox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
+            // MapProvider
+            // 
+            this.MapProvider.BackColor = System.Drawing.Color.Transparent;
+            this.MapProvider.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MapProvider.Image = global::ThesisInterface.Properties.Resources.google_maps;
+            this.MapProvider.ImageActive = null;
+            this.MapProvider.Location = new System.Drawing.Point(1, 487);
+            this.MapProvider.Name = "MapProvider";
+            this.MapProvider.Size = new System.Drawing.Size(32, 32);
+            this.MapProvider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MapProvider.TabIndex = 18;
+            this.MapProvider.TabStop = false;
+            this.MapProvider.Zoom = 10;
+            // 
             // SidePanelAuto
             // 
             this.SidePanelAuto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SidePanelAuto.BackgroundImage")));
@@ -1002,7 +965,6 @@
             this.panel8.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MapProvider)).EndInit();
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -1012,6 +974,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.StopVehicleBt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StartBt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReversePathBt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MapProvider)).EndInit();
             this.SidePanelAuto.ResumeLayout(false);
             this.SidePanelAuto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImportProcessedMapBt)).EndInit();
@@ -1064,7 +1027,6 @@
         public System.Windows.Forms.RichTextBox DetailInfoTb;
         private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextbox2;
         private System.Windows.Forms.Panel panel5;
-        public Bunifu.Framework.UI.BunifuFlatButton UnusedBt;
         public Bunifu.Framework.UI.BunifuFlatButton ClearPlannedMap;
         public Bunifu.Framework.UI.BunifuFlatButton ClearActualMapBt;
         private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextbox3;
