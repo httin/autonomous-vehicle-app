@@ -136,7 +136,7 @@
             this.DisconnectedLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.DisconnectedLabel.Location = new System.Drawing.Point(108, 146);
             this.DisconnectedLabel.Name = "DisconnectedLabel";
-            this.DisconnectedLabel.Size = new System.Drawing.Size(111, 25);
+            this.DisconnectedLabel.Size = new System.Drawing.Size(165, 25);
             this.DisconnectedLabel.TabIndex = 20;
             this.DisconnectedLabel.Text = "DISCONNECTED";
             // 
@@ -169,7 +169,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label1.Location = new System.Drawing.Point(395, 103);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 25);
+            this.label1.Size = new System.Drawing.Size(98, 25);
             this.label1.TabIndex = 26;
             this.label1.Text = "Baudrate";
             // 
@@ -181,7 +181,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label2.Location = new System.Drawing.Point(395, 69);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 25);
+            this.label2.Size = new System.Drawing.Size(112, 25);
             this.label2.TabIndex = 27;
             this.label2.Text = "Port Name";
             // 
@@ -309,7 +309,7 @@
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label16.Location = new System.Drawing.Point(17, 86);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(48, 24);
+            this.label16.Size = new System.Drawing.Size(62, 24);
             this.label16.TabIndex = 12;
             this.label16.Text = "Angle";
             // 
@@ -322,7 +322,7 @@
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label7.Location = new System.Drawing.Point(124, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 24);
+            this.label7.Size = new System.Drawing.Size(71, 24);
             this.label7.TabIndex = 11;
             this.label7.Text = "Others";
             // 
@@ -355,7 +355,7 @@
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label15.Location = new System.Drawing.Point(17, 55);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(63, 24);
+            this.label15.Size = new System.Drawing.Size(81, 24);
             this.label15.TabIndex = 12;
             this.label15.Text = "Velocity";
             // 
@@ -409,7 +409,7 @@
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label14.Location = new System.Drawing.Point(17, 23);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(45, 24);
+            this.label14.Size = new System.Drawing.Size(59, 24);
             this.label14.TabIndex = 12;
             this.label14.Text = "Mode";
             // 
@@ -437,7 +437,7 @@
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label10.Location = new System.Drawing.Point(21, 85);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(27, 24);
+            this.label10.Size = new System.Drawing.Size(34, 24);
             this.label10.TabIndex = 12;
             this.label10.Text = "Kd";
             // 
@@ -449,7 +449,7 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label9.Location = new System.Drawing.Point(21, 55);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 24);
+            this.label9.Size = new System.Drawing.Size(28, 24);
             this.label9.TabIndex = 12;
             this.label9.Text = "Ki";
             // 
@@ -461,7 +461,7 @@
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label8.Location = new System.Drawing.Point(21, 23);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(27, 24);
+            this.label8.Size = new System.Drawing.Size(34, 24);
             this.label8.TabIndex = 12;
             this.label8.Text = "Kp";
             // 
@@ -537,7 +537,7 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label6.Location = new System.Drawing.Point(118, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 24);
+            this.label6.Size = new System.Drawing.Size(48, 24);
             this.label6.TabIndex = 11;
             this.label6.Text = "PID1";
             // 
@@ -565,7 +565,7 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label13.Location = new System.Drawing.Point(21, 85);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(27, 24);
+            this.label13.Size = new System.Drawing.Size(34, 24);
             this.label13.TabIndex = 12;
             this.label13.Text = "Kd";
             // 
@@ -578,7 +578,7 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label11.Location = new System.Drawing.Point(118, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 24);
+            this.label11.Size = new System.Drawing.Size(51, 24);
             this.label11.TabIndex = 11;
             this.label11.Text = "PID2";
             // 
@@ -590,7 +590,7 @@
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label12.Location = new System.Drawing.Point(21, 55);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(23, 24);
+            this.label12.Size = new System.Drawing.Size(28, 24);
             this.label12.TabIndex = 12;
             this.label12.Text = "Ki";
             // 
@@ -623,7 +623,7 @@
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.label17.Location = new System.Drawing.Point(21, 23);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(27, 24);
+            this.label17.Size = new System.Drawing.Size(34, 24);
             this.label17.TabIndex = 12;
             this.label17.Text = "Kp";
             // 
@@ -774,7 +774,7 @@
             this.ConnectedLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(119)))), ((int)(((byte)(42)))));
             this.ConnectedLabel.Location = new System.Drawing.Point(118, 147);
             this.ConnectedLabel.Name = "ConnectedLabel";
-            this.ConnectedLabel.Size = new System.Drawing.Size(89, 25);
+            this.ConnectedLabel.Size = new System.Drawing.Size(132, 25);
             this.ConnectedLabel.TabIndex = 37;
             this.ConnectedLabel.Text = "CONNECTED";
             // 
@@ -783,7 +783,7 @@
             this.UpdateSP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UpdateSP.BackColor = System.Drawing.Color.Transparent;
             this.UpdateSP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UpdateSP.Image = global::ThesisInterface.Properties.Resources.icons8_restart_128;
+            this.UpdateSP.Image = global::ThesisInterface.Properties.Resources.Restart_100px;
             this.UpdateSP.ImageActive = null;
             this.UpdateSP.Location = new System.Drawing.Point(783, 67);
             this.UpdateSP.Name = "UpdateSP";

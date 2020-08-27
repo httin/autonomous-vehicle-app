@@ -271,9 +271,6 @@
     <None Include="Resources\icons8_Update_32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8_Email_Send_16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\auto.png" />
   </ItemGroup>
   <ItemGroup>
@@ -294,9 +291,7 @@
     <None Include="Resources\Inbox_96px.png" />
     <None Include="Resources\Save as_100px.png" />
     <None Include="Resources\Save_1104px.png" />
-    <None Include="Resources\Send Letter_100px.png" />
     <None Include="Resources\Save_100px.png" />
-    <None Include="Resources\Play Button Circled_50px.png" />
     <None Include="Resources\Stop Squared_50px.png" />
     <None Include="Resources\Available Updates_50px.png" />
     <None Include="Resources\Place Marker_64px.png" />
@@ -304,7 +299,6 @@
     <None Include="Resources\Mesh_50px.png" />
     <None Include="Resources\Opened Folder_50px.png" />
     <None Include="Resources\Save Close_50px.png" />
-    <None Include="Resources\Google Play_50px.png" />
     <None Include="Resources\Pause_50px.png" />
     <None Include="Resources\Administrative Tools_50px.png" />
     <None Include="Resources\Place Marker_50px.png" />
@@ -330,11 +324,10 @@
     <None Include="Resources\Navigate_100px.png" />
     <None Include="Resources\Login_100px.png" />
     <None Include="Resources\Play_100px1.png" />
-    <Content Include="Resources\1004px-Logo-hcmut.svg.png" />
     <None Include="Resources\ON.png" />
-    <None Include="Resources\icons8-restart-128.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\connection-status-on-96.png" />
+    <Content Include="Resources\google-maps.png" />
     <Content Include="Resources\icons8-toggle-off-80.png" />
     <Content Include="Resources\icons8-toggle-on-80.png" />
     <None Include="Resources\mem.png" />
@@ -343,6 +336,7 @@
     <Content Include="Resources\power-on.png" />
     <Content Include="Resources\startwhite.png" />
     <Content Include="Resources\stopwhite.png" />
+    <Content Include="Resources\world.png" />
     <Content Include="robot_qyi_icon.ico" />
   </ItemGroup>
   <ItemGroup>

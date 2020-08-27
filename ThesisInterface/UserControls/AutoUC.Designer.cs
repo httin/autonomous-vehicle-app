@@ -44,7 +44,7 @@
             this.DetailInfoTb = new System.Windows.Forms.RichTextBox();
             this.bunifuMetroTextbox2 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.PlanMapBt = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.UnusedBt = new Bunifu.Framework.UI.BunifuFlatButton();
             this.ClearPlannedMap = new Bunifu.Framework.UI.BunifuFlatButton();
             this.ClearActualMapBt = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuMetroTextbox3 = new Bunifu.Framework.UI.BunifuMetroTextbox();
@@ -54,6 +54,7 @@
             this.bunifuMetroTextbox7 = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MapProvider = new Bunifu.Framework.UI.BunifuImageButton();
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -91,6 +92,7 @@
             this.panel8.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MapProvider)).BeginInit();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -321,7 +323,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.PlanMapBt);
+            this.panel5.Controls.Add(this.UnusedBt);
             this.panel5.Controls.Add(this.ClearPlannedMap);
             this.panel5.Controls.Add(this.ClearActualMapBt);
             this.panel5.Controls.Add(this.bunifuMetroTextbox3);
@@ -331,40 +333,40 @@
             this.panel5.Size = new System.Drawing.Size(195, 107);
             this.panel5.TabIndex = 18;
             // 
-            // PlanMapBt
+            // UnusedBt
             // 
-            this.PlanMapBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
-            this.PlanMapBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.PlanMapBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlanMapBt.BorderRadius = 0;
-            this.PlanMapBt.ButtonText = "Enable Plan Map";
-            this.PlanMapBt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PlanMapBt.DisabledColor = System.Drawing.Color.Gray;
-            this.PlanMapBt.Iconcolor = System.Drawing.Color.Transparent;
-            this.PlanMapBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("PlanMapBt.Iconimage")));
-            this.PlanMapBt.Iconimage_right = null;
-            this.PlanMapBt.Iconimage_right_Selected = null;
-            this.PlanMapBt.Iconimage_Selected = null;
-            this.PlanMapBt.IconMarginLeft = 0;
-            this.PlanMapBt.IconMarginRight = 0;
-            this.PlanMapBt.IconRightVisible = true;
-            this.PlanMapBt.IconRightZoom = 0D;
-            this.PlanMapBt.IconVisible = true;
-            this.PlanMapBt.IconZoom = 90D;
-            this.PlanMapBt.IsTab = false;
-            this.PlanMapBt.Location = new System.Drawing.Point(13, 11);
-            this.PlanMapBt.Margin = new System.Windows.Forms.Padding(4);
-            this.PlanMapBt.Name = "PlanMapBt";
-            this.PlanMapBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.PlanMapBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.PlanMapBt.OnHoverTextColor = System.Drawing.Color.White;
-            this.PlanMapBt.selected = false;
-            this.PlanMapBt.Size = new System.Drawing.Size(170, 24);
-            this.PlanMapBt.TabIndex = 0;
-            this.PlanMapBt.Text = "Enable Plan Map";
-            this.PlanMapBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.PlanMapBt.Textcolor = System.Drawing.Color.White;
-            this.PlanMapBt.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UnusedBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(142)))));
+            this.UnusedBt.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.UnusedBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.UnusedBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.UnusedBt.BorderRadius = 0;
+            this.UnusedBt.ButtonText = "";
+            this.UnusedBt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UnusedBt.DisabledColor = System.Drawing.Color.Gray;
+            this.UnusedBt.Iconcolor = System.Drawing.Color.Transparent;
+            this.UnusedBt.Iconimage = null;
+            this.UnusedBt.Iconimage_right = null;
+            this.UnusedBt.Iconimage_right_Selected = null;
+            this.UnusedBt.Iconimage_Selected = null;
+            this.UnusedBt.IconMarginLeft = 0;
+            this.UnusedBt.IconMarginRight = 0;
+            this.UnusedBt.IconRightVisible = true;
+            this.UnusedBt.IconRightZoom = 0D;
+            this.UnusedBt.IconVisible = true;
+            this.UnusedBt.IconZoom = 90D;
+            this.UnusedBt.IsTab = false;
+            this.UnusedBt.Location = new System.Drawing.Point(13, 11);
+            this.UnusedBt.Margin = new System.Windows.Forms.Padding(4);
+            this.UnusedBt.Name = "UnusedBt";
+            this.UnusedBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.UnusedBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.UnusedBt.OnHoverTextColor = System.Drawing.Color.White;
+            this.UnusedBt.selected = false;
+            this.UnusedBt.Size = new System.Drawing.Size(170, 24);
+            this.UnusedBt.TabIndex = 0;
+            this.UnusedBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.UnusedBt.Textcolor = System.Drawing.Color.White;
+            this.UnusedBt.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // ClearPlannedMap
             // 
@@ -537,6 +539,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(595, 594);
             this.panel1.TabIndex = 1;
+            // 
+            // MapProvider
+            // 
+            this.MapProvider.BackColor = System.Drawing.Color.Transparent;
+            this.MapProvider.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MapProvider.Image = global::ThesisInterface.Properties.Resources.google_maps;
+            this.MapProvider.ImageActive = null;
+            this.MapProvider.Location = new System.Drawing.Point(1, 487);
+            this.MapProvider.Name = "MapProvider";
+            this.MapProvider.Size = new System.Drawing.Size(32, 32);
+            this.MapProvider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MapProvider.TabIndex = 18;
+            this.MapProvider.TabStop = false;
+            this.MapProvider.Zoom = 10;
             // 
             // gmap
             // 
@@ -781,6 +797,7 @@
             // 
             this.SidePanelAuto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SidePanelAuto.BackgroundImage")));
             this.SidePanelAuto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.SidePanelAuto.Controls.Add(this.MapProvider);
             this.SidePanelAuto.Controls.Add(this.ImportProcessedMapBt);
             this.SidePanelAuto.Controls.Add(this.CreatePreProcessingBt);
             this.SidePanelAuto.Controls.Add(this.SettingBt);
@@ -985,6 +1002,7 @@
             this.panel8.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MapProvider)).EndInit();
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -1046,7 +1064,7 @@
         public System.Windows.Forms.RichTextBox DetailInfoTb;
         private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextbox2;
         private System.Windows.Forms.Panel panel5;
-        public Bunifu.Framework.UI.BunifuFlatButton PlanMapBt;
+        public Bunifu.Framework.UI.BunifuFlatButton UnusedBt;
         public Bunifu.Framework.UI.BunifuFlatButton ClearPlannedMap;
         public Bunifu.Framework.UI.BunifuFlatButton ClearActualMapBt;
         private Bunifu.Framework.UI.BunifuMetroTextbox bunifuMetroTextbox3;
@@ -1061,5 +1079,6 @@
         public Bunifu.Framework.UI.BunifuImageButton ImportProcessedMapBt;
         public Bunifu.Framework.UI.BunifuImageButton CreatePreProcessingBt;
         public Bunifu.Framework.UI.BunifuGradientPanel SidePanelAuto;
+        public Bunifu.Framework.UI.BunifuImageButton MapProvider;
     }
 }

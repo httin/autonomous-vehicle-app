@@ -148,9 +148,6 @@
   <data name="Save_1104px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save_1104px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-restart-128" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-restart-128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="power-off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\power-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -259,9 +256,6 @@
   <data name="Minimize Window_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Minimize Window_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1004px-Logo-hcmut.svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1004px-Logo-hcmut.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="do_extend" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\do_extend.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -319,12 +313,6 @@
   <data name="Connect Develop_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Connect Develop_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_Email_Send_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8_Email_Send_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Google Play_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Google Play_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="do" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\do.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -339,9 +327,6 @@
   </data>
   <data name="play2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Send Letter_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Send Letter_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Navigate_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Navigate_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -360,9 +345,6 @@
   </data>
   <data name="Pause Butto1n_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pause Butto1n_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Play Button Circled_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Play Button Circled_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -429,5 +411,11 @@
   </data>
   <data name="mem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="google_maps" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\google-maps.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="world" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\world.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

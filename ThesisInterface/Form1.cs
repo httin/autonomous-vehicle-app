@@ -231,15 +231,12 @@ namespace ThesisInterface
         private string serial_command;
 
         private List<PointLatLng> DistanceCalculate = new List<PointLatLng>();
-
         private int numOfCalculatePoints = 0;
 
         GMapOverlay DistanceOverlay = new GMapOverlay("Distance");
         GMapOverlay DistanceMarkers = new GMapOverlay("DSM");
         public GMapOverlay PlanLines = new GMapOverlay("PlanLines");
         public GMapOverlay ActualLines = new GMapOverlay("ActualLines");
-
-        public bool PlanMapEnable = false;
 
         /* Acquistion Data */
         public List<PointLatLng> PlanCoordinatesList = new List<PointLatLng>(); 
@@ -253,6 +250,7 @@ namespace ThesisInterface
         private int kctrl_timeout = 20;
         private bool AutoEnable = true;
         private bool SerialPortEnable = false;
+        private bool SatelliteMap = true;
 
         private bool WRONG_CKSUM_FLAG = false;
         private bool VEHICLE_RECEIVED_DATA_FLAG = false; // show that our vehicle has been received "correct data" already
@@ -391,7 +389,7 @@ namespace ThesisInterface
             
             DisplayRouteOnMap(
                 autoUC1.gmap, 
-                new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.LightGoldenrodYellow, 3) },
+                new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) },
                 "Planned");
 
             TransferMapBackGroundWorker.ReportProgress(0, "SEND");
@@ -746,7 +744,7 @@ namespace ThesisInterface
         private void InitManualUC()
         {
             manualUC1.gmap.DragButton = MouseButtons.Left;
-            manualUC1.gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+            manualUC1.gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             manualUC1.gmap.SetPositionByKeywords("Vietnam, Ho Chi Minh");
             manualUC1.gmap.Position = new PointLatLng(10.772801, 106.659273);
@@ -793,13 +791,13 @@ namespace ThesisInterface
             this.autoUC1.StopVehicleBtClickHandler(new EventHandler(StopVehicleBtAutoUCClickHandler)); // STOP VEHICLE button
             this.autoUC1.OpenBtClickHandler(new EventHandler(OpenBtAutoUCClickHandler)); // OPEN button
             this.autoUC1.SaveBtClickHandler(new EventHandler(SaveBtAutoUCClickHandler)); // SAVE button
-            this.autoUC1.PlanRoutesBtClickHandler(new EventHandler(PlanRoutesBtAutoUCClickHandler)); // PlanMap button
-            this.autoUC1.ReversePathBtHandler(new EventHandler(ReversePathBtAutoUCHandler)); // SENDROUTES button
+            this.autoUC1.ReversePathBtHandler(new EventHandler(ReversePathBtAutoUCHandler)); // REVERSE button
             this.autoUC1.ClearPlannedMapBtClickHandler(new EventHandler(ClearPlannedMapBtAutoUCClickHandler)); // 'Clear planned map' button
             this.autoUC1.ClearActualMapBtClickHandler(new EventHandler(ClearActualMapBtAutoUCClickHandler)); // 'Clear actual map' button
             this.autoUC1.SettingBtClickHandler(new EventHandler(SettingBtAutoUCClickHandler)); // SETTING button
             this.autoUC1.CreatePreProcessingBtClickHandler(new EventHandler(CreatePreProcessingMapHandler)); // CREATE PRE-PROCESSING button
             this.autoUC1.ImportProcessedMapBtClickHandler(new EventHandler(ImportProcessedMapHandler)); // IMPORT PROCESSED MAP button
+            this.autoUC1.MapProviderClick(new EventHandler(MapProvider_ClickHandler));
             this.autoSetting1.SendButtonClickHandler(new EventHandler(SendButton_ClickHandler));
             this.autoSetting1.OffSelfUpdateBtClickHandler(new EventHandler(OffSelfUpdate_ClickHandler));
             this.autoSetting1.OnSelfUpdateBtClickHandler(new EventHandler(OnSelfUpdate_ClickHandler));
@@ -1002,7 +1000,7 @@ namespace ThesisInterface
                     serialPort1.Write(mess);
                     imuSetting1.SentTextBox.Text += DateTime.Now.ToString("h:mm:ss tt") + ": Magnetic 2D Calib >> " + mess;
                     imuSetting1.CalibBt.Text = "Calibrating";
-                    //imuSetting1.CalibBt.BackColor = Color.AliceBlue;
+                    imuSetting1.CalibBt.BackColor = Color.SlateBlue;
 
                     MyStatus.IMUCF_MAG2D = true;
                     KctrlTimer.Enabled = true;
@@ -1253,7 +1251,7 @@ namespace ThesisInterface
                 }
                 DisplayRouteOnMap(
                     autoUC1.gmap, 
-                    new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.LightGoldenrodYellow, 3) }, 
+                    new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) }, 
                     "Planned");
 
                 for (int i = 0; i < coordinatesInformation.actualCoordinates.Count; i++)
@@ -1384,7 +1382,7 @@ namespace ThesisInterface
                     DistanceMarkers.Clear();
                 }
             }
-            else if (PlanMapEnable && (e.Button == MouseButtons.Right))
+            else if (e.Button == MouseButtons.Right)
             {
                 autoUC1.gmap.Overlays.Clear();
                 PlanCoordinatesList.Add(autoUC1.gmap.FromLocalToLatLng(e.X, e.Y)); // mouse-coordinate to Lat, Lon
@@ -1394,23 +1392,9 @@ namespace ThesisInterface
 
                 DisplayRouteOnMap(
                     autoUC1.gmap, 
-                    new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.LightGoldenrodYellow, 3) }, 
+                    new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) }, 
                     "Planned", 
                     marker);
-            }
-        }
-
-        private void PlanRoutesBtAutoUCClickHandler(object sender, EventArgs e)
-        {
-            if(PlanMapEnable == true)
-            {
-                PlanMapEnable = false;
-                autoUC1.PlanMapBt.Text = "Enable Plan Map";
-            }
-            else
-            {
-                PlanMapEnable = true;
-                autoUC1.PlanMapBt.Text = "Disable Plan Map";
             }
         }
 
@@ -1506,6 +1490,22 @@ namespace ThesisInterface
             }
         }
         
+        private void MapProvider_ClickHandler(object sender, EventArgs e)
+        {
+            if(SatelliteMap)
+            {
+                this.autoUC1.MapProvider.Image = global::ThesisInterface.Properties.Resources.world;
+                this.autoUC1.gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+                SatelliteMap = false;
+            }
+            else
+            {
+                this.autoUC1.MapProvider.Image = global::ThesisInterface.Properties.Resources.google_maps;
+                this.autoUC1.gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+                SatelliteMap = true;
+            }
+        }
+
         //---------------------------------------------------------------------------//
         // Helper Control
 

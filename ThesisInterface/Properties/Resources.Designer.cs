@@ -19,7 +19,7 @@ namespace ThesisInterface.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,16 +57,6 @@ namespace ThesisInterface.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _1004px_Logo_hcmut_svg {
-            get {
-                object obj = ResourceManager.GetObject("1004px-Logo-hcmut.svg", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -333,6 +323,16 @@ namespace ThesisInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap google_maps {
+            get {
+                object obj = ResourceManager.GetObject("google_maps", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Google_Maps_50px {
             get {
                 object obj = ResourceManager.GetObject("Google Maps_50px", resourceCulture);
@@ -356,36 +356,6 @@ namespace ThesisInterface.Properties {
         internal static System.Drawing.Bitmap Google_Maps_50px2 {
             get {
                 object obj = ResourceManager.GetObject("Google Maps_50px2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Google_Play_50px {
-            get {
-                object obj = ResourceManager.GetObject("Google Play_50px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_Email_Send_16 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_Email_Send_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_restart_128 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-restart-128", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -843,16 +813,6 @@ namespace ThesisInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Play_Button_Circled_50px {
-            get {
-                object obj = ResourceManager.GetObject("Play Button Circled_50px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap play2 {
             get {
                 object obj = ResourceManager.GetObject("play2", resourceCulture);
@@ -1013,16 +973,6 @@ namespace ThesisInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Send_Letter_100px {
-            get {
-                object obj = ResourceManager.GetObject("Send Letter_100px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Settings_64px {
             get {
                 object obj = ResourceManager.GetObject("Settings_64px", resourceCulture);
@@ -1086,6 +1036,16 @@ namespace ThesisInterface.Properties {
         internal static System.Drawing.Bitmap stopwhite {
             get {
                 object obj = ResourceManager.GetObject("stopwhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap world {
+            get {
+                object obj = ResourceManager.GetObject("world", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

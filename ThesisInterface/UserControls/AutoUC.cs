@@ -42,11 +42,6 @@ namespace ThesisInterface.UserControls
             this.OnMouseClick(e);
         }
 
-        public void PlanRoutesBtClickHandler(EventHandler handler)
-        {
-            this.PlanMapBt.Click += handler;
-        }
-
         public void ReversePathBtHandler(EventHandler handler)
         {
             this.ReversePathBt.Click += handler;
@@ -108,6 +103,11 @@ namespace ThesisInterface.UserControls
         public void ImportProcessedMapBtClickHandler(EventHandler handler)
         {
             this.ImportProcessedMapBt.Click += handler;
+        }
+
+        public void MapProviderClick(EventHandler e)
+        {
+            this.MapProvider.Click += e;
         }
     }
 }
