@@ -230,16 +230,17 @@ namespace ThesisInterface
 
         private string serial_command;
 
-        private List<PointLatLng> DistanceCalculate = new List<PointLatLng>();
+        private List<PointLatLng> DistanceCalculate = new List<PointLatLng>(); // list of points to create GMapRoute
+        GMapOverlay DistanceOverlay = new GMapOverlay("Distance"); 
         private int numOfCalculatePoints = 0;
 
-        GMapOverlay DistanceOverlay = new GMapOverlay("Distance");
-        GMapOverlay DistanceMarkers = new GMapOverlay("DSM");
-        public GMapOverlay PlanLines = new GMapOverlay("PlanLines");
-        public GMapOverlay ActualLines = new GMapOverlay("ActualLines");
+        GMapRoute planRoute;
+        public GMapOverlay PlanOverlay = new GMapOverlay("Plan Overlay");
+        GMapRoute actualRoute;
+        public GMapOverlay ActualOverlay = new GMapOverlay("Actual Overlay");
 
         /* Acquistion Data */
-        public List<PointLatLng> PlanCoordinatesList = new List<PointLatLng>(); 
+        public List<PointLatLng> PlanCoordinatesList = new List<PointLatLng>();
         public List<PointLatLng> ActualCoordinatesList = new List<PointLatLng>();
         public List<double> Efa = new List<double>();
         public List<double> ThetaE = new List<double>();
@@ -381,9 +382,8 @@ namespace ThesisInterface
             string text = File.ReadAllText(workingDirectory + "\\map\\map_out.txt");
 
             ProcessedMap processedMap = JsonConvert.DeserializeObject<ProcessedMap>(text); 
-
             ClearPLannedData(); // clear the PlanCoordinates List and the corresponding Plan line
-            //ClearActualData();
+
             for (int i = 0; i < processedMap.lat.Count(); i++)
                 PlanCoordinatesList.Add(new PointLatLng(processedMap.lat[i], processedMap.lng[i]));
             
@@ -391,7 +391,7 @@ namespace ThesisInterface
                 autoUC1.gmap, 
                 new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) },
                 "Planned");
-
+            
             TransferMapBackGroundWorker.ReportProgress(0, "SEND");
             if (serialPort1.IsOpen)
             {
@@ -759,6 +759,10 @@ namespace ThesisInterface
             autoUC1.gmap.SetPositionByKeywords("Vietnam, Ho Chi Minh");
             autoUC1.gmap.Position = new PointLatLng(10.772801, 106.659273);
             autoUC1.gmap.Zoom = 19;
+            // add custom layers
+            autoUC1.gmap.Overlays.Add(DistanceOverlay);
+            autoUC1.gmap.Overlays.Add(PlanOverlay);
+            autoUC1.gmap.Overlays.Add(ActualOverlay);
         }
 
         private void LinkToUCEvents()
@@ -1280,16 +1284,15 @@ namespace ThesisInterface
                             new PointLatLng(coordinatesInformation.actualCoordinates[i].Lat, 
                             coordinatesInformation.actualCoordinates[i].Lng));
                     }
-                    DisplayRouteOnMap(
-                        autoUC1.gmap, 
-                        new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) }, 
-                        "Actual");
                 }
-
+                DisplayRouteOnMap(
+                    autoUC1.gmap,
+                    new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
+                    "Actual");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Open()", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1361,40 +1364,41 @@ namespace ThesisInterface
                         );
                     double[] UTM1 = LatLonToUTM(DistanceCalculate[0].Lat, DistanceCalculate[0].Lng);
                     double[] UTM2 = LatLonToUTM(DistanceCalculate[1].Lat, DistanceCalculate[1].Lng);
-                    double distance = Math.Sqrt(Math.Pow(UTM1[0] - UTM2[0], 2) + Math.Pow(UTM1[1] - UTM2[1], 2))*100;
+                    double distance = Math.Sqrt( (UTM1[0] - UTM2[0])*(UTM1[0] - UTM2[0]) + 
+                        (UTM1[1] - UTM2[1])*(UTM1[1] - UTM2[1]) ) *100;
 
                     distanceMarker2.ToolTipMode = MarkerTooltipMode.Always;
                     distanceMarker2.ToolTipText = distance.ToString() + "cm";
 
-                    autoUC1.gmap.Overlays.Add(DistanceMarkers);
-                    autoUC1.gmap.Overlays.Add(DistanceOverlay);
-
                     DistanceOverlay.Routes.Add(new GMapRoute(DistanceCalculate, "single-line") { Stroke = new Pen(Color.Chartreuse, 1) });
-                    DistanceMarkers.Markers.Add(distanceMarker);
-                    DistanceMarkers.Markers.Add(distanceMarker2);
+                    DistanceOverlay.Markers.Add(distanceMarker);
+                    DistanceOverlay.Markers.Add(distanceMarker2);
                     numOfCalculatePoints++;
                 }
                 else
                 {
                     numOfCalculatePoints = 0;
                     DistanceCalculate.Clear();
-                    DistanceOverlay.Clear();
-                    DistanceMarkers.Clear();
+                    DistanceOverlay.Routes.Clear();
+                    DistanceOverlay.Markers.Clear();
                 }
             }
             else if (e.Button == MouseButtons.Right)
             {
-                autoUC1.gmap.Overlays.Clear();
-                PlanCoordinatesList.Add(autoUC1.gmap.FromLocalToLatLng(e.X, e.Y)); // mouse-coordinate to Lat, Lon
+                PlanCoordinatesList.Add(autoUC1.gmap.FromLocalToLatLng(e.X, e.Y));
+
                 GMapMarker marker = new GMarkerGoogle(
                     PlanCoordinatesList[PlanCoordinatesList.Count - 1],
                     GMarkerGoogleType.red_big_stop);
 
-                DisplayRouteOnMap(
-                    autoUC1.gmap, 
-                    new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) }, 
-                    "Planned", 
-                    marker);
+                planRoute = new GMapRoute(PlanCoordinatesList, "plan route");
+                /* do not create a new instance of Pen and assign it to the Stroke member, 
+                 * as this will create a memory leak. Instead, assign the Pen attributes directly */
+                planRoute.Stroke.Width = 3;
+                planRoute.Stroke.Color = Color.MediumTurquoise;
+                planRoute.Stroke.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+
+                DisplayRouteOnMap(autoUC1.gmap, planRoute, "Planned", marker);
             }
         }
 
@@ -1931,8 +1935,8 @@ namespace ThesisInterface
                                 {
                                     MyVehicle = new Vehicle(mess);
                                     double turning_angle = FixAngle(-MyVehicle.RefAngle + MyVehicle.Angle);
-                                    /*  Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
-                                    (It help users to understand whether the vehicle is turning left or right)      */
+                                    /* Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
+                                    (It help users to understand whether the vehicle is turning left or right) */
                                     DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, turning_angle, MyVehicle.v_linear);
                                     SetText(TextBox.auto_turning,
                                         "Turning " + Math.Round(turning_angle, 4).ToString() + "°");
@@ -1949,11 +1953,12 @@ namespace ThesisInterface
                                         GMapMarker marker = new GMarkerGoogle(
                                             new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
                                             GMarkerGoogleType.orange_dot);
-                                        DisplayRouteOnMap(
-                                            autoUC1.gmap,
-                                            new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
-                                            "Actual",
-                                            marker);
+
+                                        actualRoute = new GMapRoute(ActualCoordinatesList, "actual route");
+                                        actualRoute.Stroke.Width = 3;
+                                        actualRoute.Stroke.Color = Color.Red;
+
+                                        DisplayRouteOnMap(autoUC1.gmap, actualRoute, "Actual", marker);
                                     }
                                     SetText(TextBox.auto_positionInfo, MyGPS.GetGPSStatus());
                                 }
@@ -2013,16 +2018,16 @@ namespace ThesisInterface
             v_linear = Math.Abs(v_linear);
             if (v_linear == 0)
                 image = ZeroVelocity;
-            else if (v_linear < 0.4)
+            else if (v_linear < 0.5)
                 image = LowVelocity;
-            else if (v_linear < 0.8)
+            else if (v_linear < 1)
                 image = MediumVelocity;
             else
                 image = HighVelocity;
 
             if (image == null)
                 throw new ArgumentNullException("image");
-
+            
             PointF offset = new PointF((float)image.Width / 2, (float)image.Height / 2);
             //create a new empty bitmap to hold rotated image
             Bitmap rotatedBmp = new Bitmap(image.Width, image.Height);
@@ -2083,16 +2088,14 @@ namespace ThesisInterface
 
         private void ClearPLannedData()
         {
-            //autoUC1.gmap.Overlays.Clear();
             PlanCoordinatesList.Clear(); 
-            PlanLines.Clear();
+            PlanOverlay.Clear();
         }
 
         private void ClearActualData()
         {
-            //autoUC1.gmap.Overlays.Clear();
             ActualCoordinatesList.Clear();
-            ActualLines.Clear();
+            ActualOverlay.Clear();
             Efa.Clear();
             ThetaD.Clear();
             ThetaE.Clear();
@@ -2126,35 +2129,32 @@ namespace ThesisInterface
             {
                 if (mode.Contains("Plan"))
                 {
-                    //PlanLines.Routes.Clear();
-                    if(marker != null)
+                    PlanOverlay.Routes.Clear();
+                    PlanOverlay.Routes.Add(route);
+                    if (marker != null)
                     {
-                        GMapOverlay markers = new GMapOverlay("markers");
-                        map.Overlays.Add(markers);
-                        markers.Markers.Add(marker);
+                        PlanOverlay.Markers.Clear();
+                        PlanOverlay.Markers.Add(marker); // planMarkerOverlay
                     }
-                    map.Overlays.Add(PlanLines);
-                    map.Overlays.Add(ActualLines);
-                    PlanLines.Routes.Add(route);
                 }
                 else
                 {
-                    map.Overlays.Clear();
-                    ActualLines.Routes.Clear();
-                    if(marker != null)
+                    ActualOverlay.Routes.Clear();
+                    ActualOverlay.Routes.Add(route);
+                    if (marker != null)
                     {
-                        GMapOverlay markers = new GMapOverlay("markers");
-                        map.Overlays.Add(markers);
-                        markers.Markers.Add(marker);
+                        ActualOverlay.Markers.Clear();
+                        ActualOverlay.Markers.Add(marker);
                     }
-                    map.Overlays.Add(ActualLines);
-                    map.Overlays.Add(PlanLines);
-                    ActualLines.Routes.Add(route);
                 }
+#if DEBUG
+                Console.WriteLine("gmap.Overlays {0}, plan Markers {1}, actual Marker {2}",
+                    map.Overlays.Count, PlanOverlay.Markers.Count, ActualOverlay.Markers.Count);
+#endif
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "DisplayRouteOnMap", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Display Route", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2178,7 +2178,6 @@ namespace ThesisInterface
                     serialPort1.Write(MessagesDocker("KCTRL,STOP"));
                     MyStatus.KCTRL_STOP = true;
                 }
-                DisableAllTimers();
                 KctrlTimer.Enabled = true;
             }
             catch (Exception ex)
