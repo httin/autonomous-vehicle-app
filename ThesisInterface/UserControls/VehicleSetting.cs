@@ -36,5 +36,17 @@ namespace ThesisInterface.UserControls
         {
             this.UpdateSP.Click += handler;
         }
+
+        private void ReceiveMessTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ReceiveMessTextBox.SelectionStart = ReceiveMessTextBox.Text.Length;
+            ReceiveMessTextBox.ScrollToCaret();
+        }
+
+        private void SentMessTextBox_TextChanged(object sender, EventArgs e)
+        {
+            SentMessTextBox.SelectionStart = SentMessTextBox.Text.Length;
+            SentMessTextBox.ScrollToCaret();
+        }
     }
 }

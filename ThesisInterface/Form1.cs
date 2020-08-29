@@ -249,7 +249,7 @@ namespace ThesisInterface
 
         private Mode vehicle_mode = Mode.None;
         private int kctrl_timeout = 20;
-        private bool AutoEnable = true;
+        private bool AvoidEnable = true;
         private bool SerialPortEnable = false;
         private bool SatelliteMap = true;
 
@@ -805,7 +805,7 @@ namespace ThesisInterface
             this.autoSetting1.SendButtonClickHandler(new EventHandler(SendButton_ClickHandler));
             this.autoSetting1.OffSelfUpdateBtClickHandler(new EventHandler(OffSelfUpdate_ClickHandler));
             this.autoSetting1.OnSelfUpdateBtClickHandler(new EventHandler(OnSelfUpdate_ClickHandler));
-            this.autoSetting1.AutoEnableClickHandler(new EventHandler(AutoEnable_ClickHandler));
+            this.autoSetting1.AvoidEnableClickHandler(new EventHandler(AvoidEnable_ClickHandler));
 
             /* Control Panel */
             this.helperControls1.CloseBtClickHandler(new EventHandler(CloseBtHelperUCClickHandler));
@@ -1254,7 +1254,7 @@ namespace ThesisInterface
                         coordinatesInformation.plannedCoordinates[i].Lng));
                 }
                 DisplayRouteOnMap(
-                    autoUC1.gmap, 
+                    autoUC1.gmap,
                     new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) }, 
                     "Planned");
 
@@ -1431,7 +1431,8 @@ namespace ThesisInterface
             if (serialPort1.IsOpen)
             {
                 MyStatus.AUCON_DATA = true;
-                string mess = MessagesDocker("AUCON,DATA," + autoSetting1.VelocityTb.Text + "," + autoSetting1.KGainTb.Text + ",0.5");
+                string mess = MessagesDocker("AUCON,DATA," + autoSetting1.VelocityTb.Text + "," + autoSetting1.KGainTb.Text +
+                    "," + AvoidEnable.ToString() + ",0.5");
                 autoUC_send(mess);
             }
         }
@@ -1456,16 +1457,16 @@ namespace ThesisInterface
             }
         }
 
-        private void AutoEnable_ClickHandler(object sender, EventArgs e)
+        private void AvoidEnable_ClickHandler(object sender, EventArgs e)
         {
-            if (AutoEnable)
+            if (AvoidEnable)
             {
-                AutoEnable = false;
-                this.autoSetting1.AutoEnable.Image = global::ThesisInterface.Properties.Resources.OFF;
+                AvoidEnable = false;
+                this.autoSetting1.AvoidEnable.Image = global::ThesisInterface.Properties.Resources.OFF;
             } else
             {
-                AutoEnable = true;
-                this.autoSetting1.AutoEnable.Image = global::ThesisInterface.Properties.Resources.ON;
+                AvoidEnable = true;
+                this.autoSetting1.AvoidEnable.Image = global::ThesisInterface.Properties.Resources.ON;
             }
         }
 
@@ -1664,13 +1665,11 @@ namespace ThesisInterface
                     {
                         MyStatus.AUCON_START = false;
                         autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << START auto successfully\r\n";
-                        AutoEnable = true;
                     }
                     else if (MyStatus.AUCON_STOP)
                     {
                         MyStatus.AUCON_STOP = false;
                         autoUC1.ReceivedTb.Text += DateTime.Now.ToString("hh:mm:ss") + " << STOP auto successfully\r\n";
-                        AutoEnable = false;
                     }
                     else if (MyStatus.AUCON_RUN)
                     {
@@ -2134,7 +2133,7 @@ namespace ThesisInterface
                     if (marker != null)
                     {
                         PlanOverlay.Markers.Clear();
-                        PlanOverlay.Markers.Add(marker); // planMarkerOverlay
+                        PlanOverlay.Markers.Add(marker);
                     }
                 }
                 else

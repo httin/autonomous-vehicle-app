@@ -32,9 +32,9 @@ namespace ThesisInterface.UserControls
             this.OffSelfUpdateBt.Click += e;
         }
 
-        public void AutoEnableClickHandler(EventHandler e)
+        public void AvoidEnableClickHandler(EventHandler e)
         {
-            this.AutoEnable.Click += e;
+            this.AvoidEnable.Click += e;
         }
     }
 }

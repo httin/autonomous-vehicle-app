@@ -37,13 +37,13 @@
             this.VelocityTb = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.KGainTb = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.label1 = new System.Windows.Forms.Label();
-            this.AutoEnable = new Bunifu.Framework.UI.BunifuImageButton();
+            this.AvoidEnable = new Bunifu.Framework.UI.BunifuImageButton();
             this.TopPanel = new Bunifu.Framework.UI.BunifuGradientPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.OnSelfUpdateBt = new Bunifu.Framework.UI.BunifuFlatButton();
             this.SendBt = new Bunifu.Framework.UI.BunifuFlatButton();
             this.OffSelfUpdateBt = new Bunifu.Framework.UI.BunifuFlatButton();
-            ((System.ComponentModel.ISupportInitialize)(this.AutoEnable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AvoidEnable)).BeginInit();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,7 +87,7 @@
             this.SelfUpdate_label.BackColor = System.Drawing.Color.White;
             this.SelfUpdate_label.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelfUpdate_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
-            this.SelfUpdate_label.Location = new System.Drawing.Point(3, 136);
+            this.SelfUpdate_label.Location = new System.Drawing.Point(3, 142);
             this.SelfUpdate_label.Name = "SelfUpdate_label";
             this.SelfUpdate_label.Size = new System.Drawing.Size(188, 25);
             this.SelfUpdate_label.TabIndex = 26;
@@ -104,11 +104,11 @@
             this.VelocityTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.VelocityTb.isPassword = false;
             this.VelocityTb.Location = new System.Drawing.Point(103, 76);
-            this.VelocityTb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.VelocityTb.Margin = new System.Windows.Forms.Padding(4);
             this.VelocityTb.Name = "VelocityTb";
             this.VelocityTb.Size = new System.Drawing.Size(98, 30);
             this.VelocityTb.TabIndex = 27;
-            this.VelocityTb.Text = "0.3";
+            this.VelocityTb.Text = "0.4";
             this.VelocityTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // KGainTb
@@ -122,11 +122,11 @@
             this.KGainTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.KGainTb.isPassword = false;
             this.KGainTb.Location = new System.Drawing.Point(103, 108);
-            this.KGainTb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KGainTb.Margin = new System.Windows.Forms.Padding(4);
             this.KGainTb.Name = "KGainTb";
             this.KGainTb.Size = new System.Drawing.Size(98, 30);
             this.KGainTb.TabIndex = 27;
-            this.KGainTb.Text = "1";
+            this.KGainTb.Text = "0.6";
             this.KGainTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
@@ -138,23 +138,23 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label1.Location = new System.Drawing.Point(3, 208);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 25);
+            this.label1.Size = new System.Drawing.Size(161, 25);
             this.label1.TabIndex = 26;
-            this.label1.Text = "Auto Mode";
+            this.label1.Text = "Allow Avoiding";
             // 
-            // AutoEnable
+            // AvoidEnable
             // 
-            this.AutoEnable.BackColor = System.Drawing.Color.White;
-            this.AutoEnable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AutoEnable.Image = global::ThesisInterface.Properties.Resources.ON;
-            this.AutoEnable.ImageActive = null;
-            this.AutoEnable.Location = new System.Drawing.Point(137, 196);
-            this.AutoEnable.Name = "AutoEnable";
-            this.AutoEnable.Size = new System.Drawing.Size(64, 54);
-            this.AutoEnable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.AutoEnable.TabIndex = 29;
-            this.AutoEnable.TabStop = false;
-            this.AutoEnable.Zoom = 10;
+            this.AvoidEnable.BackColor = System.Drawing.Color.White;
+            this.AvoidEnable.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AvoidEnable.Image = global::ThesisInterface.Properties.Resources.ON;
+            this.AvoidEnable.ImageActive = null;
+            this.AvoidEnable.Location = new System.Drawing.Point(170, 193);
+            this.AvoidEnable.Name = "AvoidEnable";
+            this.AvoidEnable.Size = new System.Drawing.Size(64, 54);
+            this.AvoidEnable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.AvoidEnable.TabIndex = 29;
+            this.AvoidEnable.TabStop = false;
+            this.AvoidEnable.Zoom = 10;
             // 
             // TopPanel
             // 
@@ -210,7 +210,7 @@
             this.OnSelfUpdateBt.IconVisible = true;
             this.OnSelfUpdateBt.IconZoom = 90D;
             this.OnSelfUpdateBt.IsTab = false;
-            this.OnSelfUpdateBt.Location = new System.Drawing.Point(20, 166);
+            this.OnSelfUpdateBt.Location = new System.Drawing.Point(20, 171);
             this.OnSelfUpdateBt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OnSelfUpdateBt.Name = "OnSelfUpdateBt";
             this.OnSelfUpdateBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
@@ -282,7 +282,7 @@
             this.OffSelfUpdateBt.IconVisible = true;
             this.OffSelfUpdateBt.IconZoom = 90D;
             this.OffSelfUpdateBt.IsTab = false;
-            this.OffSelfUpdateBt.Location = new System.Drawing.Point(208, 166);
+            this.OffSelfUpdateBt.Location = new System.Drawing.Point(208, 171);
             this.OffSelfUpdateBt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OffSelfUpdateBt.Name = "OffSelfUpdateBt";
             this.OffSelfUpdateBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
@@ -298,10 +298,11 @@
             // 
             // AutoSetting
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.AutoEnable);
+            this.Controls.Add(this.AvoidEnable);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.KGainTb);
             this.Controls.Add(this.VelocityTb);
@@ -316,7 +317,7 @@
             this.MinimumSize = new System.Drawing.Size(344, 250);
             this.Name = "AutoSetting";
             this.Size = new System.Drawing.Size(344, 250);
-            ((System.ComponentModel.ISupportInitialize)(this.AutoEnable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AvoidEnable)).EndInit();
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -336,7 +337,7 @@
         public Bunifu.Framework.UI.BunifuFlatButton OffSelfUpdateBt;
         private Bunifu.Framework.UI.BunifuGradientPanel TopPanel;
         private System.Windows.Forms.Label label4;
-        public Bunifu.Framework.UI.BunifuImageButton AutoEnable;
+        public Bunifu.Framework.UI.BunifuImageButton AvoidEnable;
         private System.Windows.Forms.Label label1;
     }
 }

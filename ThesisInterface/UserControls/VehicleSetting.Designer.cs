@@ -725,6 +725,7 @@
             this.ReceiveMessTextBox.Size = new System.Drawing.Size(359, 77);
             this.ReceiveMessTextBox.TabIndex = 0;
             this.ReceiveMessTextBox.Text = "";
+            this.ReceiveMessTextBox.TextChanged += new System.EventHandler(this.ReceiveMessTextBox_TextChanged);
             // 
             // panel7
             // 
@@ -765,6 +766,7 @@
             this.SentMessTextBox.Size = new System.Drawing.Size(359, 77);
             this.SentMessTextBox.TabIndex = 0;
             this.SentMessTextBox.Text = "";
+            this.SentMessTextBox.TextChanged += new System.EventHandler(this.SentMessTextBox_TextChanged);
             // 
             // ConnectedLabel
             // 
