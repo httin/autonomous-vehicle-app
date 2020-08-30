@@ -124,13 +124,13 @@
             this.SendBaudrateBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.SendBaudrateBt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SendBaudrateBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.SendBaudrateBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.SendBaudrateBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.SendBaudrateBt.BorderRadius = 0;
             this.SendBaudrateBt.ButtonText = "Send Configuration";
             this.SendBaudrateBt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SendBaudrateBt.DisabledColor = System.Drawing.Color.Gray;
-            this.SendBaudrateBt.Font = new System.Drawing.Font("Courier New", 7.8F);
+            this.SendBaudrateBt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SendBaudrateBt.Iconcolor = System.Drawing.Color.Transparent;
             this.SendBaudrateBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("SendBaudrateBt.Iconimage")));
             this.SendBaudrateBt.Iconimage_right = null;
@@ -143,11 +143,11 @@
             this.SendBaudrateBt.IconVisible = true;
             this.SendBaudrateBt.IconZoom = 90D;
             this.SendBaudrateBt.IsTab = false;
-            this.SendBaudrateBt.Location = new System.Drawing.Point(46, 151);
+            this.SendBaudrateBt.Location = new System.Drawing.Point(46, 170);
             this.SendBaudrateBt.Margin = new System.Windows.Forms.Padding(4);
             this.SendBaudrateBt.Name = "SendBaudrateBt";
-            this.SendBaudrateBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.SendBaudrateBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(119)))), ((int)(((byte)(37)))));
+            this.SendBaudrateBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.SendBaudrateBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.SendBaudrateBt.OnHoverTextColor = System.Drawing.Color.White;
             this.SendBaudrateBt.selected = false;
             this.SendBaudrateBt.Size = new System.Drawing.Size(216, 36);
@@ -160,9 +160,9 @@
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
-            this.label2.Location = new System.Drawing.Point(15, 12);
+            this.label2.Location = new System.Drawing.Point(15, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(275, 25);
             this.label2.TabIndex = 2;
@@ -176,7 +176,7 @@
             this.BaudrateCheckBox.BackColor = System.Drawing.Color.White;
             this.BaudrateCheckBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.BaudrateCheckBox.CheckOnClick = true;
-            this.BaudrateCheckBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BaudrateCheckBox.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BaudrateCheckBox.ForeColor = System.Drawing.Color.Black;
             this.BaudrateCheckBox.FormattingEnabled = true;
             this.BaudrateCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -186,28 +186,26 @@
             "230400",
             "460800",
             "921600"});
-            this.BaudrateCheckBox.Location = new System.Drawing.Point(46, 61);
+            this.BaudrateCheckBox.Location = new System.Drawing.Point(46, 59);
             this.BaudrateCheckBox.Name = "BaudrateCheckBox";
-            this.BaudrateCheckBox.Size = new System.Drawing.Size(216, 81);
+            this.BaudrateCheckBox.Size = new System.Drawing.Size(216, 102);
             this.BaudrateCheckBox.TabIndex = 3;
             // 
             // bunifuMetroTextbox4
             // 
-            this.bunifuMetroTextbox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.bunifuMetroTextbox4.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.bunifuMetroTextbox4.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.bunifuMetroTextbox4.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox4.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.bunifuMetroTextbox4.BorderThickness = 2;
             this.bunifuMetroTextbox4.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.bunifuMetroTextbox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuMetroTextbox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.bunifuMetroTextbox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox4.isPassword = false;
-            this.bunifuMetroTextbox4.Location = new System.Drawing.Point(15, 41);
+            this.bunifuMetroTextbox4.Location = new System.Drawing.Point(0, 0);
             this.bunifuMetroTextbox4.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox4.Name = "bunifuMetroTextbox4";
-            this.bunifuMetroTextbox4.Size = new System.Drawing.Size(275, 164);
+            this.bunifuMetroTextbox4.Size = new System.Drawing.Size(304, 224);
             this.bunifuMetroTextbox4.TabIndex = 6;
             this.bunifuMetroTextbox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -226,15 +224,15 @@
             // SendMessConfigBt
             // 
             this.SendMessConfigBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
-            this.SendMessConfigBt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SendMessConfigBt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SendMessConfigBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.SendMessConfigBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.SendMessConfigBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.SendMessConfigBt.BorderRadius = 0;
             this.SendMessConfigBt.ButtonText = "Send Configuration";
             this.SendMessConfigBt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SendMessConfigBt.DisabledColor = System.Drawing.Color.Gray;
-            this.SendMessConfigBt.Font = new System.Drawing.Font("Courier New", 7.8F);
+            this.SendMessConfigBt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SendMessConfigBt.Iconcolor = System.Drawing.Color.Transparent;
             this.SendMessConfigBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("SendMessConfigBt.Iconimage")));
             this.SendMessConfigBt.Iconimage_right = null;
@@ -247,11 +245,11 @@
             this.SendMessConfigBt.IconVisible = true;
             this.SendMessConfigBt.IconZoom = 90D;
             this.SendMessConfigBt.IsTab = false;
-            this.SendMessConfigBt.Location = new System.Drawing.Point(46, 138);
+            this.SendMessConfigBt.Location = new System.Drawing.Point(46, 170);
             this.SendMessConfigBt.Margin = new System.Windows.Forms.Padding(4);
             this.SendMessConfigBt.Name = "SendMessConfigBt";
-            this.SendMessConfigBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.SendMessConfigBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(119)))), ((int)(((byte)(37)))));
+            this.SendMessConfigBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.SendMessConfigBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.SendMessConfigBt.OnHoverTextColor = System.Drawing.Color.White;
             this.SendMessConfigBt.selected = false;
             this.SendMessConfigBt.Size = new System.Drawing.Size(216, 36);
@@ -264,13 +262,13 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
-            this.label1.Location = new System.Drawing.Point(15, 1);
+            this.label1.Location = new System.Drawing.Point(15, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(275, 25);
             this.label1.TabIndex = 2;
-            this.label1.Text = "DATA CONFIGURATION";
+            this.label1.Text = "DATA MODE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MessConfigCheckBox
@@ -280,7 +278,7 @@
             this.MessConfigCheckBox.BackColor = System.Drawing.Color.White;
             this.MessConfigCheckBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MessConfigCheckBox.CheckOnClick = true;
-            this.MessConfigCheckBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MessConfigCheckBox.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MessConfigCheckBox.ForeColor = System.Drawing.Color.Black;
             this.MessConfigCheckBox.FormattingEnabled = true;
             this.MessConfigCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -290,28 +288,26 @@
             "Velocity",
             "Acceleration",
             "Magnetic"});
-            this.MessConfigCheckBox.Location = new System.Drawing.Point(46, 51);
+            this.MessConfigCheckBox.Location = new System.Drawing.Point(46, 59);
             this.MessConfigCheckBox.Name = "MessConfigCheckBox";
-            this.MessConfigCheckBox.Size = new System.Drawing.Size(216, 81);
+            this.MessConfigCheckBox.Size = new System.Drawing.Size(216, 102);
             this.MessConfigCheckBox.TabIndex = 3;
             // 
             // bunifuMetroTextbox3
             // 
-            this.bunifuMetroTextbox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.bunifuMetroTextbox3.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.bunifuMetroTextbox3.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.bunifuMetroTextbox3.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox3.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.bunifuMetroTextbox3.BorderThickness = 2;
             this.bunifuMetroTextbox3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.bunifuMetroTextbox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuMetroTextbox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.bunifuMetroTextbox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox3.isPassword = false;
-            this.bunifuMetroTextbox3.Location = new System.Drawing.Point(15, 30);
+            this.bunifuMetroTextbox3.Location = new System.Drawing.Point(0, 0);
             this.bunifuMetroTextbox3.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox3.Name = "bunifuMetroTextbox3";
-            this.bunifuMetroTextbox3.Size = new System.Drawing.Size(275, 157);
+            this.bunifuMetroTextbox3.Size = new System.Drawing.Size(304, 224);
             this.bunifuMetroTextbox3.TabIndex = 5;
             this.bunifuMetroTextbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -331,11 +327,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Courier New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(22, 46);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(28, 42);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 17);
+            this.label5.Size = new System.Drawing.Size(150, 21);
             this.label5.TabIndex = 6;
             this.label5.Text = "Output rate = 500/T";
             // 
@@ -343,13 +339,13 @@
             // 
             this.SendFreqBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.SendFreqBt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SendFreqBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.SendFreqBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.SendFreqBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.SendFreqBt.BorderRadius = 0;
             this.SendFreqBt.ButtonText = "Frequency Configuration";
             this.SendFreqBt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SendFreqBt.DisabledColor = System.Drawing.Color.Gray;
-            this.SendFreqBt.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SendFreqBt.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SendFreqBt.Iconcolor = System.Drawing.Color.Transparent;
             this.SendFreqBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("SendFreqBt.Iconimage")));
             this.SendFreqBt.Iconimage_right = null;
@@ -365,8 +361,8 @@
             this.SendFreqBt.Location = new System.Drawing.Point(298, 33);
             this.SendFreqBt.Margin = new System.Windows.Forms.Padding(4);
             this.SendFreqBt.Name = "SendFreqBt";
-            this.SendFreqBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.SendFreqBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(119)))), ((int)(((byte)(37)))));
+            this.SendFreqBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.SendFreqBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.SendFreqBt.OnHoverTextColor = System.Drawing.Color.White;
             this.SendFreqBt.selected = false;
             this.SendFreqBt.Size = new System.Drawing.Size(221, 40);
@@ -381,17 +377,17 @@
             this.FreqTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FreqTextBox.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.FreqTextBox.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.FreqTextBox.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.FreqTextBox.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.FreqTextBox.BorderThickness = 2;
             this.FreqTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.FreqTextBox.Font = new System.Drawing.Font("Courier New", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FreqTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FreqTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FreqTextBox.isPassword = false;
-            this.FreqTextBox.Location = new System.Drawing.Point(190, 32);
+            this.FreqTextBox.Location = new System.Drawing.Point(200, 32);
             this.FreqTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.FreqTextBox.Name = "FreqTextBox";
-            this.FreqTextBox.Size = new System.Drawing.Size(111, 41);
+            this.FreqTextBox.Size = new System.Drawing.Size(90, 41);
             this.FreqTextBox.TabIndex = 4;
             this.FreqTextBox.Text = "0";
             this.FreqTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -399,7 +395,7 @@
             // bunifuMetroTextbox1
             // 
             this.bunifuMetroTextbox1.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.bunifuMetroTextbox1.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.bunifuMetroTextbox1.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox1.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.bunifuMetroTextbox1.BorderThickness = 2;
             this.bunifuMetroTextbox1.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -409,7 +405,7 @@
             this.bunifuMetroTextbox1.Location = new System.Drawing.Point(14, 32);
             this.bunifuMetroTextbox1.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuMetroTextbox1.Name = "bunifuMetroTextbox1";
-            this.bunifuMetroTextbox1.Size = new System.Drawing.Size(192, 41);
+            this.bunifuMetroTextbox1.Size = new System.Drawing.Size(178, 41);
             this.bunifuMetroTextbox1.TabIndex = 4;
             this.bunifuMetroTextbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -418,11 +414,11 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label3.Location = new System.Drawing.Point(131, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(297, 25);
+            this.label3.Size = new System.Drawing.Size(281, 30);
             this.label3.TabIndex = 3;
             this.label3.Text = "UPDATE DATA FREQUENCY";
             // 
@@ -444,7 +440,7 @@
             // 
             this.StartBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.StartBt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StartBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.StartBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.StartBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.StartBt.BorderRadius = 0;
             this.StartBt.ButtonText = "Send";
@@ -463,11 +459,11 @@
             this.StartBt.IconVisible = true;
             this.StartBt.IconZoom = 90D;
             this.StartBt.IsTab = false;
-            this.StartBt.Location = new System.Drawing.Point(406, 42);
+            this.StartBt.Location = new System.Drawing.Point(406, 32);
             this.StartBt.Margin = new System.Windows.Forms.Padding(4);
             this.StartBt.Name = "StartBt";
-            this.StartBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.StartBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(119)))), ((int)(((byte)(37)))));
+            this.StartBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.StartBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.StartBt.OnHoverTextColor = System.Drawing.Color.White;
             this.StartBt.selected = false;
             this.StartBt.Size = new System.Drawing.Size(124, 40);
@@ -481,7 +477,7 @@
             // 
             this.ReadBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.ReadBt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ReadBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.ReadBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ReadBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ReadBt.BorderRadius = 0;
             this.ReadBt.ButtonText = "Send";
@@ -500,11 +496,11 @@
             this.ReadBt.IconVisible = true;
             this.ReadBt.IconZoom = 90D;
             this.ReadBt.IsTab = false;
-            this.ReadBt.Location = new System.Drawing.Point(210, 42);
+            this.ReadBt.Location = new System.Drawing.Point(213, 32);
             this.ReadBt.Margin = new System.Windows.Forms.Padding(4);
             this.ReadBt.Name = "ReadBt";
-            this.ReadBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.ReadBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(119)))), ((int)(((byte)(37)))));
+            this.ReadBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.ReadBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.ReadBt.OnHoverTextColor = System.Drawing.Color.White;
             this.ReadBt.selected = false;
             this.ReadBt.Size = new System.Drawing.Size(124, 40);
@@ -519,11 +515,11 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label7.Location = new System.Drawing.Point(425, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 25);
+            this.label7.Size = new System.Drawing.Size(77, 30);
             this.label7.TabIndex = 7;
             this.label7.Text = "START";
             // 
@@ -532,11 +528,11 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label6.Location = new System.Drawing.Point(196, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(156, 25);
+            this.label6.Size = new System.Drawing.Size(153, 30);
             this.label6.TabIndex = 7;
             this.label6.Text = "READ CONFIG";
             // 
@@ -544,13 +540,13 @@
             // 
             this.CalibBt.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.CalibBt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CalibBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.CalibBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.CalibBt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CalibBt.BorderRadius = 0;
             this.CalibBt.ButtonText = "Start";
             this.CalibBt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CalibBt.DisabledColor = System.Drawing.Color.Gray;
-            this.CalibBt.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CalibBt.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CalibBt.Iconcolor = System.Drawing.Color.Transparent;
             this.CalibBt.Iconimage = ((System.Drawing.Image)(resources.GetObject("CalibBt.Iconimage")));
             this.CalibBt.Iconimage_right = null;
@@ -563,11 +559,11 @@
             this.CalibBt.IconVisible = true;
             this.CalibBt.IconZoom = 90D;
             this.CalibBt.IsTab = false;
-            this.CalibBt.Location = new System.Drawing.Point(14, 42);
+            this.CalibBt.Location = new System.Drawing.Point(25, 32);
             this.CalibBt.Margin = new System.Windows.Forms.Padding(4);
             this.CalibBt.Name = "CalibBt";
-            this.CalibBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.CalibBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(119)))), ((int)(((byte)(37)))));
+            this.CalibBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.CalibBt.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.CalibBt.OnHoverTextColor = System.Drawing.Color.White;
             this.CalibBt.selected = false;
             this.CalibBt.Size = new System.Drawing.Size(123, 40);
@@ -582,11 +578,11 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label4.Location = new System.Drawing.Point(10, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 25);
+            this.label4.Size = new System.Drawing.Size(152, 30);
             this.label4.TabIndex = 3;
             this.label4.Text = "CALIBRATION";
             // 
@@ -639,11 +635,11 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label8.Location = new System.Drawing.Point(99, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 25);
+            this.label8.Size = new System.Drawing.Size(65, 30);
             this.label8.TabIndex = 4;
             this.label8.Text = "SENT";
             // 
@@ -653,7 +649,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bunifuMetroTextbox5.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.bunifuMetroTextbox5.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.bunifuMetroTextbox5.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox5.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.bunifuMetroTextbox5.BorderThickness = 2;
             this.bunifuMetroTextbox5.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -700,7 +696,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bunifuMetroTextbox6.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.bunifuMetroTextbox6.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.bunifuMetroTextbox6.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bunifuMetroTextbox6.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.bunifuMetroTextbox6.BorderThickness = 2;
             this.bunifuMetroTextbox6.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -719,11 +715,11 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label9.Location = new System.Drawing.Point(82, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 25);
+            this.label9.Size = new System.Drawing.Size(109, 30);
             this.label9.TabIndex = 5;
             this.label9.Text = "RECEIVED";
             // 

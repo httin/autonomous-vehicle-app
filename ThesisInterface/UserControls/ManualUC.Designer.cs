@@ -52,11 +52,11 @@
             this.label17 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.FormStatus = new System.Windows.Forms.Label();
             this.VehicleStatusBox = new System.Windows.Forms.RichTextBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel7 = new System.Windows.Forms.Panel();
             this.modeBt = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.FormStatus = new System.Windows.Forms.Label();
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
             this.SidePanelManual.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -81,9 +81,9 @@
             this.SidePanelManual.Controls.Add(this.StartBt);
             this.SidePanelManual.Controls.Add(this.label1);
             this.SidePanelManual.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SidePanelManual.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.SidePanelManual.GradientBottomLeft = System.Drawing.Color.Black;
             this.SidePanelManual.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(88)))));
-            this.SidePanelManual.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.SidePanelManual.GradientTopLeft = System.Drawing.Color.Black;
             this.SidePanelManual.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(49)))), ((int)(((byte)(85)))));
             this.SidePanelManual.Location = new System.Drawing.Point(0, 0);
             this.SidePanelManual.Name = "SidePanelManual";
@@ -399,6 +399,19 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "VEHICLE STATUS";
             // 
+            // FormStatus
+            // 
+            this.FormStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.FormStatus.BackColor = System.Drawing.Color.Transparent;
+            this.FormStatus.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
+            this.FormStatus.Location = new System.Drawing.Point(7, 277);
+            this.FormStatus.Name = "FormStatus";
+            this.FormStatus.Size = new System.Drawing.Size(44, 44);
+            this.FormStatus.TabIndex = 14;
+            this.FormStatus.Text = "OFF";
+            this.FormStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // VehicleStatusBox
             // 
             this.VehicleStatusBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -473,19 +486,6 @@
             this.modeBt.Size = new System.Drawing.Size(82, 32);
             this.modeBt.TabIndex = 15;
             this.modeBt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // FormStatus
-            // 
-            this.FormStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.FormStatus.BackColor = System.Drawing.Color.Transparent;
-            this.FormStatus.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
-            this.FormStatus.Location = new System.Drawing.Point(7, 277);
-            this.FormStatus.Name = "FormStatus";
-            this.FormStatus.Size = new System.Drawing.Size(44, 44);
-            this.FormStatus.TabIndex = 14;
-            this.FormStatus.Text = "OFF";
-            this.FormStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // gmap
             // 

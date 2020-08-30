@@ -73,29 +73,9 @@ namespace ThesisInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Administrative_Tools_100px {
-            get {
-                object obj = ResourceManager.GetObject("Administrative Tools_100px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Administrative_Tools_50px {
             get {
                 object obj = ResourceManager.GetObject("Administrative Tools_50px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Administrative_Tools_50px1 {
-            get {
-                object obj = ResourceManager.GetObject("Administrative Tools_50px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +113,19 @@ namespace ThesisInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap auto {
+        internal static System.Drawing.Bitmap assembly {
             get {
-                object obj = ResourceManager.GetObject("auto", resourceCulture);
+                object obj = ResourceManager.GetObject("assembly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap autonomous_car {
+            get {
+                object obj = ResourceManager.GetObject("autonomous_car", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -376,16 +366,6 @@ namespace ThesisInterface.Properties {
         internal static System.Drawing.Bitmap icons8_toggle_on_80 {
             get {
                 object obj = ResourceManager.GetObject("icons8_toggle_on_80", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_Update_32 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_Update_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -966,6 +946,16 @@ namespace ThesisInterface.Properties {
         internal static System.Drawing.Bitmap savewhite {
             get {
                 object obj = ResourceManager.GetObject("savewhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap setting {
+            get {
+                object obj = ResourceManager.GetObject("setting", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

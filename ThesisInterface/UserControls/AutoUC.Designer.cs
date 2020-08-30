@@ -774,9 +774,9 @@
             this.SidePanelAuto.Controls.Add(this.textA);
             this.SidePanelAuto.Controls.Add(this.tableLayoutPanel1);
             this.SidePanelAuto.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SidePanelAuto.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
+            this.SidePanelAuto.GradientBottomLeft = System.Drawing.Color.Black;
             this.SidePanelAuto.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(88)))));
-            this.SidePanelAuto.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(14)))), ((int)(((byte)(79)))));
+            this.SidePanelAuto.GradientTopLeft = System.Drawing.Color.Black;
             this.SidePanelAuto.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(49)))), ((int)(((byte)(85)))));
             this.SidePanelAuto.Location = new System.Drawing.Point(0, 0);
             this.SidePanelAuto.Name = "SidePanelAuto";

@@ -268,12 +268,6 @@
     <None Include="Resources\download.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8_Update_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\auto.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\do.png" />
   </ItemGroup>
   <ItemGroup>
@@ -314,7 +308,6 @@
     <None Include="Resources\Start_100px.png" />
     <None Include="Resources\Pause Squared_100px.png" />
     <None Include="Resources\Save_100px2.png" />
-    <None Include="Resources\Administrative Tools_100px.png" />
     <None Include="Resources\Place Marker_100px.png" />
     <None Include="Resources\Play_1100px.png" />
     <None Include="Resources\Email Send_96px.png" />
@@ -327,6 +320,8 @@
     <None Include="Resources\ON.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\connection-status-on-96.png" />
+    <None Include="Resources\assembly.png" />
+    <None Include="Resources\autonomous-car.png" />
     <Content Include="Resources\google-maps.png" />
     <Content Include="Resources\icons8-toggle-off-80.png" />
     <Content Include="Resources\icons8-toggle-on-80.png" />
@@ -334,6 +329,7 @@
     <Content Include="Resources\OFF.png" />
     <Content Include="Resources\power-off.png" />
     <Content Include="Resources\power-on.png" />
+    <None Include="Resources\setting.png" />
     <Content Include="Resources\startwhite.png" />
     <Content Include="Resources\stopwhite.png" />
     <Content Include="Resources\world.png" />

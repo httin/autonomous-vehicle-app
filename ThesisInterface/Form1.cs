@@ -57,7 +57,7 @@ namespace ThesisInterface
                     "Ref Angle: {4}°\nCurrent Angle: {5}°\n" +
                     "V linear: {6} [m/s]\nV angular: {7} [°/s]\n" +
                     "V1 ref: {0} [rpm]\nV1 current: {1} [rpm]\n" +
-                    "V2 ref: {2} [rpm]\nV2 current: {3} [rpm]\n",              
+                    "V2 ref: {2} [rpm]\nV2 current: {3} [rpm]\n",
                 M1RefVelocity, M1Velocity, M2RefVelocity, M2Velocity, RefAngle, Angle, v_linear, v_angular);
 
                 return res;
@@ -75,23 +75,26 @@ namespace ThesisInterface
                 {
                     if (ArrayInfo[2] == "0")
                     {
-                        GPS_Mode = "Data Unvalid";
+                        GPS_Mode = "Invalid";
                     } 
                     else
                     {
                         switch (ArrayInfo[2])
                         {
                             case "1":
-                                GPS_Mode = "Mode 2D/3D";
+                                GPS_Mode = "2D/3D";
                                 break;
                             case "2":
                                 GPS_Mode = "DGNSS";
                                 break;
                             case "4":
-                                GPS_Mode = "Fixed";
+                                GPS_Mode = "FIXED";
                                 break;
                             case "5":
-                                GPS_Mode = "Float";
+                                GPS_Mode = "FLOAT";
+                                break;
+                            case "6":
+                                GPS_Mode = "DEAD RECKONING";
                                 break;
                             default:
                                 GPS_Mode = "Unknown: " + ArrayInfo[3];
@@ -104,7 +107,7 @@ namespace ThesisInterface
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "GPS::GPS()", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -388,9 +391,7 @@ namespace ThesisInterface
                 PlanCoordinatesList.Add(new PointLatLng(processedMap.lat[i], processedMap.lng[i]));
             
             DisplayRouteOnMap(
-                autoUC1.gmap, 
-                new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) },
-                "Planned");
+                new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) }, "Planned");
             
             TransferMapBackGroundWorker.ReportProgress(0, "SEND");
             if (serialPort1.IsOpen)
@@ -1239,24 +1240,27 @@ namespace ThesisInterface
             try
             {
                 string jsonfile = ReadJsonFile();
+#if DEBUG
                 Console.WriteLine("jsonfile:\n" + jsonfile);
-
+#endif
                 CoordinatesInfo coordinatesInformation = JsonConvert.DeserializeObject<CoordinatesInfo>(jsonfile);
-                Console.WriteLine(coordinatesInformation.plannedCoordinates.Count.ToString());
+
+                Console.WriteLine(String.Format("Plan Map {0}\nActual Map {1}\nEfa {2}\n",
+                    coordinatesInformation.plannedCoordinates.Count,
+                    coordinatesInformation.actualCoordinates.Count,
+                    coordinatesInformation.Efa.Count));
 
                 ClearPLannedData();
                 ClearActualData();
                 
-                for(int i = 0; i < coordinatesInformation.plannedCoordinates.Count(); i++)
+                for(int i = 0; i < coordinatesInformation.plannedCoordinates.Count; i++)
                 {
                     PlanCoordinatesList.Add(
                         new PointLatLng(coordinatesInformation.plannedCoordinates[i].Lat, 
                         coordinatesInformation.plannedCoordinates[i].Lng));
                 }
                 DisplayRouteOnMap(
-                    autoUC1.gmap,
-                    new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) }, 
-                    "Planned");
+                    new GMapRoute(PlanCoordinatesList, "single_line") { Stroke = new Pen(Color.MediumTurquoise, 3) }, "Planned");
 
                 for (int i = 0; i < coordinatesInformation.actualCoordinates.Count; i++)
                 {
@@ -1286,13 +1290,10 @@ namespace ThesisInterface
                     }
                 }
                 DisplayRouteOnMap(
-                    autoUC1.gmap,
-                    new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) },
-                    "Actual");
+                    new GMapRoute(ActualCoordinatesList, "single_line") { Stroke = new Pen(Color.Red, 3) }, "Actual");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message, "Open()", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1398,7 +1399,7 @@ namespace ThesisInterface
                 planRoute.Stroke.Color = Color.MediumTurquoise;
                 planRoute.Stroke.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
 
-                DisplayRouteOnMap(autoUC1.gmap, planRoute, "Planned", marker);
+                DisplayRouteOnMap(planRoute, "Planned", marker);
             }
         }
 
@@ -1431,8 +1432,8 @@ namespace ThesisInterface
             if (serialPort1.IsOpen)
             {
                 MyStatus.AUCON_DATA = true;
-                string mess = MessagesDocker("AUCON,DATA," + autoSetting1.VelocityTb.Text + "," + autoSetting1.KGainTb.Text +
-                    "," + AvoidEnable.ToString() + ",0.5");
+                string mess = MessagesDocker("AUCON,DATA," + autoSetting1.VelocityTb.Text + "," + autoSetting1.KGainTb.Text + "," 
+                    + autoSetting1.KsoftTb.Text + "," + AvoidEnable.ToString() + ",0.5");
                 autoUC_send(mess);
             }
         }
@@ -1933,7 +1934,7 @@ namespace ThesisInterface
                                 if (mess[1] == "0")
                                 {
                                     MyVehicle = new Vehicle(mess);
-                                    double turning_angle = FixAngle(-MyVehicle.RefAngle + MyVehicle.Angle);
+                                    double turning_angle = FixAngle(MyVehicle.RefAngle - MyVehicle.Angle);
                                     /* Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
                                     (It help users to understand whether the vehicle is turning left or right) */
                                     DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, turning_angle, MyVehicle.v_linear);
@@ -1957,7 +1958,7 @@ namespace ThesisInterface
                                         actualRoute.Stroke.Width = 3;
                                         actualRoute.Stroke.Color = Color.Red;
 
-                                        DisplayRouteOnMap(autoUC1.gmap, actualRoute, "Actual", marker);
+                                        DisplayRouteOnMap(actualRoute, "Actual", marker);
                                     }
                                     SetText(TextBox.auto_positionInfo, MyGPS.GetGPSStatus());
                                 }
@@ -2122,7 +2123,7 @@ namespace ThesisInterface
             }
         }
 
-        private void DisplayRouteOnMap(GMapControl map, GMapRoute route, string mode, GMapMarker marker=null)
+        private void DisplayRouteOnMap(GMapRoute route, string mode, GMapMarker marker=null)
         {
             try
             {
@@ -2147,13 +2148,12 @@ namespace ThesisInterface
                     }
                 }
 #if DEBUG
-                Console.WriteLine("gmap.Overlays {0}, plan Markers {1}, actual Marker {2}",
-                    map.Overlays.Count, PlanOverlay.Markers.Count, ActualOverlay.Markers.Count);
+                Console.WriteLine("plan Markers {0}, actual Marker {1}", PlanOverlay.Markers.Count, ActualOverlay.Markers.Count);
 #endif
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Display Route", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "DisplayRoute()", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

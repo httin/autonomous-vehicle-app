@@ -157,9 +157,6 @@
   <data name="ON" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ON.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="auto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\auto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="power-on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\power-on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -204,12 +201,6 @@
   </data>
   <data name="Navigate_100px3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Navigate_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Administrative Tools_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Administrative Tools_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8_Update_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8_Update_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Opened Folder_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Opened Folder_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -373,9 +364,6 @@
   <data name="Pause_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pause_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Administrative Tools_50px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Administrative Tools_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Pause Squared_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pause Squared_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -417,5 +405,14 @@
   </data>
   <data name="world" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\world.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="assembly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\assembly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="autonomous_car" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\autonomous-car.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="setting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\setting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
