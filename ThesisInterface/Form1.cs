@@ -131,10 +131,14 @@ namespace ThesisInterface
                 thetaE *= 180 / Math.PI;
                 thetaD = double.Parse(ArrayInfo[3], System.Globalization.CultureInfo.InvariantCulture);
                 thetaD *= 180 / Math.PI;
-                Delta = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
-                Efa = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
-                goal_radius = double.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
-                point_index = int.Parse(ArrayInfo[7], System.Globalization.CultureInfo.InvariantCulture);
+                Delta = (thetaD + thetaE);
+                if (Delta > 160)
+                    Delta = 160;
+                else if (Delta < -160)
+                    Delta = -160;
+                Efa = double.Parse(ArrayInfo[4], System.Globalization.CultureInfo.InvariantCulture);
+                goal_radius = double.Parse(ArrayInfo[5], System.Globalization.CultureInfo.InvariantCulture);
+                point_index = int.Parse(ArrayInfo[6], System.Globalization.CultureInfo.InvariantCulture);
             }
 
             public string GetStanleyControlStatus()
@@ -190,14 +194,24 @@ namespace ThesisInterface
             public double Lng { get; set; }
         }
 
-        public class CoordinatesInfo
+        public class AcquistionData
         {
             public List<PlannedCoordinate> plannedCoordinates { get; set; }
             public List<ActualCoordinate> actualCoordinates { get; set; }
+            /* stanley information */
+            public List<int> refPoint { get; set; }
             public List<double> Efa { get; set; }
             public List<double> ThetaE { get; set; }
             public List<double> ThetaD { get; set; }
             public List<double> Delta { get; set; }
+            /* vehicle information */
+            public List<double> angle_ref { get; set; }
+            public List<double> angle { get; set; }
+            public List<double> v1_ref { get; set; }
+            public List<double> v2_ref { get; set; }
+            public List<double> v1_cur { get; set; }
+            public List<double> v2_cur { get; set; }
+            public List<double> v_linear { get; set; }
         }
 
         public class ProcessedMap
@@ -245,10 +259,18 @@ namespace ThesisInterface
         /* Acquistion Data */
         public List<PointLatLng> PlanCoordinatesList = new List<PointLatLng>();
         public List<PointLatLng> ActualCoordinatesList = new List<PointLatLng>();
+        public List<int> refPoint = new List<int>();
         public List<double> Efa = new List<double>();
         public List<double> ThetaE = new List<double>();
         public List<double> ThetaD = new List<double>();
         public List<double> Delta = new List<double>();
+        public List<double> angle_ref = new List<double>();
+        public List<double> angle = new List<double>();
+        public List<double> v1_ref = new List<double>();
+        public List<double> v2_ref = new List<double>();
+        public List<double> v1_cur = new List<double>();
+        public List<double> v2_cur = new List<double>();
+        public List<double> v_linear = new List<double>();
 
         private Mode vehicle_mode = Mode.None;
         private int kctrl_timeout = 20;
@@ -1243,7 +1265,7 @@ namespace ThesisInterface
 #if DEBUG
                 Console.WriteLine("jsonfile:\n" + jsonfile);
 #endif
-                CoordinatesInfo coordinatesInformation = JsonConvert.DeserializeObject<CoordinatesInfo>(jsonfile);
+                AcquistionData coordinatesInformation = JsonConvert.DeserializeObject<AcquistionData>(jsonfile);
 
                 Console.WriteLine(String.Format("Plan Map {0}\nActual Map {1}\nEfa {2}\n",
                     coordinatesInformation.plannedCoordinates.Count,
@@ -1297,12 +1319,12 @@ namespace ThesisInterface
             }
         }
 
-        private CoordinatesInfo CreateCoordinatesInformation()
+        private AcquistionData CreateCoordinatesInformation()
         {
             List<PlannedCoordinate> listPlanned = new List<PlannedCoordinate>();
             List<ActualCoordinate> listActual = new List<ActualCoordinate>();
             
-            CoordinatesInfo CoordinatesInformation = new CoordinatesInfo();
+            AcquistionData DataList = new AcquistionData();
 
             for (int i = 0; i < PlanCoordinatesList.Count; i++)
             {
@@ -1320,21 +1342,29 @@ namespace ThesisInterface
                 listActual.Add(actualCoordinates);
             }
 
-            CoordinatesInformation.plannedCoordinates = listPlanned;
-            CoordinatesInformation.actualCoordinates = listActual;
-            CoordinatesInformation.Efa = Efa;
-            CoordinatesInformation.ThetaE = ThetaE;
-            CoordinatesInformation.ThetaD = ThetaD;
-            CoordinatesInformation.Delta = Delta;
+            DataList.plannedCoordinates = listPlanned;
+            DataList.actualCoordinates = listActual;
+            DataList.refPoint = refPoint;
+            DataList.Efa = Efa;
+            DataList.ThetaE = ThetaE;
+            DataList.ThetaD = ThetaD;
+            DataList.Delta = Delta;
+            DataList.angle_ref = angle_ref;
+            DataList.angle = angle;
+            DataList.v1_ref = v1_ref;
+            DataList.v2_ref = v2_ref;
+            DataList.v1_cur = v1_cur;
+            DataList.v2_cur = v2_cur;
+            DataList.v_linear = v_linear;
 
-            return CoordinatesInformation;
+            return DataList;
         }
 
         private void SaveBtAutoUCClickHandler(object sender, EventArgs e)
         {            
             try
             {
-                CoordinatesInfo coordinatesInformation = CreateCoordinatesInformation();
+                AcquistionData coordinatesInformation = CreateCoordinatesInformation();
                 WriteJsonFile(coordinatesInformation);
             }
             catch (Exception ex)
@@ -1432,8 +1462,9 @@ namespace ThesisInterface
             if (serialPort1.IsOpen)
             {
                 MyStatus.AUCON_DATA = true;
+                char c = (AvoidEnable == true) ? '1' : '0';
                 string mess = MessagesDocker("AUCON,DATA," + autoSetting1.VelocityTb.Text + "," + autoSetting1.KGainTb.Text + "," 
-                    + autoSetting1.KsoftTb.Text + "," + AvoidEnable.ToString() + ",0.5");
+                    + autoSetting1.KsoftTb.Text + "," + c);
                 autoUC_send(mess);
             }
         }
@@ -1871,7 +1902,7 @@ namespace ThesisInterface
                     string[] mess = cmd.Split(',');
                     serial_command = serial_command.Remove(0, index + 2); 
 #if DEBUG
-                    Console.WriteLine("index of '\\r': {0}, cmd: '{1}'", index.ToString(), cmd);
+                    Console.WriteLine("index: {0}, cmd: '{1}'", index.ToString(), cmd);
 #endif
                     switch (mess[0])
                     {
@@ -1934,6 +1965,14 @@ namespace ThesisInterface
                                 if (mess[1] == "0")
                                 {
                                     MyVehicle = new Vehicle(mess);
+                                    angle_ref.Add(MyVehicle.RefAngle);
+                                    angle.Add(MyVehicle.Angle);
+                                    v1_ref.Add(MyVehicle.M1RefVelocity);
+                                    v1_cur.Add(MyVehicle.M1Velocity);
+                                    v2_ref.Add(MyVehicle.M2RefVelocity);
+                                    v2_cur.Add(MyVehicle.M2Velocity);
+                                    v_linear.Add(MyVehicle.v_linear);
+
                                     double turning_angle = FixAngle(MyVehicle.RefAngle - MyVehicle.Angle);
                                     /* Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
                                     (It help users to understand whether the vehicle is turning left or right) */
@@ -1969,6 +2008,7 @@ namespace ThesisInterface
                                     ThetaE.Add(MyStanleyControl.thetaE);
                                     ThetaD.Add(MyStanleyControl.thetaD);
                                     Delta.Add(MyStanleyControl.Delta);
+                                    refPoint.Add(MyStanleyControl.point_index);
                                     SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
                                 }
                                 else if (mess[1] == "3")
@@ -2065,7 +2105,7 @@ namespace ThesisInterface
             return "$" + MessWithoutKey + checksum(MessWithoutKey) + "\r\n";
         }
 
-        private void WriteJsonFile(CoordinatesInfo listCoordinates)
+        private void WriteJsonFile(AcquistionData listCoordinates)
         {
             try
             {
@@ -2148,7 +2188,7 @@ namespace ThesisInterface
                     }
                 }
 #if DEBUG
-                Console.WriteLine("plan Markers {0}, actual Marker {1}", PlanOverlay.Markers.Count, ActualOverlay.Markers.Count);
+                //Console.WriteLine("plan Markers {0}, actual Marker {1}", PlanOverlay.Markers.Count, ActualOverlay.Markers.Count);
 #endif
             }
             catch (Exception ex)

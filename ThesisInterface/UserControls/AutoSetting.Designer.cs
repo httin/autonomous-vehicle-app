@@ -67,9 +67,10 @@
             this.TopPanel.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(24)))), ((int)(((byte)(91)))));
             this.TopPanel.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(49)))), ((int)(((byte)(85)))));
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Quality = 10;
-            this.TopPanel.Size = new System.Drawing.Size(320, 47);
+            this.TopPanel.Size = new System.Drawing.Size(480, 72);
             this.TopPanel.TabIndex = 28;
             // 
             // label4
@@ -80,9 +81,10 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(3, 10);
+            this.label4.Location = new System.Drawing.Point(4, 15);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(316, 26);
+            this.label4.Size = new System.Drawing.Size(456, 37);
             this.label4.TabIndex = 1;
             this.label4.Text = "SETTING FOR MODE AUTO";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -95,9 +97,10 @@
             this.Velocity_label.Font = new System.Drawing.Font("Century Schoolbook", 15.75F);
             this.Velocity_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.Velocity_label.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Velocity_label.Location = new System.Drawing.Point(3, 54);
+            this.Velocity_label.Location = new System.Drawing.Point(4, 83);
+            this.Velocity_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Velocity_label.Name = "Velocity_label";
-            this.Velocity_label.Size = new System.Drawing.Size(91, 25);
+            this.Velocity_label.Size = new System.Drawing.Size(135, 38);
             this.Velocity_label.TabIndex = 26;
             this.Velocity_label.Text = "Velocity";
             // 
@@ -109,9 +112,10 @@
             this.Kgain_label.Font = new System.Drawing.Font("Century Schoolbook", 15.75F);
             this.Kgain_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.Kgain_label.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Kgain_label.Location = new System.Drawing.Point(3, 92);
+            this.Kgain_label.Location = new System.Drawing.Point(4, 142);
+            this.Kgain_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Kgain_label.Name = "Kgain_label";
-            this.Kgain_label.Size = new System.Drawing.Size(82, 25);
+            this.Kgain_label.Size = new System.Drawing.Size(124, 38);
             this.Kgain_label.TabIndex = 26;
             this.Kgain_label.Text = "K Gain";
             // 
@@ -123,9 +127,10 @@
             this.SelfUpdate_label.Font = new System.Drawing.Font("Century Schoolbook", 15.75F);
             this.SelfUpdate_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.SelfUpdate_label.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SelfUpdate_label.Location = new System.Drawing.Point(3, 215);
+            this.SelfUpdate_label.Location = new System.Drawing.Point(4, 331);
+            this.SelfUpdate_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SelfUpdate_label.Name = "SelfUpdate_label";
-            this.SelfUpdate_label.Size = new System.Drawing.Size(188, 25);
+            this.SelfUpdate_label.Size = new System.Drawing.Size(280, 38);
             this.SelfUpdate_label.TabIndex = 26;
             this.SelfUpdate_label.Text = "Self Update Mode";
             // 
@@ -139,11 +144,11 @@
             this.VelocityTb.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.VelocityTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.VelocityTb.isPassword = false;
-            this.VelocityTb.Location = new System.Drawing.Point(103, 54);
-            this.VelocityTb.Margin = new System.Windows.Forms.Padding(4);
+            this.VelocityTb.Location = new System.Drawing.Point(154, 83);
+            this.VelocityTb.Margin = new System.Windows.Forms.Padding(6);
             this.VelocityTb.Name = "VelocityTb";
-            this.VelocityTb.Size = new System.Drawing.Size(98, 30);
-            this.VelocityTb.TabIndex = 27;
+            this.VelocityTb.Size = new System.Drawing.Size(147, 46);
+            this.VelocityTb.TabIndex = 4;
             this.VelocityTb.Text = "0.4";
             this.VelocityTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -157,11 +162,11 @@
             this.KGainTb.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.KGainTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.KGainTb.isPassword = false;
-            this.KGainTb.Location = new System.Drawing.Point(103, 92);
-            this.KGainTb.Margin = new System.Windows.Forms.Padding(4);
+            this.KGainTb.Location = new System.Drawing.Point(154, 142);
+            this.KGainTb.Margin = new System.Windows.Forms.Padding(6);
             this.KGainTb.Name = "KGainTb";
-            this.KGainTb.Size = new System.Drawing.Size(98, 30);
-            this.KGainTb.TabIndex = 27;
+            this.KGainTb.Size = new System.Drawing.Size(147, 46);
+            this.KGainTb.TabIndex = 4;
             this.KGainTb.Text = "0.6";
             this.KGainTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -173,9 +178,10 @@
             this.label1.Font = new System.Drawing.Font("Century Schoolbook", 15.75F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(3, 177);
+            this.label1.Location = new System.Drawing.Point(4, 272);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 25);
+            this.label1.Size = new System.Drawing.Size(241, 38);
             this.label1.TabIndex = 26;
             this.label1.Text = "Allow Avoiding";
             // 
@@ -186,9 +192,10 @@
             this.AvoidEnable.Image = global::ThesisInterface.Properties.Resources.ON;
             this.AvoidEnable.ImageActive = null;
             this.AvoidEnable.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.AvoidEnable.Location = new System.Drawing.Point(184, 167);
+            this.AvoidEnable.Location = new System.Drawing.Point(276, 257);
+            this.AvoidEnable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AvoidEnable.Name = "AvoidEnable";
-            this.AvoidEnable.Size = new System.Drawing.Size(62, 54);
+            this.AvoidEnable.Size = new System.Drawing.Size(93, 83);
             this.AvoidEnable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.AvoidEnable.TabIndex = 29;
             this.AvoidEnable.TabStop = false;
@@ -216,14 +223,14 @@
             this.OnSelfUpdateBt.IconVisible = true;
             this.OnSelfUpdateBt.IconZoom = 90D;
             this.OnSelfUpdateBt.IsTab = false;
-            this.OnSelfUpdateBt.Location = new System.Drawing.Point(14, 245);
-            this.OnSelfUpdateBt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OnSelfUpdateBt.Location = new System.Drawing.Point(21, 377);
+            this.OnSelfUpdateBt.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.OnSelfUpdateBt.Name = "OnSelfUpdateBt";
             this.OnSelfUpdateBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.OnSelfUpdateBt.OnHovercolor = System.Drawing.Color.Chocolate;
             this.OnSelfUpdateBt.OnHoverTextColor = System.Drawing.Color.White;
             this.OnSelfUpdateBt.selected = false;
-            this.OnSelfUpdateBt.Size = new System.Drawing.Size(100, 24);
+            this.OnSelfUpdateBt.Size = new System.Drawing.Size(150, 37);
             this.OnSelfUpdateBt.TabIndex = 23;
             this.OnSelfUpdateBt.Text = "ON";
             this.OnSelfUpdateBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -251,14 +258,14 @@
             this.SendBt.IconVisible = true;
             this.SendBt.IconZoom = 90D;
             this.SendBt.IsTab = false;
-            this.SendBt.Location = new System.Drawing.Point(208, 54);
-            this.SendBt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SendBt.Location = new System.Drawing.Point(312, 83);
+            this.SendBt.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.SendBt.Name = "SendBt";
             this.SendBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.SendBt.OnHovercolor = System.Drawing.Color.Chocolate;
             this.SendBt.OnHoverTextColor = System.Drawing.Color.White;
             this.SendBt.selected = false;
-            this.SendBt.Size = new System.Drawing.Size(100, 24);
+            this.SendBt.Size = new System.Drawing.Size(150, 37);
             this.SendBt.TabIndex = 23;
             this.SendBt.Text = "SEND";
             this.SendBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -287,14 +294,14 @@
             this.OffSelfUpdateBt.IconVisible = true;
             this.OffSelfUpdateBt.IconZoom = 90D;
             this.OffSelfUpdateBt.IsTab = false;
-            this.OffSelfUpdateBt.Location = new System.Drawing.Point(140, 245);
-            this.OffSelfUpdateBt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OffSelfUpdateBt.Location = new System.Drawing.Point(210, 377);
+            this.OffSelfUpdateBt.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.OffSelfUpdateBt.Name = "OffSelfUpdateBt";
             this.OffSelfUpdateBt.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(9)))), ((int)(((byte)(42)))));
             this.OffSelfUpdateBt.OnHovercolor = System.Drawing.Color.Chocolate;
             this.OffSelfUpdateBt.OnHoverTextColor = System.Drawing.Color.White;
             this.OffSelfUpdateBt.selected = false;
-            this.OffSelfUpdateBt.Size = new System.Drawing.Size(100, 24);
+            this.OffSelfUpdateBt.Size = new System.Drawing.Size(150, 37);
             this.OffSelfUpdateBt.TabIndex = 23;
             this.OffSelfUpdateBt.Text = "OFF";
             this.OffSelfUpdateBt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -311,12 +318,12 @@
             this.KsoftTb.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.KsoftTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.KsoftTb.isPassword = false;
-            this.KsoftTb.Location = new System.Drawing.Point(103, 130);
-            this.KsoftTb.Margin = new System.Windows.Forms.Padding(4);
+            this.KsoftTb.Location = new System.Drawing.Point(154, 200);
+            this.KsoftTb.Margin = new System.Windows.Forms.Padding(6);
             this.KsoftTb.Name = "KsoftTb";
-            this.KsoftTb.Size = new System.Drawing.Size(98, 30);
-            this.KsoftTb.TabIndex = 27;
-            this.KsoftTb.Text = "0.1";
+            this.KsoftTb.Size = new System.Drawing.Size(147, 46);
+            this.KsoftTb.TabIndex = 4;
+            this.KsoftTb.Text = "0.08";
             this.KsoftTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Ksoft_label
@@ -327,16 +334,17 @@
             this.Ksoft_label.Font = new System.Drawing.Font("Century Schoolbook", 15.75F);
             this.Ksoft_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(5)))), ((int)(((byte)(65)))));
             this.Ksoft_label.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Ksoft_label.Location = new System.Drawing.Point(3, 130);
+            this.Ksoft_label.Location = new System.Drawing.Point(4, 200);
+            this.Ksoft_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Ksoft_label.Name = "Ksoft_label";
-            this.Ksoft_label.Size = new System.Drawing.Size(64, 25);
+            this.Ksoft_label.Size = new System.Drawing.Size(96, 38);
             this.Ksoft_label.TabIndex = 26;
             this.Ksoft_label.Text = "Ksoft";
             // 
             // AutoSetting
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.AvoidEnable);
@@ -352,10 +360,11 @@
             this.Controls.Add(this.OnSelfUpdateBt);
             this.Controls.Add(this.SendBt);
             this.Controls.Add(this.OffSelfUpdateBt);
-            this.MaximumSize = new System.Drawing.Size(320, 280);
-            this.MinimumSize = new System.Drawing.Size(320, 280);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximumSize = new System.Drawing.Size(480, 431);
+            this.MinimumSize = new System.Drawing.Size(480, 431);
             this.Name = "AutoSetting";
-            this.Size = new System.Drawing.Size(320, 280);
+            this.Size = new System.Drawing.Size(480, 431);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvoidEnable)).EndInit();
