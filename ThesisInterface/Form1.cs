@@ -1904,139 +1904,146 @@ namespace ThesisInterface
 #if DEBUG
                     Console.WriteLine("index: {0}, cmd: '{1}'", index.ToString(), cmd);
 #endif
-                    switch (mess[0])
+                    try
                     {
-                        case "$SINFO":
-                            if (mess[1].Contains('0')) // use contains method because message is "0\r\n"
-                            {
-                                VEHICLE_RECEIVED_ERROR_FLAG = true;
-                            }
-                            else if (mess[1].Contains('1'))
-                            {
-                                VEHICLE_RECEIVED_DATA_FLAG = true;
-                            }
-                            else if (mess[1].Contains('?'))
-                            {
-                                SetText(TextBox.auto_received, DateTime.Now.ToString("hh:mm:ss tt") + " << vehicle has no map, RUN failed!\n");
-                            }
-                            else if (mess[1] == "VPLAN")
-                            {
-                                if (mess[2].Contains('1'))
+                        switch (mess[0])
+                        {
+                            case "$SINFO":
+                                if (mess[1].Contains('0')) // use contains method because message is "0\r\n"
                                 {
-                                    this.MyStatus.VPLAN_FLAG = true;
+                                    VEHICLE_RECEIVED_ERROR_FLAG = true;
                                 }
-                                else if (mess[2].Contains('0'))
+                                else if (mess[1].Contains('1'))
                                 {
-                                    this.MyStatus.VPLAN_FLAG = false;
-                                    SetText(TextBox.auto_received, 
-                                        DateTime.Now.ToString("hh:mm:ss tt") + " << transfer map successfully, ready to go\r\n");
+                                    VEHICLE_RECEIVED_DATA_FLAG = true;
                                 }
-                                else if (mess[2].Contains('2'))
+                                else if (mess[1].Contains('?'))
                                 {
-                                    Console.WriteLine("[map transfer] Data received is correct checksum but wrong header");
+                                    SetText(TextBox.auto_received, DateTime.Now.ToString("hh:mm:ss tt") + " << vehicle has no map, RUN failed!\n");
                                 }
-                            }
-                            break;
-
-                        case "$MACON":
-                            if (mess[1].Contains('1'))
-                            {
-                                SetText(TextBox.manual_received, DateTime.Now.ToString("hh:mm:ss tt") + " << success\n");
-                            }
-                            else
-                            {
-                                SetText(TextBox.manual_received, DateTime.Now.ToString("hh:mm:ss tt") + " << fail\n");
-                            }
-                            break;
-
-                        case "$CALIB":
-                            SetText(TextBox.imuSetting_calib, "Start");
-                            SetText(TextBox.imuSetting_received, DateTime.Now.ToString("hh:mm:ss tt") + " << " + cmd);
-                            MessageBox.Show("Calibration is done, please start the IMU.", "Serial DataReceived",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            break;
-
-                        case "$VINFO":
-                            string content = cmd.Remove(cmd.Length - 4, 4);
-                            content = content.Remove(0, 1);
-                            string CC = checksum(content);
-                            if (cmd[index - 2] == CC[0] && cmd[index - 1] == CC[1])
-                            {
-                                if (mess[1] == "0")
+                                else if (mess[1] == "VPLAN")
                                 {
-                                    MyVehicle = new Vehicle(mess);
-                                    angle_ref.Add(MyVehicle.RefAngle);
-                                    angle.Add(MyVehicle.Angle);
-                                    v1_ref.Add(MyVehicle.M1RefVelocity);
-                                    v1_cur.Add(MyVehicle.M1Velocity);
-                                    v2_ref.Add(MyVehicle.M2RefVelocity);
-                                    v2_cur.Add(MyVehicle.M2Velocity);
-                                    v_linear.Add(MyVehicle.v_linear);
-
-                                    double turning_angle = FixAngle(MyVehicle.RefAngle - MyVehicle.Angle);
-                                    /* Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
-                                    (It help users to understand whether the vehicle is turning left or right) */
-                                    DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, turning_angle, MyVehicle.v_linear);
-                                    SetText(TextBox.auto_turning,
-                                        "Turning " + Math.Round(turning_angle, 4).ToString() + "°");
-                                    SetText(TextBox.auto_vehicleInfo, MyVehicle.GetVehicleStatus());
-                                }
-                                else if (mess[1] == "1")
-                                {
-                                    MyGPS = new GPS(mess);
-
-                                    if (mess[2] != "0") // gps quality is valid
+                                    if (mess[2].Contains('1'))
                                     {
-                                        // Save Position Data & Draw On Map
-                                        ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
-                                        GMapMarker marker = new GMarkerGoogle(
-                                            new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
-                                            GMarkerGoogleType.orange_dot);
-
-                                        actualRoute = new GMapRoute(ActualCoordinatesList, "actual route");
-                                        actualRoute.Stroke.Width = 3;
-                                        actualRoute.Stroke.Color = Color.Red;
-
-                                        DisplayRouteOnMap(actualRoute, "Actual", marker);
+                                        this.MyStatus.VPLAN_FLAG = true;
                                     }
-                                    SetText(TextBox.auto_positionInfo, MyGPS.GetGPSStatus());
-                                }
-                                else if (mess[1] == "2")
-                                {
-                                    MyStanleyControl = new StanleyControl(mess);
-                                    Efa.Add(MyStanleyControl.Efa);
-                                    ThetaE.Add(MyStanleyControl.thetaE);
-                                    ThetaD.Add(MyStanleyControl.thetaD);
-                                    Delta.Add(MyStanleyControl.Delta);
-                                    refPoint.Add(MyStanleyControl.point_index);
-                                    SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
-                                }
-                                else if (mess[1] == "3")
-                                {
-                                    if (vehicle_mode == Mode.Manual)
+                                    else if (mess[2].Contains('0'))
                                     {
-                                        string vehicleStatus = String.Format(
-                                        "V max: {0} [rpm]\nV manual: {1} [rpm]\nManual angle: {2} [°]\nFuzzy output: {3}\n",
-                                        mess[2], mess[3], mess[4], mess[5]);
-                                        SetText(TextBox.manual_vehicleStatus, vehicleStatus);
+                                        this.MyStatus.VPLAN_FLAG = false;
+                                        SetText(TextBox.auto_received,
+                                            DateTime.Now.ToString("hh:mm:ss tt") + " << transfer map successfully, ready to go\r\n");
+                                    }
+                                    else if (mess[2].Contains('2'))
+                                    {
+                                        Console.WriteLine("[map transfer] Data received is correct checksum but wrong header");
                                     }
                                 }
-                            }
-                            else
-                                Console.Write("CC: '{0}', content: '{1}', cmd: '{2}'", CC, content, cmd);
-                            break;
+                                break;
 
-                        case "$WRONG_CKSUM":
-                            WRONG_CKSUM_FLAG = true;
+                            case "$MACON":
+                                if (mess[1].Contains('1'))
+                                {
+                                    SetText(TextBox.manual_received, DateTime.Now.ToString("hh:mm:ss tt") + " << success\n");
+                                }
+                                else
+                                {
+                                    SetText(TextBox.manual_received, DateTime.Now.ToString("hh:mm:ss tt") + " << fail\n");
+                                }
+                                break;
+
+                            case "$CALIB":
+                                SetText(TextBox.imuSetting_calib, "Start");
+                                SetText(TextBox.imuSetting_received, DateTime.Now.ToString("hh:mm:ss tt") + " << " + cmd);
+                                MessageBox.Show("Calibration is done, please start the IMU.", "Serial DataReceived",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+
+                            case "$VINFO":
+                                string content = cmd.Remove(cmd.Length - 4, 4);
+                                content = content.Remove(0, 1);
+                                string CC = checksum(content);
+                                if (cmd[index - 2] == CC[0] && cmd[index - 1] == CC[1])
+                                {
+                                    if (mess[1] == "0")
+                                    {
+                                        MyVehicle = new Vehicle(mess);
+                                        angle_ref.Add(MyVehicle.RefAngle);
+                                        angle.Add(MyVehicle.Angle);
+                                        v1_ref.Add(MyVehicle.M1RefVelocity);
+                                        v1_cur.Add(MyVehicle.M1Velocity);
+                                        v2_ref.Add(MyVehicle.M2RefVelocity);
+                                        v2_cur.Add(MyVehicle.M2Velocity);
+                                        v_linear.Add(MyVehicle.v_linear);
+
+                                        double turning_angle = FixAngle(MyVehicle.RefAngle - MyVehicle.Angle);
+                                        /* Draw turning State of vehicle by subtracting the RefAngle and the ActualAngle
+                                        (It help users to understand whether the vehicle is turning left or right) */
+                                        DrawVehicleTurningStatusOnImage(autoUC1.VehicleStatusImage, turning_angle, MyVehicle.v_linear);
+                                        SetText(TextBox.auto_turning,
+                                            "Turning " + Math.Round(turning_angle, 4).ToString() + "°");
+                                        SetText(TextBox.auto_vehicleInfo, MyVehicle.GetVehicleStatus());
+                                    }
+                                    else if (mess[1] == "1")
+                                    {
+                                        MyGPS = new GPS(mess);
+
+                                        if (mess[2] != "0") // gps quality is valid
+                                        {
+                                            // Save Position Data & Draw On Map
+                                            ActualCoordinatesList.Add(new GMap.NET.PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng));
+                                            GMapMarker marker = new GMarkerGoogle(
+                                                new PointLatLng(MyGPS.GPS_Lat, MyGPS.GPS_Lng),
+                                                GMarkerGoogleType.orange_dot);
+
+                                            actualRoute = new GMapRoute(ActualCoordinatesList, "actual route");
+                                            actualRoute.Stroke.Width = 3;
+                                            actualRoute.Stroke.Color = Color.Red;
+
+                                            DisplayRouteOnMap(actualRoute, "Actual", marker);
+                                        }
+                                        SetText(TextBox.auto_positionInfo, MyGPS.GetGPSStatus());
+                                    }
+                                    else if (mess[1] == "2")
+                                    {
+                                        MyStanleyControl = new StanleyControl(mess);
+                                        Efa.Add(MyStanleyControl.Efa);
+                                        ThetaE.Add(MyStanleyControl.thetaE);
+                                        ThetaD.Add(MyStanleyControl.thetaD);
+                                        Delta.Add(MyStanleyControl.Delta);
+                                        refPoint.Add(MyStanleyControl.point_index);
+                                        SetText(TextBox.auto_stanleyControl, MyStanleyControl.GetStanleyControlStatus());
+                                    }
+                                    else if (mess[1] == "3")
+                                    {
+                                        if (vehicle_mode == Mode.Manual)
+                                        {
+                                            string vehicleStatus = String.Format(
+                                            "V max: {0} [rpm]\nV manual: {1} [rpm]\nManual angle: {2} [°]\nFuzzy output: {3}\n",
+                                            mess[2], mess[3], mess[4], mess[5]);
+                                            SetText(TextBox.manual_vehicleStatus, vehicleStatus);
+                                        }
+                                    }
+                                }
+                                else
+                                    Console.Write("CC: '{0}', content: '{1}', cmd: '{2}'", CC, content, cmd);
+                                break;
+
+                            case "$WRONG_CKSUM":
+                                WRONG_CKSUM_FLAG = true;
 #if DEBUG
-                            MessageBox.Show("[vehicle] $WRONG_CKSUM", "Serial DataReceived", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("[vehicle] $WRONG_CKSUM", "Serial DataReceived", MessageBoxButtons.OK, MessageBoxIcon.Error);
 #endif
-                            break;
+                                break;
 
-                        default:
-                            Console.WriteLine("Unknown: " + mess[0]);
-                            break;
-                    } // end switch
+                            default:
+                                Console.WriteLine("Unknown: " + mess[0]);
+                                break;
+                        } // end switch
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -2136,10 +2143,18 @@ namespace ThesisInterface
         {
             ActualCoordinatesList.Clear();
             ActualOverlay.Clear();
+            refPoint.Clear();
             Efa.Clear();
             ThetaD.Clear();
             ThetaE.Clear();
             Delta.Clear();
+            angle_ref.Clear();
+            angle.Clear();
+            v1_ref.Clear();
+            v1_cur.Clear();
+            v2_ref.Clear();
+            v2_cur.Clear();
+            v_linear.Clear();
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
